@@ -115,10 +115,12 @@
   .card.sem-二上 { border-color: #6BCB77; }
   .card.sem-二下 { border-color: #FFB347; }
 
-  .card-num  { font-size: .78rem; color: #bbb; margin-bottom: 2px; }
-  .card-char { font-size: 3.2rem; line-height: 1.2; color: #222; }
+  .card-num    { font-size: .78rem; color: #bbb; margin-bottom: 2px; }
+  .card-char-wrap { display: flex; align-items: center; justify-content: center; margin: 4px 0 2px; gap: 1px; }
+  .card-char      { font-size: 3.2rem; line-height: 1; color: #222; }
+  .card-zhuyin-col{ display: inline-flex; align-items: stretch; }
   .card-radical {
-    font-size: .88rem; color: #999; margin: 5px 0 10px;
+    font-size: .88rem; color: #999; margin: 4px 0 10px;
     display: flex; align-items: center; justify-content: center; gap: 4px;
   }
   .card-radical span { font-size: 1.05rem; color: #555; font-weight: bold; }
@@ -248,6 +250,7 @@ const DATA = [
     "id": 1,
     "char": "拍",
     "radical": "手",
+    "zhuyin": "ㄆㄞ",
     "semester": "一上",
     "words": [
       "拍手",
@@ -259,6 +262,7 @@ const DATA = [
     "id": 2,
     "char": "個",
     "radical": "人",
+    "zhuyin": "ㄍㄜˋ",
     "semester": "一上",
     "words": [
       "一個",
@@ -270,6 +274,7 @@ const DATA = [
     "id": 3,
     "char": "人",
     "radical": "人",
+    "zhuyin": "ㄖㄣˊ",
     "semester": "一上",
     "words": [
       "人人",
@@ -281,6 +286,7 @@ const DATA = [
     "id": 4,
     "char": "晚",
     "radical": "日",
+    "zhuyin": "ㄨㄢˇ",
     "semester": "一上",
     "words": [
       "晚上",
@@ -292,6 +298,7 @@ const DATA = [
     "id": 5,
     "char": "手",
     "radical": "手",
+    "zhuyin": "ㄕㄡˇ",
     "semester": "一上",
     "words": [
       "手心",
@@ -303,6 +310,7 @@ const DATA = [
     "id": 6,
     "char": "秋",
     "radical": "禾",
+    "zhuyin": "ㄑㄧㄡ",
     "semester": "一上",
     "words": [
       "秋天",
@@ -314,6 +322,7 @@ const DATA = [
     "id": 7,
     "char": "拉",
     "radical": "手",
+    "zhuyin": "ㄌㄚ",
     "semester": "一上",
     "words": [
       "拉手",
@@ -325,6 +334,7 @@ const DATA = [
     "id": 8,
     "char": "王",
     "radical": "玉",
+    "zhuyin": "ㄨㄤˊ",
     "semester": "一上",
     "words": [
       "王子",
@@ -336,6 +346,7 @@ const DATA = [
     "id": 9,
     "char": "左",
     "radical": "工",
+    "zhuyin": "ㄗㄨㄛˇ",
     "semester": "一上",
     "words": [
       "左手",
@@ -347,6 +358,7 @@ const DATA = [
     "id": 10,
     "char": "千",
     "radical": "十",
+    "zhuyin": "ㄑㄧㄢ",
     "semester": "一上",
     "words": [
       "千萬",
@@ -358,6 +370,7 @@ const DATA = [
     "id": 11,
     "char": "看",
     "radical": "目",
+    "zhuyin": "ㄎㄢˋ",
     "semester": "一上",
     "words": [
       "看書",
@@ -369,6 +382,7 @@ const DATA = [
     "id": 12,
     "char": "主",
     "radical": "丶",
+    "zhuyin": "ㄓㄨˇ",
     "semester": "一上",
     "words": [
       "主人",
@@ -380,6 +394,7 @@ const DATA = [
     "id": 13,
     "char": "右",
     "radical": "口",
+    "zhuyin": "ㄧㄡˋ",
     "semester": "一上",
     "words": [
       "右手",
@@ -391,6 +406,7 @@ const DATA = [
     "id": 14,
     "char": "和",
     "radical": "口",
+    "zhuyin": "ㄏㄜˊ",
     "semester": "一上",
     "words": [
       "和平",
@@ -402,6 +418,7 @@ const DATA = [
     "id": 15,
     "char": "找",
     "radical": "手",
+    "zhuyin": "ㄓㄠˇ",
     "semester": "一上",
     "words": [
       "找人",
@@ -413,6 +430,7 @@ const DATA = [
     "id": 16,
     "char": "又",
     "radical": "又",
+    "zhuyin": "ㄧㄡˋ",
     "semester": "一上",
     "words": [
       "又大又好",
@@ -424,6 +442,7 @@ const DATA = [
     "id": 17,
     "char": "你",
     "radical": "人",
+    "zhuyin": "ㄋㄧˇ",
     "semester": "一上",
     "words": [
       "你好",
@@ -435,6 +454,7 @@ const DATA = [
     "id": 18,
     "char": "玩",
     "radical": "玉",
+    "zhuyin": "ㄨㄢˊ",
     "semester": "一上",
     "words": [
       "玩耍",
@@ -446,6 +466,7 @@ const DATA = [
     "id": 19,
     "char": "隻",
     "radical": "隹",
+    "zhuyin": "ㄓ",
     "semester": "一上",
     "words": [
       "一隻",
@@ -457,6 +478,7 @@ const DATA = [
     "id": 20,
     "char": "路",
     "radical": "足",
+    "zhuyin": "ㄌㄨˋ",
     "semester": "一上",
     "words": [
       "路口",
@@ -468,6 +490,7 @@ const DATA = [
     "id": 21,
     "char": "他",
     "radical": "人",
+    "zhuyin": "ㄊㄚ",
     "semester": "一上",
     "words": [
       "他人",
@@ -479,6 +502,7 @@ const DATA = [
     "id": 22,
     "char": "陪",
     "radical": "阜",
+    "zhuyin": "ㄆㄟˊ",
     "semester": "一上",
     "words": [
       "陪伴",
@@ -490,6 +514,7 @@ const DATA = [
     "id": 23,
     "char": "青",
     "radical": "青",
+    "zhuyin": "ㄑㄧㄥ",
     "semester": "一上",
     "words": [
       "青草",
@@ -501,6 +526,7 @@ const DATA = [
     "id": 24,
     "char": "長",
     "radical": "長",
+    "zhuyin": "ㄔㄤˊ",
     "semester": "一上",
     "words": [
       "長大",
@@ -512,6 +538,7 @@ const DATA = [
     "id": 25,
     "char": "也",
     "radical": "乙",
+    "zhuyin": "ㄧㄝˇ",
     "semester": "一上",
     "words": [
       "也是",
@@ -523,6 +550,7 @@ const DATA = [
     "id": 26,
     "char": "高",
     "radical": "高",
+    "zhuyin": "ㄍㄠ",
     "semester": "一上",
     "words": [
       "高山",
@@ -534,6 +562,7 @@ const DATA = [
     "id": 27,
     "char": "蛙",
     "radical": "虫",
+    "zhuyin": "ㄨㄚ",
     "semester": "一上",
     "words": [
       "青蛙",
@@ -545,6 +574,7 @@ const DATA = [
     "id": 28,
     "char": "白",
     "radical": "白",
+    "zhuyin": "ㄅㄞˊ",
     "semester": "一上",
     "words": [
       "白色",
@@ -556,6 +586,7 @@ const DATA = [
     "id": 29,
     "char": "上",
     "radical": "一",
+    "zhuyin": "ㄕㄤˋ",
     "semester": "一上",
     "words": [
       "上面",
@@ -567,6 +598,7 @@ const DATA = [
     "id": 30,
     "char": "山",
     "radical": "山",
+    "zhuyin": "ㄕㄢ",
     "semester": "一上",
     "words": [
       "山上",
@@ -578,6 +610,7 @@ const DATA = [
     "id": 31,
     "char": "開",
     "radical": "門",
+    "zhuyin": "ㄎㄞ",
     "semester": "一上",
     "words": [
       "開心",
@@ -589,6 +622,7 @@ const DATA = [
     "id": 32,
     "char": "花",
     "radical": "艸",
+    "zhuyin": "ㄏㄨㄚ",
     "semester": "一上",
     "words": [
       "花朵",
@@ -600,6 +634,7 @@ const DATA = [
     "id": 33,
     "char": "下",
     "radical": "一",
+    "zhuyin": "ㄒㄧㄚˋ",
     "semester": "一上",
     "words": [
       "下面",
@@ -611,6 +646,7 @@ const DATA = [
     "id": 34,
     "char": "到",
     "radical": "刀",
+    "zhuyin": "ㄉㄠˋ",
     "semester": "一上",
     "words": [
       "到了",
@@ -622,6 +658,7 @@ const DATA = [
     "id": 35,
     "char": "心",
     "radical": "心",
+    "zhuyin": "ㄒㄧㄣ",
     "semester": "一上",
     "words": [
       "心情",
@@ -633,6 +670,7 @@ const DATA = [
     "id": 36,
     "char": "紅",
     "radical": "糸",
+    "zhuyin": "ㄏㄨㄥˊ",
     "semester": "一上",
     "words": [
       "紅色",
@@ -644,6 +682,7 @@ const DATA = [
     "id": 37,
     "char": "這",
     "radical": "辵",
+    "zhuyin": "ㄓㄜˋ",
     "semester": "一上",
     "words": [
       "這裡",
@@ -655,6 +694,7 @@ const DATA = [
     "id": 38,
     "char": "大",
     "radical": "大",
+    "zhuyin": "ㄉㄚˋ",
     "semester": "一上",
     "words": [
       "大家",
@@ -666,6 +706,7 @@ const DATA = [
     "id": 39,
     "char": "比",
     "radical": "比",
+    "zhuyin": "ㄅㄧˇ",
     "semester": "一上",
     "words": [
       "比較",
@@ -677,6 +718,7 @@ const DATA = [
     "id": 40,
     "char": "走",
     "radical": "走",
+    "zhuyin": "ㄗㄡˇ",
     "semester": "一上",
     "words": [
       "走路",
@@ -688,6 +730,7 @@ const DATA = [
     "id": 41,
     "char": "是",
     "radical": "日",
+    "zhuyin": "ㄕˋ",
     "semester": "一上",
     "words": [
       "是的",
@@ -699,6 +742,7 @@ const DATA = [
     "id": 42,
     "char": "海",
     "radical": "水",
+    "zhuyin": "ㄏㄞˇ",
     "semester": "一上",
     "words": [
       "海水",
@@ -710,6 +754,7 @@ const DATA = [
     "id": 43,
     "char": "門",
     "radical": "門",
+    "zhuyin": "ㄇㄣˊ",
     "semester": "一上",
     "words": [
       "門口",
@@ -721,6 +766,7 @@ const DATA = [
     "id": 44,
     "char": "在",
     "radical": "土",
+    "zhuyin": "ㄗㄞˋ",
     "semester": "一上",
     "words": [
       "在家",
@@ -732,6 +778,7 @@ const DATA = [
     "id": 45,
     "char": "誰",
     "radical": "言",
+    "zhuyin": "ㄕㄨㄟˊ",
     "semester": "一上",
     "words": [
       "誰啊",
@@ -743,6 +790,7 @@ const DATA = [
     "id": 46,
     "char": "朋",
     "radical": "月",
+    "zhuyin": "ㄆㄥˊ",
     "semester": "一上",
     "words": [
       "朋友",
@@ -754,6 +802,7 @@ const DATA = [
     "id": 47,
     "char": "裡",
     "radical": "衣",
+    "zhuyin": "ㄌㄧˇ",
     "semester": "一上",
     "words": [
       "裡面",
@@ -765,6 +814,7 @@ const DATA = [
     "id": 48,
     "char": "向",
     "radical": "口",
+    "zhuyin": "ㄒㄧㄤˋ",
     "semester": "一上",
     "words": [
       "方向",
@@ -776,6 +826,7 @@ const DATA = [
     "id": 49,
     "char": "的",
     "radical": "白",
+    "zhuyin": "ㄉㄜ˙",
     "semester": "一上",
     "words": [
       "我的",
@@ -787,6 +838,7 @@ const DATA = [
     "id": 50,
     "char": "友",
     "radical": "又",
+    "zhuyin": "ㄧㄡˇ",
     "semester": "一上",
     "words": [
       "朋友",
@@ -798,6 +850,7 @@ const DATA = [
     "id": 51,
     "char": "外",
     "radical": "夕",
+    "zhuyin": "ㄨㄞˋ",
     "semester": "一上",
     "words": [
       "外面",
@@ -809,6 +862,7 @@ const DATA = [
     "id": 52,
     "char": "說",
     "radical": "言",
+    "zhuyin": "ㄕㄨㄛ",
     "semester": "一上",
     "words": [
       "說話",
@@ -820,6 +874,7 @@ const DATA = [
     "id": 53,
     "char": "我",
     "radical": "戈",
+    "zhuyin": "ㄨㄛˇ",
     "semester": "一上",
     "words": [
       "我們",
@@ -831,6 +886,7 @@ const DATA = [
     "id": 54,
     "char": "們",
     "radical": "人",
+    "zhuyin": "ㄇㄣ˙",
     "semester": "一上",
     "words": [
       "我們",
@@ -842,6 +898,7 @@ const DATA = [
     "id": 55,
     "char": "有",
     "radical": "月",
+    "zhuyin": "ㄧㄡˇ",
     "semester": "一上",
     "words": [
       "有趣",
@@ -853,6 +910,7 @@ const DATA = [
     "id": 56,
     "char": "朵",
     "radical": "木",
+    "zhuyin": "ㄉㄨㄛˇ",
     "semester": "一上",
     "words": [
       "花朵",
@@ -864,6 +922,7 @@ const DATA = [
     "id": 57,
     "char": "分",
     "radical": "刀",
+    "zhuyin": "ㄈㄣ",
     "semester": "一上",
     "words": [
       "分開",
@@ -875,6 +934,7 @@ const DATA = [
     "id": 58,
     "char": "起",
     "radical": "走",
+    "zhuyin": "ㄑㄧˇ",
     "semester": "一上",
     "words": [
       "起來",
@@ -886,6 +946,7 @@ const DATA = [
     "id": 59,
     "char": "什",
     "radical": "人",
+    "zhuyin": "ㄕㄣˊ",
     "semester": "一上",
     "words": [
       "什麼",
@@ -896,6 +957,7 @@ const DATA = [
     "id": 60,
     "char": "從",
     "radical": "彳",
+    "zhuyin": "ㄘㄨㄥˊ",
     "semester": "一上",
     "words": [
       "從前",
@@ -907,6 +969,7 @@ const DATA = [
     "id": 61,
     "char": "好",
     "radical": "女",
+    "zhuyin": "ㄏㄠˇ",
     "semester": "一上",
     "words": [
       "好的",
@@ -918,6 +981,7 @@ const DATA = [
     "id": 62,
     "char": "子",
     "radical": "子",
+    "zhuyin": "ㄗ˙",
     "semester": "一上",
     "words": [
       "子女",
@@ -929,6 +993,7 @@ const DATA = [
     "id": 63,
     "char": "麼",
     "radical": "麻",
+    "zhuyin": "ㄇㄜ˙",
     "semester": "一上",
     "words": [
       "什麼",
@@ -940,6 +1005,7 @@ const DATA = [
     "id": 64,
     "char": "頭",
     "radical": "頁",
+    "zhuyin": "ㄊㄡˊ",
     "semester": "一上",
     "words": [
       "頭上",
@@ -951,6 +1017,7 @@ const DATA = [
     "id": 65,
     "char": "了",
     "radical": "亅",
+    "zhuyin": "ㄌㄜ˙",
     "semester": "一上",
     "words": [
       "好了",
@@ -962,6 +1029,7 @@ const DATA = [
     "id": 66,
     "char": "小",
     "radical": "小",
+    "zhuyin": "ㄒㄧㄠˇ",
     "semester": "一上",
     "words": [
       "小心",
@@ -973,6 +1041,7 @@ const DATA = [
     "id": 67,
     "char": "不",
     "radical": "一",
+    "zhuyin": "ㄅㄨˋ",
     "semester": "一上",
     "words": [
       "不好",
@@ -984,6 +1053,7 @@ const DATA = [
     "id": 68,
     "char": "那",
     "radical": "邑",
+    "zhuyin": "ㄋㄚˋ",
     "semester": "一上",
     "words": [
       "那裡",
@@ -995,6 +1065,7 @@ const DATA = [
     "id": 69,
     "char": "啊",
     "radical": "口",
+    "zhuyin": "ㄚ˙",
     "semester": "一上",
     "words": [
       "啊呀",
@@ -1006,6 +1077,7 @@ const DATA = [
     "id": 70,
     "char": "課",
     "radical": "言",
+    "zhuyin": "ㄎㄜˋ",
     "semester": "一上",
     "words": [
       "上課",
@@ -1017,6 +1089,7 @@ const DATA = [
     "id": 71,
     "char": "同",
     "radical": "口",
+    "zhuyin": "ㄊㄨㄥˊ",
     "semester": "一上",
     "words": [
       "同學",
@@ -1028,6 +1101,7 @@ const DATA = [
     "id": 72,
     "char": "多",
     "radical": "夕",
+    "zhuyin": "ㄉㄨㄛ",
     "semester": "一上",
     "words": [
       "多少",
@@ -1039,6 +1113,7 @@ const DATA = [
     "id": 73,
     "char": "兩",
     "radical": "入",
+    "zhuyin": "ㄌㄧㄤˇ",
     "semester": "一上",
     "words": [
       "兩個",
@@ -1050,6 +1125,7 @@ const DATA = [
     "id": 74,
     "char": "早",
     "radical": "日",
+    "zhuyin": "ㄗㄠˇ",
     "semester": "一上",
     "words": [
       "早上",
@@ -1061,6 +1137,7 @@ const DATA = [
     "id": 75,
     "char": "要",
     "radical": "襾",
+    "zhuyin": "ㄧㄠˋ",
     "semester": "一下",
     "words": [
       "要求",
@@ -1072,6 +1149,7 @@ const DATA = [
     "id": 76,
     "char": "輕",
     "radical": "車",
+    "zhuyin": "ㄑㄧㄥ",
     "semester": "一下",
     "words": [
       "輕鬆",
@@ -1083,6 +1161,7 @@ const DATA = [
     "id": 77,
     "char": "過",
     "radical": "辵",
+    "zhuyin": "ㄍㄨㄛˋ",
     "semester": "一下",
     "words": [
       "過來",
@@ -1094,6 +1173,7 @@ const DATA = [
     "id": 78,
     "char": "享",
     "radical": "亠",
+    "zhuyin": "ㄒㄧㄤˇ",
     "semester": "一下",
     "words": [
       "享受",
@@ -1105,6 +1185,7 @@ const DATA = [
     "id": 79,
     "char": "伴",
     "radical": "人",
+    "zhuyin": "ㄅㄢˋ",
     "semester": "一下",
     "words": [
       "伴侶",
@@ -1116,6 +1197,7 @@ const DATA = [
     "id": 80,
     "char": "躺",
     "radical": "身",
+    "zhuyin": "ㄊㄤˇ",
     "semester": "一下",
     "words": [
       "躺下",
@@ -1127,6 +1209,7 @@ const DATA = [
     "id": 81,
     "char": "靜",
     "radical": "青",
+    "zhuyin": "ㄐㄧㄥˋ",
     "semester": "一下",
     "words": [
       "安靜",
@@ -1138,6 +1221,7 @@ const DATA = [
     "id": 82,
     "char": "快",
     "radical": "心",
+    "zhuyin": "ㄎㄨㄞˋ",
     "semester": "一下",
     "words": [
       "快樂",
@@ -1149,6 +1233,7 @@ const DATA = [
     "id": 83,
     "char": "後",
     "radical": "彳",
+    "zhuyin": "ㄏㄡˋ",
     "semester": "一下",
     "words": [
       "後面",
@@ -1160,6 +1245,7 @@ const DATA = [
     "id": 84,
     "char": "受",
     "radical": "又",
+    "zhuyin": "ㄕㄡˋ",
     "semester": "一下",
     "words": [
       "接受",
@@ -1171,6 +1257,7 @@ const DATA = [
     "id": 85,
     "char": "奶",
     "radical": "女",
+    "zhuyin": "ㄋㄞˇ",
     "semester": "一下",
     "words": [
       "奶奶",
@@ -1182,6 +1269,7 @@ const DATA = [
     "id": 86,
     "char": "自",
     "radical": "自",
+    "zhuyin": "ㄗˋ",
     "semester": "一下",
     "words": [
       "自己",
@@ -1193,6 +1281,7 @@ const DATA = [
     "id": 87,
     "char": "天",
     "radical": "大",
+    "zhuyin": "ㄊㄧㄢ",
     "semester": "一下",
     "words": [
       "天空",
@@ -1204,6 +1293,7 @@ const DATA = [
     "id": 88,
     "char": "歌",
     "radical": "欠",
+    "zhuyin": "ㄍㄜ",
     "semester": "一下",
     "words": [
       "唱歌",
@@ -1215,6 +1305,7 @@ const DATA = [
     "id": 89,
     "char": "吃",
     "radical": "口",
+    "zhuyin": "ㄔ",
     "semester": "一下",
     "words": [
       "吃飯",
@@ -1226,6 +1317,7 @@ const DATA = [
     "id": 90,
     "char": "溫",
     "radical": "水",
+    "zhuyin": "ㄨㄣ",
     "semester": "一下",
     "words": [
       "溫暖",
@@ -1237,6 +1329,7 @@ const DATA = [
     "id": 91,
     "char": "跟",
     "radical": "足",
+    "zhuyin": "ㄍㄣ",
     "semester": "一下",
     "words": [
       "跟著",
@@ -1248,6 +1341,7 @@ const DATA = [
     "id": 92,
     "char": "己",
     "radical": "己",
+    "zhuyin": "ㄐㄧˇ",
     "semester": "一下",
     "words": [
       "自己",
@@ -1258,6 +1352,7 @@ const DATA = [
     "id": 93,
     "char": "空",
     "radical": "穴",
+    "zhuyin": "ㄎㄨㄥ",
     "semester": "一下",
     "words": [
       "空中",
@@ -1269,6 +1364,7 @@ const DATA = [
     "id": 94,
     "char": "出",
     "radical": "凵",
+    "zhuyin": "ㄔㄨ",
     "semester": "一下",
     "words": [
       "出來",
@@ -1280,6 +1376,7 @@ const DATA = [
     "id": 95,
     "char": "菜",
     "radical": "艸",
+    "zhuyin": "ㄘㄞˋ",
     "semester": "一下",
     "words": [
       "蔬菜",
@@ -1291,6 +1388,7 @@ const DATA = [
     "id": 96,
     "char": "暖",
     "radical": "日",
+    "zhuyin": "ㄋㄨㄢˇ",
     "semester": "一下",
     "words": [
       "溫暖",
@@ -1302,6 +1400,7 @@ const DATA = [
     "id": 97,
     "char": "班",
     "radical": "玉",
+    "zhuyin": "ㄅㄢ",
     "semester": "一下",
     "words": [
       "班級",
@@ -1313,6 +1412,7 @@ const DATA = [
     "id": 98,
     "char": "變",
     "radical": "言",
+    "zhuyin": "ㄅㄧㄢˋ",
     "semester": "一下",
     "words": [
       "改變",
@@ -1324,6 +1424,7 @@ const DATA = [
     "id": 99,
     "char": "雲",
     "radical": "雨",
+    "zhuyin": "ㄩㄣˊ",
     "semester": "一下",
     "words": [
       "白雲",
@@ -1335,6 +1436,7 @@ const DATA = [
     "id": 100,
     "char": "新",
     "radical": "斤",
+    "zhuyin": "ㄒㄧㄣ",
     "semester": "一下",
     "words": [
       "新的",
@@ -1346,6 +1448,7 @@ const DATA = [
     "id": 101,
     "char": "就",
     "radical": "尢",
+    "zhuyin": "ㄐㄧㄡˋ",
     "semester": "一下",
     "words": [
       "就是",
@@ -1357,6 +1460,7 @@ const DATA = [
     "id": 102,
     "char": "種",
     "radical": "禾",
+    "zhuyin": "ㄓㄨㄥˇ",
     "semester": "一下",
     "words": [
       "種類",
@@ -1368,6 +1472,7 @@ const DATA = [
     "id": 103,
     "char": "床",
     "radical": "广",
+    "zhuyin": "ㄔㄨㄤˊ",
     "semester": "一下",
     "words": [
       "床上",
@@ -1379,6 +1484,7 @@ const DATA = [
     "id": 104,
     "char": "成",
     "radical": "戈",
+    "zhuyin": "ㄔㄥˊ",
     "semester": "一下",
     "words": [
       "成功",
@@ -1390,6 +1496,7 @@ const DATA = [
     "id": 105,
     "char": "水",
     "radical": "水",
+    "zhuyin": "ㄕㄨㄟˇ",
     "semester": "一下",
     "words": [
       "水果",
@@ -1401,6 +1508,7 @@ const DATA = [
     "id": 106,
     "char": "芽",
     "radical": "艸",
+    "zhuyin": "ㄧㄚˊ",
     "semester": "一下",
     "words": [
       "芽苗",
@@ -1412,6 +1520,7 @@ const DATA = [
     "id": 107,
     "char": "桌",
     "radical": "木",
+    "zhuyin": "ㄓㄨㄛ",
     "semester": "一下",
     "words": [
       "桌子",
@@ -1423,6 +1532,7 @@ const DATA = [
     "id": 108,
     "char": "問",
     "radical": "口",
+    "zhuyin": "ㄨㄣˋ",
     "semester": "一下",
     "words": [
       "問題",
@@ -1434,6 +1544,7 @@ const DATA = [
     "id": 109,
     "char": "弟",
     "radical": "弓",
+    "zhuyin": "ㄉㄧˋ",
     "semester": "一下",
     "words": [
       "弟弟",
@@ -1445,6 +1556,7 @@ const DATA = [
     "id": 110,
     "char": "棉",
     "radical": "木",
+    "zhuyin": "ㄇㄧㄢˊ",
     "semester": "一下",
     "words": [
       "棉花",
@@ -1456,6 +1568,7 @@ const DATA = [
     "id": 111,
     "char": "蟲",
     "radical": "虫",
+    "zhuyin": "ㄔㄨㄥˊ",
     "semester": "一下",
     "words": [
       "昆蟲",
@@ -1467,6 +1580,7 @@ const DATA = [
     "id": 112,
     "char": "聞",
     "radical": "耳",
+    "zhuyin": "ㄨㄣˊ",
     "semester": "一下",
     "words": [
       "新聞",
@@ -1478,6 +1592,7 @@ const DATA = [
     "id": 113,
     "char": "真",
     "radical": "目",
+    "zhuyin": "ㄓㄣ",
     "semester": "一下",
     "words": [
       "真的",
@@ -1489,6 +1604,7 @@ const DATA = [
     "id": 114,
     "char": "怎",
     "radical": "心",
+    "zhuyin": "ㄗㄣˇ",
     "semester": "一下",
     "words": [
       "怎麼",
@@ -1500,6 +1616,7 @@ const DATA = [
     "id": 115,
     "char": "她",
     "radical": "女",
+    "zhuyin": "ㄊㄚ",
     "semester": "一下",
     "words": [
       "她的",
@@ -1511,6 +1628,7 @@ const DATA = [
     "id": 116,
     "char": "糖",
     "radical": "米",
+    "zhuyin": "ㄊㄤˊ",
     "semester": "一下",
     "words": [
       "糖果",
@@ -1522,6 +1640,7 @@ const DATA = [
     "id": 117,
     "char": "鳥",
     "radical": "鳥",
+    "zhuyin": "ㄋㄧㄠˇ",
     "semester": "一下",
     "words": [
       "小鳥",
@@ -1533,6 +1652,7 @@ const DATA = [
     "id": 118,
     "char": "身",
     "radical": "身",
+    "zhuyin": "ㄕㄣ",
     "semester": "一下",
     "words": [
       "身體",
@@ -1544,6 +1664,7 @@ const DATA = [
     "id": 119,
     "char": "鞋",
     "radical": "革",
+    "zhuyin": "ㄒㄧㄝˊ",
     "semester": "一下",
     "words": [
       "鞋子",
@@ -1555,6 +1676,7 @@ const DATA = [
     "id": 120,
     "char": "做",
     "radical": "人",
+    "zhuyin": "ㄗㄨㄛˋ",
     "semester": "一下",
     "words": [
       "做到",
@@ -1566,6 +1688,7 @@ const DATA = [
     "id": 121,
     "char": "酒",
     "radical": "酉",
+    "zhuyin": "ㄐㄧㄡˇ",
     "semester": "一下",
     "words": [
       "果汁",
@@ -1576,6 +1699,7 @@ const DATA = [
     "id": 122,
     "char": "黑",
     "radical": "黑",
+    "zhuyin": "ㄏㄟ",
     "semester": "一下",
     "words": [
       "黑色",
@@ -1587,6 +1711,7 @@ const DATA = [
     "id": 123,
     "char": "草",
     "radical": "艸",
+    "zhuyin": "ㄘㄠˇ",
     "semester": "一下",
     "words": [
       "草地",
@@ -1598,6 +1723,7 @@ const DATA = [
     "id": 124,
     "char": "香",
     "radical": "香",
+    "zhuyin": "ㄒㄧㄤ",
     "semester": "一下",
     "words": [
       "香味",
@@ -1609,6 +1735,7 @@ const DATA = [
     "id": 125,
     "char": "回",
     "radical": "囗",
+    "zhuyin": "ㄏㄨㄟˊ",
     "semester": "一下",
     "words": [
       "回家",
@@ -1620,6 +1747,7 @@ const DATA = [
     "id": 126,
     "char": "它",
     "radical": "宀",
+    "zhuyin": "ㄊㄚ",
     "semester": "一下",
     "words": [
       "它的",
@@ -1631,6 +1759,7 @@ const DATA = [
     "id": 127,
     "char": "拿",
     "radical": "手",
+    "zhuyin": "ㄋㄚˊ",
     "semester": "一下",
     "words": [
       "拿取",
@@ -1642,6 +1771,7 @@ const DATA = [
     "id": 128,
     "char": "鵝",
     "radical": "鳥",
+    "zhuyin": "ㄜˊ",
     "semester": "一下",
     "words": [
       "白鵝",
@@ -1653,6 +1783,7 @@ const DATA = [
     "id": 129,
     "char": "先",
     "radical": "儿",
+    "zhuyin": "ㄒㄧㄢ",
     "semester": "一下",
     "words": [
       "先生",
@@ -1664,6 +1795,7 @@ const DATA = [
     "id": 130,
     "char": "呢",
     "radical": "口",
+    "zhuyin": "ㄋㄜ˙",
     "semester": "一下",
     "words": [
       "呢喃",
@@ -1675,6 +1807,7 @@ const DATA = [
     "id": 131,
     "char": "家",
     "radical": "宀",
+    "zhuyin": "ㄐㄧㄚ",
     "semester": "一下",
     "words": [
       "家人",
@@ -1686,6 +1819,7 @@ const DATA = [
     "id": 132,
     "char": "才",
     "radical": "手",
+    "zhuyin": "ㄘㄞˊ",
     "semester": "一下",
     "words": [
       "才能",
@@ -1697,6 +1831,7 @@ const DATA = [
     "id": 133,
     "char": "卡",
     "radical": "卜",
+    "zhuyin": "ㄎㄚˇ",
     "semester": "一下",
     "words": [
       "卡片",
@@ -1708,6 +1843,7 @@ const DATA = [
     "id": 134,
     "char": "得",
     "radical": "彳",
+    "zhuyin": "ㄉㄜˊ",
     "semester": "一下",
     "words": [
       "得到",
@@ -1719,6 +1855,7 @@ const DATA = [
     "id": 135,
     "char": "完",
     "radical": "宀",
+    "zhuyin": "ㄨㄢˊ",
     "semester": "一下",
     "words": [
       "完成",
@@ -1730,6 +1867,7 @@ const DATA = [
     "id": 136,
     "char": "媽",
     "radical": "女",
+    "zhuyin": "ㄇㄚ",
     "semester": "一下",
     "words": [
       "媽媽",
@@ -1741,6 +1879,7 @@ const DATA = [
     "id": 137,
     "char": "把",
     "radical": "手",
+    "zhuyin": "ㄅㄚˇ",
     "semester": "一下",
     "words": [
       "把手",
@@ -1752,6 +1891,7 @@ const DATA = [
     "id": 138,
     "char": "需",
     "radical": "雨",
+    "zhuyin": "ㄒㄩ",
     "semester": "一下",
     "words": [
       "需要",
@@ -1763,6 +1903,7 @@ const DATA = [
     "id": 139,
     "char": "片",
     "radical": "片",
+    "zhuyin": "ㄆㄧㄢˋ",
     "semester": "一下",
     "words": [
       "片刻",
@@ -1774,6 +1915,7 @@ const DATA = [
     "id": 140,
     "char": "更",
     "radical": "日",
+    "zhuyin": "ㄍㄥˋ",
     "semester": "一下",
     "words": [
       "更好",
@@ -1785,6 +1927,7 @@ const DATA = [
     "id": 141,
     "char": "再",
     "radical": "冂",
+    "zhuyin": "ㄗㄞˋ",
     "semester": "一下",
     "words": [
       "再見",
@@ -1796,6 +1939,7 @@ const DATA = [
     "id": 142,
     "char": "音",
     "radical": "音",
+    "zhuyin": "ㄧㄣ",
     "semester": "一下",
     "words": [
       "音樂",
@@ -1807,6 +1951,7 @@ const DATA = [
     "id": 143,
     "char": "脫",
     "radical": "肉",
+    "zhuyin": "ㄊㄨㄛ",
     "semester": "一下",
     "words": [
       "脫下",
@@ -1818,6 +1963,7 @@ const DATA = [
     "id": 144,
     "char": "於",
     "radical": "方",
+    "zhuyin": "ㄩˊ",
     "semester": "一下",
     "words": [
       "於是",
@@ -1829,6 +1975,7 @@ const DATA = [
     "id": 145,
     "char": "給",
     "radical": "糸",
+    "zhuyin": "ㄍㄟˇ",
     "semester": "一下",
     "words": [
       "給你",
@@ -1840,6 +1987,7 @@ const DATA = [
     "id": 146,
     "char": "漂",
     "radical": "水",
+    "zhuyin": "ㄆㄧㄠ",
     "semester": "一下",
     "words": [
       "漂亮",
@@ -1851,6 +1999,7 @@ const DATA = [
     "id": 147,
     "char": "去",
     "radical": "ㄙ",
+    "zhuyin": "ㄑㄩˋ",
     "semester": "一下",
     "words": [
       "去哪",
@@ -1862,6 +2011,7 @@ const DATA = [
     "id": 148,
     "char": "樂",
     "radical": "木",
+    "zhuyin": "ㄌㄜˋ",
     "semester": "一下",
     "words": [
       "音樂",
@@ -1873,6 +2023,7 @@ const DATA = [
     "id": 149,
     "char": "爸",
     "radical": "父",
+    "zhuyin": "ㄅㄚˋ",
     "semester": "一下",
     "words": [
       "爸爸",
@@ -1883,6 +2034,7 @@ const DATA = [
     "id": 150,
     "char": "澆",
     "radical": "水",
+    "zhuyin": "ㄐㄧㄠ",
     "semester": "一下",
     "words": [
       "澆水",
@@ -1894,6 +2046,7 @@ const DATA = [
     "id": 151,
     "char": "寫",
     "radical": "宀",
+    "zhuyin": "ㄒㄧㄝˇ",
     "semester": "一下",
     "words": [
       "寫字",
@@ -1905,6 +2058,7 @@ const DATA = [
     "id": 152,
     "char": "亮",
     "radical": "亠",
+    "zhuyin": "ㄌㄧㄤˋ",
     "semester": "一下",
     "words": [
       "漂亮",
@@ -1916,6 +2070,7 @@ const DATA = [
     "id": 153,
     "char": "園",
     "radical": "囗",
+    "zhuyin": "ㄩㄢˊ",
     "semester": "一下",
     "words": [
       "公園",
@@ -1927,6 +2082,7 @@ const DATA = [
     "id": 154,
     "char": "會",
     "radical": "曰",
+    "zhuyin": "ㄏㄨㄟˋ",
     "semester": "一下",
     "words": [
       "學會",
@@ -1938,6 +2094,7 @@ const DATA = [
     "id": 155,
     "char": "靠",
     "radical": "非",
+    "zhuyin": "ㄎㄠˋ",
     "semester": "一下",
     "words": [
       "靠近",
@@ -1949,6 +2106,7 @@ const DATA = [
     "id": 156,
     "char": "陽",
     "radical": "阜",
+    "zhuyin": "ㄧㄤˊ",
     "semester": "一下",
     "words": [
       "太陽",
@@ -1960,6 +2118,7 @@ const DATA = [
     "id": 157,
     "char": "喜",
     "radical": "口",
+    "zhuyin": "ㄒㄧˇ",
     "semester": "一下",
     "words": [
       "喜歡",
@@ -1971,6 +2130,7 @@ const DATA = [
     "id": 158,
     "char": "妹",
     "radical": "女",
+    "zhuyin": "ㄇㄟˋ",
     "semester": "一下",
     "words": [
       "妹妹",
@@ -1982,6 +2142,7 @@ const DATA = [
     "id": 159,
     "char": "聽",
     "radical": "耳",
+    "zhuyin": "ㄊㄧㄥ",
     "semester": "一下",
     "words": [
       "聽話",
@@ -1993,6 +2154,7 @@ const DATA = [
     "id": 160,
     "char": "始",
     "radical": "女",
+    "zhuyin": "ㄕˇ",
     "semester": "一下",
     "words": [
       "開始",
@@ -2004,6 +2166,7 @@ const DATA = [
     "id": 161,
     "char": "見",
     "radical": "見",
+    "zhuyin": "ㄐㄧㄢˋ",
     "semester": "一下",
     "words": [
       "見到",
@@ -2015,6 +2178,7 @@ const DATA = [
     "id": 162,
     "char": "光",
     "radical": "儿",
+    "zhuyin": "ㄍㄨㄤ",
     "semester": "一下",
     "words": [
       "光明",
@@ -2026,6 +2190,7 @@ const DATA = [
     "id": 163,
     "char": "歡",
     "radical": "欠",
+    "zhuyin": "ㄏㄨㄢ",
     "semester": "一下",
     "words": [
       "歡迎",
@@ -2037,6 +2202,7 @@ const DATA = [
     "id": 164,
     "char": "雨",
     "radical": "雨",
+    "zhuyin": "ㄩˇ",
     "semester": "一下",
     "words": [
       "下雨",
@@ -2048,6 +2214,7 @@ const DATA = [
     "id": 165,
     "char": "沒",
     "radical": "水",
+    "zhuyin": "ㄇㄟˊ",
     "semester": "一下",
     "words": [
       "沒有",
@@ -2059,6 +2226,7 @@ const DATA = [
     "id": 166,
     "char": "來",
     "radical": "人",
+    "zhuyin": "ㄌㄞˊ",
     "semester": "一下",
     "words": [
       "來了",
@@ -2070,6 +2238,7 @@ const DATA = [
     "id": 167,
     "char": "像",
     "radical": "人",
+    "zhuyin": "ㄒㄧㄤˋ",
     "semester": "一下",
     "words": [
       "好像",
@@ -2081,6 +2250,7 @@ const DATA = [
     "id": 168,
     "char": "放",
     "radical": "攴",
+    "zhuyin": "ㄈㄤˋ",
     "semester": "一下",
     "words": [
       "放學",
@@ -2092,6 +2262,7 @@ const DATA = [
     "id": 169,
     "char": "您",
     "radical": "心",
+    "zhuyin": "ㄋㄧㄣˊ",
     "semester": "一下",
     "words": [
       "您好",
@@ -2103,6 +2274,7 @@ const DATA = [
     "id": 170,
     "char": "雙",
     "radical": "隹",
+    "zhuyin": "ㄕㄨㄤ",
     "semester": "一下",
     "words": [
       "雙手",
@@ -2114,6 +2286,7 @@ const DATA = [
     "id": 171,
     "char": "正",
     "radical": "止",
+    "zhuyin": "ㄓㄥˋ",
     "semester": "一下",
     "words": [
       "正確",
@@ -2125,6 +2298,7 @@ const DATA = [
     "id": 172,
     "char": "重",
     "radical": "里",
+    "zhuyin": "ㄓㄨㄥˋ",
     "semester": "一下",
     "words": [
       "重要",
@@ -2136,6 +2310,7 @@ const DATA = [
     "id": 173,
     "char": "船",
     "radical": "舟",
+    "zhuyin": "ㄔㄨㄢˊ",
     "semester": "一下",
     "words": [
       "船上",
@@ -2147,6 +2322,7 @@ const DATA = [
     "id": 174,
     "char": "院",
     "radical": "阜",
+    "zhuyin": "ㄩㄢˋ",
     "semester": "一下",
     "words": [
       "院子",
@@ -2158,6 +2334,7 @@ const DATA = [
     "id": 175,
     "char": "都",
     "radical": "邑",
+    "zhuyin": "ㄉㄡ",
     "semester": "一下",
     "words": [
       "都是",
@@ -2169,6 +2346,7 @@ const DATA = [
     "id": 176,
     "char": "穿",
     "radical": "穴",
+    "zhuyin": "ㄔㄨㄢ",
     "semester": "一下",
     "words": [
       "穿衣",
@@ -2180,6 +2358,7 @@ const DATA = [
     "id": 177,
     "char": "唱",
     "radical": "口",
+    "zhuyin": "ㄔㄤˋ",
     "semester": "一下",
     "words": [
       "唱歌",
@@ -2191,6 +2370,7 @@ const DATA = [
     "id": 178,
     "char": "短",
     "radical": "矢",
+    "zhuyin": "ㄉㄨㄢˇ",
     "semester": "一下",
     "words": [
       "短短",
@@ -2202,6 +2382,7 @@ const DATA = [
     "id": 179,
     "char": "港",
     "radical": "水",
+    "zhuyin": "ㄍㄤˇ",
     "semester": "一下",
     "words": [
       "港口",
@@ -2213,6 +2394,7 @@ const DATA = [
     "id": 180,
     "char": "公",
     "radical": "八",
+    "zhuyin": "ㄍㄨㄥ",
     "semester": "一下",
     "words": [
       "公園",
@@ -2224,6 +2406,7 @@ const DATA = [
     "id": 181,
     "char": "作",
     "radical": "人",
+    "zhuyin": "ㄗㄨㄛˋ",
     "semester": "一下",
     "words": [
       "工作",
@@ -2235,6 +2418,7 @@ const DATA = [
     "id": 182,
     "char": "滴",
     "radical": "水",
+    "zhuyin": "ㄉㄧ",
     "semester": "一下",
     "words": [
       "水滴",
@@ -2246,6 +2430,7 @@ const DATA = [
     "id": 183,
     "char": "著",
     "radical": "艸",
+    "zhuyin": "ㄓㄨˋ",
     "semester": "一下",
     "words": [
       "著急",
@@ -2257,6 +2442,7 @@ const DATA = [
     "id": 184,
     "char": "陣",
     "radical": "阜",
+    "zhuyin": "ㄓㄣˋ",
     "semester": "一下",
     "words": [
       "陣雨",
@@ -2268,6 +2454,7 @@ const DATA = [
     "id": 185,
     "char": "口",
     "radical": "口",
+    "zhuyin": "ㄎㄡˇ",
     "semester": "一下",
     "words": [
       "口水",
@@ -2279,6 +2466,7 @@ const DATA = [
     "id": 186,
     "char": "話",
     "radical": "言",
+    "zhuyin": "ㄏㄨㄚˋ",
     "semester": "一下",
     "words": [
       "說話",
@@ -2290,6 +2478,7 @@ const DATA = [
     "id": 187,
     "char": "夢",
     "radical": "夕",
+    "zhuyin": "ㄇㄥˋ",
     "semester": "一下",
     "words": [
       "夢想",
@@ -2301,6 +2490,7 @@ const DATA = [
     "id": 188,
     "char": "遊",
     "radical": "辵",
+    "zhuyin": "ㄧㄡˊ",
     "semester": "一下",
     "words": [
       "遊戲",
@@ -2312,6 +2502,7 @@ const DATA = [
     "id": 189,
     "char": "戲",
     "radical": "戈",
+    "zhuyin": "ㄒㄧˋ",
     "semester": "一下",
     "words": [
       "遊戲",
@@ -2323,6 +2514,7 @@ const DATA = [
     "id": 190,
     "char": "低",
     "radical": "人",
+    "zhuyin": "ㄉㄧ",
     "semester": "一下",
     "words": [
       "低頭",
@@ -2334,6 +2526,7 @@ const DATA = [
     "id": 191,
     "char": "每",
     "radical": "毋",
+    "zhuyin": "ㄇㄟˇ",
     "semester": "一下",
     "words": [
       "每天",
@@ -2345,6 +2538,7 @@ const DATA = [
     "id": 192,
     "char": "謝",
     "radical": "言",
+    "zhuyin": "ㄒㄧㄝˋ",
     "semester": "一下",
     "words": [
       "謝謝",
@@ -2356,6 +2550,7 @@ const DATA = [
     "id": 193,
     "char": "顆",
     "radical": "頁",
+    "zhuyin": "ㄎㄜ",
     "semester": "一下",
     "words": [
       "一顆",
@@ -2367,6 +2562,7 @@ const DATA = [
     "id": 194,
     "char": "刷",
     "radical": "刀",
+    "zhuyin": "ㄕㄨㄚ",
     "semester": "一下",
     "words": [
       "刷牙",
@@ -2378,6 +2574,7 @@ const DATA = [
     "id": 195,
     "char": "件",
     "radical": "人",
+    "zhuyin": "ㄐㄧㄢˋ",
     "semester": "一下",
     "words": [
       "一件",
@@ -2389,6 +2586,7 @@ const DATA = [
     "id": 196,
     "char": "想",
     "radical": "心",
+    "zhuyin": "ㄒㄧㄤˇ",
     "semester": "一下",
     "words": [
       "想法",
@@ -2400,6 +2598,7 @@ const DATA = [
     "id": 197,
     "char": "珍",
     "radical": "玉",
+    "zhuyin": "ㄓㄣ",
     "semester": "一下",
     "words": [
       "珍惜",
@@ -2411,6 +2610,7 @@ const DATA = [
     "id": 198,
     "char": "樹",
     "radical": "木",
+    "zhuyin": "ㄕㄨˋ",
     "semester": "一下",
     "words": [
       "樹木",
@@ -2422,6 +2622,7 @@ const DATA = [
     "id": 199,
     "char": "事",
     "radical": "亅",
+    "zhuyin": "ㄕˋ",
     "semester": "一下",
     "words": [
       "事情",
@@ -2433,6 +2634,7 @@ const DATA = [
     "id": 200,
     "char": "燈",
     "radical": "火",
+    "zhuyin": "ㄉㄥ",
     "semester": "一下",
     "words": [
       "燈光",
@@ -2444,6 +2646,7 @@ const DATA = [
     "id": 201,
     "char": "珠",
     "radical": "玉",
+    "zhuyin": "ㄓㄨ",
     "semester": "一下",
     "words": [
       "珍珠",
@@ -2455,6 +2658,7 @@ const DATA = [
     "id": 202,
     "char": "葉",
     "radical": "艸",
+    "zhuyin": "ㄧㄝˋ",
     "semester": "一下",
     "words": [
       "樹葉",
@@ -2466,6 +2670,7 @@ const DATA = [
     "id": 203,
     "char": "情",
     "radical": "心",
+    "zhuyin": "ㄑㄧㄥˊ",
     "semester": "一下",
     "words": [
       "心情",
@@ -2477,6 +2682,7 @@ const DATA = [
     "id": 204,
     "char": "前",
     "radical": "刀",
+    "zhuyin": "ㄑㄧㄢˊ",
     "semester": "一下",
     "words": [
       "前面",
@@ -2488,6 +2694,7 @@ const DATA = [
     "id": 205,
     "char": "落",
     "radical": "艸",
+    "zhuyin": "ㄌㄨㄛˋ",
     "semester": "一下",
     "words": [
       "落下",
@@ -2499,6 +2706,7 @@ const DATA = [
     "id": 206,
     "char": "很",
     "radical": "彳",
+    "zhuyin": "ㄏㄣˇ",
     "semester": "一下",
     "words": [
       "很好",
@@ -2510,6 +2718,7 @@ const DATA = [
     "id": 207,
     "char": "生",
     "radical": "生",
+    "zhuyin": "ㄕㄥ",
     "semester": "一下",
     "words": [
       "生日",
@@ -2521,6 +2730,7 @@ const DATA = [
     "id": 208,
     "char": "點",
     "radical": "黑",
+    "zhuyin": "ㄉㄧㄢˇ",
     "semester": "一下",
     "words": [
       "地點",
@@ -2532,6 +2742,7 @@ const DATA = [
     "id": 209,
     "char": "面",
     "radical": "面",
+    "zhuyin": "ㄇㄧㄢˋ",
     "semester": "一下",
     "words": [
       "面前",
@@ -2543,6 +2754,7 @@ const DATA = [
     "id": 210,
     "char": "認",
     "radical": "言",
+    "zhuyin": "ㄖㄣˋ",
     "semester": "一下",
     "words": [
       "認識",
@@ -2554,6 +2766,7 @@ const DATA = [
     "id": 211,
     "char": "日",
     "radical": "日",
+    "zhuyin": "ㄖˋ",
     "semester": "一下",
     "words": [
       "日子",
@@ -2565,6 +2778,7 @@ const DATA = [
     "id": 212,
     "char": "半",
     "radical": "十",
+    "zhuyin": "ㄅㄢˋ",
     "semester": "一下",
     "words": [
       "一半",
@@ -2576,6 +2790,7 @@ const DATA = [
     "id": 213,
     "char": "魚",
     "radical": "魚",
+    "zhuyin": "ㄩˊ",
     "semester": "一下",
     "words": [
       "魚兒",
@@ -2587,6 +2802,7 @@ const DATA = [
     "id": 214,
     "char": "送",
     "radical": "辵",
+    "zhuyin": "ㄙㄨㄥˋ",
     "semester": "一下",
     "words": [
       "送給",
@@ -2598,6 +2814,7 @@ const DATA = [
     "id": 215,
     "char": "今",
     "radical": "人",
+    "zhuyin": "ㄐㄧㄣ",
     "semester": "一下",
     "words": [
       "今天",
@@ -2609,6 +2826,7 @@ const DATA = [
     "id": 216,
     "char": "清",
     "radical": "水",
+    "zhuyin": "ㄑㄧㄥ",
     "semester": "一下",
     "words": [
       "清楚",
@@ -2620,6 +2838,7 @@ const DATA = [
     "id": 217,
     "char": "缸",
     "radical": "缶",
+    "zhuyin": "ㄍㄤ",
     "semester": "一下",
     "words": [
       "魚缸",
@@ -2631,6 +2850,7 @@ const DATA = [
     "id": 218,
     "char": "地",
     "radical": "土",
+    "zhuyin": "ㄉㄧˋ",
     "semester": "一下",
     "words": [
       "地上",
@@ -2642,6 +2862,7 @@ const DATA = [
     "id": 219,
     "char": "記",
     "radical": "言",
+    "zhuyin": "ㄐㄧˋ",
     "semester": "一下",
     "words": [
       "記住",
@@ -2653,6 +2874,7 @@ const DATA = [
     "id": 220,
     "char": "楚",
     "radical": "木",
+    "zhuyin": "ㄔㄨˇ",
     "semester": "一下",
     "words": [
       "清楚",
@@ -2663,6 +2885,7 @@ const DATA = [
     "id": 221,
     "char": "金",
     "radical": "金",
+    "zhuyin": "ㄐㄧㄣ",
     "semester": "一下",
     "words": [
       "金色",
@@ -2674,6 +2897,7 @@ const DATA = [
     "id": 222,
     "char": "化",
     "radical": "匕",
+    "zhuyin": "ㄏㄨㄚˋ",
     "semester": "一下",
     "words": [
       "變化",
@@ -2685,6 +2909,7 @@ const DATA = [
     "id": 223,
     "char": "時",
     "radical": "日",
+    "zhuyin": "ㄕˊ",
     "semester": "一下",
     "words": [
       "時間",
@@ -2696,6 +2921,7 @@ const DATA = [
     "id": 224,
     "char": "停",
     "radical": "人",
+    "zhuyin": "ㄊㄧㄥˊ",
     "semester": "一下",
     "words": [
       "停下",
@@ -2707,6 +2933,7 @@ const DATA = [
     "id": 225,
     "char": "游",
     "radical": "水",
+    "zhuyin": "ㄧㄡˊ",
     "semester": "一下",
     "words": [
       "游泳",
@@ -2718,6 +2945,7 @@ const DATA = [
     "id": 226,
     "char": "趣",
     "radical": "走",
+    "zhuyin": "ㄑㄩˋ",
     "semester": "一下",
     "words": [
       "有趣",
@@ -2729,6 +2957,7 @@ const DATA = [
     "id": 227,
     "char": "知",
     "radical": "矢",
+    "zhuyin": "ㄓ",
     "semester": "一下",
     "words": [
       "知道",
@@ -2740,6 +2969,7 @@ const DATA = [
     "id": 228,
     "char": "休",
     "radical": "人",
+    "zhuyin": "ㄒㄧㄡ",
     "semester": "一下",
     "words": [
       "休息",
@@ -2751,6 +2981,7 @@ const DATA = [
     "id": 229,
     "char": "彩",
     "radical": "彡",
+    "zhuyin": "ㄘㄞˇ",
     "semester": "一下",
     "words": [
       "彩色",
@@ -2762,6 +2993,7 @@ const DATA = [
     "id": 230,
     "char": "線",
     "radical": "糸",
+    "zhuyin": "ㄒㄧㄢˋ",
     "semester": "一下",
     "words": [
       "線條",
@@ -2773,6 +3005,7 @@ const DATA = [
     "id": 231,
     "char": "道",
     "radical": "辵",
+    "zhuyin": "ㄉㄠˋ",
     "semester": "一下",
     "words": [
       "道路",
@@ -2784,6 +3017,7 @@ const DATA = [
     "id": 232,
     "char": "息",
     "radical": "心",
+    "zhuyin": "ㄒㄧ",
     "semester": "一下",
     "words": [
       "休息",
@@ -2795,6 +3029,7 @@ const DATA = [
     "id": 233,
     "char": "虹",
     "radical": "虫",
+    "zhuyin": "ㄏㄨㄥˊ",
     "semester": "一下",
     "words": [
       "彩虹",
@@ -2805,6 +3040,7 @@ const DATA = [
     "id": 234,
     "char": "風",
     "radical": "風",
+    "zhuyin": "ㄈㄥ",
     "semester": "一下",
     "words": [
       "風雨",
@@ -2816,6 +3052,7 @@ const DATA = [
     "id": 235,
     "char": "嗎",
     "radical": "口",
+    "zhuyin": "ㄇㄚ˙",
     "semester": "一下",
     "words": [
       "是嗎",
@@ -2827,6 +3064,7 @@ const DATA = [
     "id": 236,
     "char": "兒",
     "radical": "儿",
+    "zhuyin": "ㄦˊ",
     "semester": "一下",
     "words": [
       "兒子",
@@ -2838,6 +3076,7 @@ const DATA = [
     "id": 237,
     "char": "太",
     "radical": "大",
+    "zhuyin": "ㄊㄞˋ",
     "semester": "一下",
     "words": [
       "太陽",
@@ -2849,6 +3088,7 @@ const DATA = [
     "id": 238,
     "char": "箏",
     "radical": "竹",
+    "zhuyin": "ㄓㄥ",
     "semester": "一下",
     "words": [
       "風箏",
@@ -2859,6 +3099,7 @@ const DATA = [
     "id": 239,
     "char": "學",
     "radical": "子",
+    "zhuyin": "ㄒㄩㄝˊ",
     "semester": "一下",
     "words": [
       "學生",
@@ -2870,6 +3111,7 @@ const DATA = [
     "id": 240,
     "char": "吧",
     "radical": "口",
+    "zhuyin": "ㄅㄚ˙",
     "semester": "一下",
     "words": [
       "好吧",
@@ -2881,6 +3123,7 @@ const DATA = [
     "id": 241,
     "char": "國",
     "radical": "囗",
+    "zhuyin": "ㄍㄨㄛˊ",
     "semester": "一下",
     "words": [
       "國家",
@@ -2892,6 +3135,7 @@ const DATA = [
     "id": 242,
     "char": "升",
     "radical": "十",
+    "zhuyin": "ㄕㄥ",
     "semester": "一下",
     "words": [
       "升旗",
@@ -2903,6 +3147,7 @@ const DATA = [
     "id": 243,
     "char": "收",
     "radical": "攴",
+    "zhuyin": "ㄕㄡ",
     "semester": "一下",
     "words": [
       "收拾",
@@ -2914,6 +3159,7 @@ const DATA = [
     "id": 244,
     "char": "幫",
     "radical": "巾",
+    "zhuyin": "ㄅㄤ",
     "semester": "一下",
     "words": [
       "幫忙",
@@ -2925,6 +3171,7 @@ const DATA = [
     "id": 245,
     "char": "掃",
     "radical": "手",
+    "zhuyin": "ㄙㄠˇ",
     "semester": "一下",
     "words": [
       "掃地",
@@ -2936,6 +3183,7 @@ const DATA = [
     "id": 246,
     "char": "神",
     "radical": "示",
+    "zhuyin": "ㄕㄣˊ",
     "semester": "一下",
     "words": [
       "神奇",
@@ -2947,6 +3195,7 @@ const DATA = [
     "id": 247,
     "char": "張",
     "radical": "弓",
+    "zhuyin": "ㄓㄤ",
     "semester": "一下",
     "words": [
       "張開",
@@ -2958,6 +3207,7 @@ const DATA = [
     "id": 248,
     "char": "加",
     "radical": "力",
+    "zhuyin": "ㄐㄧㄚ",
     "semester": "一下",
     "words": [
       "加油",
@@ -2969,6 +3219,7 @@ const DATA = [
     "id": 249,
     "char": "除",
     "radical": "阜",
+    "zhuyin": "ㄔㄨˊ",
     "semester": "一下",
     "words": [
       "除了",
@@ -2980,6 +3231,7 @@ const DATA = [
     "id": 250,
     "char": "奇",
     "radical": "大",
+    "zhuyin": "ㄑㄧˊ",
     "semester": "一下",
     "words": [
       "奇怪",
@@ -2991,6 +3243,7 @@ const DATA = [
     "id": 251,
     "char": "祝",
     "radical": "示",
+    "zhuyin": "ㄓㄨˋ",
     "semester": "一下",
     "words": [
       "祝福",
@@ -3002,6 +3255,7 @@ const DATA = [
     "id": 252,
     "char": "油",
     "radical": "水",
+    "zhuyin": "ㄧㄡˊ",
     "semester": "一下",
     "words": [
       "加油",
@@ -3013,6 +3267,7 @@ const DATA = [
     "id": 253,
     "char": "洗",
     "radical": "水",
+    "zhuyin": "ㄒㄧˇ",
     "semester": "一下",
     "words": [
       "洗手",
@@ -3024,6 +3279,7 @@ const DATA = [
     "id": 254,
     "char": "跑",
     "radical": "足",
+    "zhuyin": "ㄆㄠˇ",
     "semester": "一下",
     "words": [
       "跑步",
@@ -3035,6 +3291,7 @@ const DATA = [
     "id": 255,
     "char": "福",
     "radical": "示",
+    "zhuyin": "ㄈㄨˊ",
     "semester": "一下",
     "words": [
       "祝福",
@@ -3046,6 +3303,7 @@ const DATA = [
     "id": 256,
     "char": "慢",
     "radical": "心",
+    "zhuyin": "ㄇㄢˋ",
     "semester": "一下",
     "words": [
       "慢慢",
@@ -3057,6 +3315,7 @@ const DATA = [
     "id": 257,
     "char": "淨",
     "radical": "水",
+    "zhuyin": "ㄐㄧㄥˋ",
     "semester": "一下",
     "words": [
       "乾淨",
@@ -3068,6 +3327,7 @@ const DATA = [
     "id": 258,
     "char": "跳",
     "radical": "足",
+    "zhuyin": "ㄊㄧㄠˋ",
     "semester": "一下",
     "words": [
       "跳舞",
@@ -3079,6 +3339,7 @@ const DATA = [
     "id": 259,
     "char": "第",
     "radical": "竹",
+    "zhuyin": "ㄉㄧˋ",
     "semester": "一下",
     "words": [
       "第一",
@@ -3090,6 +3351,7 @@ const DATA = [
     "id": 260,
     "char": "馬",
     "radical": "馬",
+    "zhuyin": "ㄇㄚˇ",
     "semester": "一下",
     "words": [
       "馬兒",
@@ -3101,6 +3363,7 @@ const DATA = [
     "id": 261,
     "char": "笑",
     "radical": "竹",
+    "zhuyin": "ㄒㄧㄠˋ",
     "semester": "一下",
     "words": [
       "笑容",
@@ -3112,6 +3375,7 @@ const DATA = [
     "id": 262,
     "char": "次",
     "radical": "欠",
+    "zhuyin": "ㄘˋ",
     "semester": "一下",
     "words": [
       "每次",
@@ -3123,6 +3387,7 @@ const DATA = [
     "id": 263,
     "char": "年",
     "radical": "干",
+    "zhuyin": "ㄋㄧㄢˊ",
     "semester": "二上",
     "words": [
       "新年",
@@ -3134,6 +3399,7 @@ const DATA = [
     "id": 264,
     "char": "茄",
     "radical": "艸",
+    "zhuyin": "ㄐㄧㄚ",
     "semester": "二上",
     "words": [
       "番茄",
@@ -3144,6 +3410,7 @@ const DATA = [
     "id": 265,
     "char": "巷",
     "radical": "己",
+    "zhuyin": "ㄒㄧㄤˋ",
     "semester": "二上",
     "words": [
       "巷子",
@@ -3155,6 +3422,7 @@ const DATA = [
     "id": 266,
     "char": "運",
     "radical": "辵",
+    "zhuyin": "ㄩㄣˋ",
     "semester": "二上",
     "words": [
       "運動",
@@ -3166,6 +3434,7 @@ const DATA = [
     "id": 267,
     "char": "竹",
     "radical": "竹",
+    "zhuyin": "ㄓㄨˊ",
     "semester": "二上",
     "words": [
       "竹子",
@@ -3177,6 +3446,7 @@ const DATA = [
     "id": 268,
     "char": "進",
     "radical": "辵",
+    "zhuyin": "ㄐㄧㄣˋ",
     "semester": "二上",
     "words": [
       "進來",
@@ -3188,6 +3458,7 @@ const DATA = [
     "id": 269,
     "char": "希",
     "radical": "巾",
+    "zhuyin": "ㄒㄧ",
     "semester": "二上",
     "words": [
       "希望",
@@ -3198,6 +3469,7 @@ const DATA = [
     "id": 270,
     "char": "切",
     "radical": "刀",
+    "zhuyin": "ㄑㄧㄝˋ",
     "semester": "二上",
     "words": [
       "切開",
@@ -3209,6 +3481,7 @@ const DATA = [
     "id": 271,
     "char": "叔",
     "radical": "又",
+    "zhuyin": "ㄕㄨ",
     "semester": "二上",
     "words": [
       "叔叔",
@@ -3219,6 +3492,7 @@ const DATA = [
     "id": 272,
     "char": "動",
     "radical": "力",
+    "zhuyin": "ㄉㄨㄥˋ",
     "semester": "二上",
     "words": [
       "動物",
@@ -3230,6 +3504,7 @@ const DATA = [
     "id": 273,
     "char": "籃",
     "radical": "竹",
+    "zhuyin": "ㄌㄢˊ",
     "semester": "二上",
     "words": [
       "籃球",
@@ -3241,6 +3516,7 @@ const DATA = [
     "id": 274,
     "char": "愛",
     "radical": "心",
+    "zhuyin": "ㄞˋ",
     "semester": "二上",
     "words": [
       "愛心",
@@ -3252,6 +3528,7 @@ const DATA = [
     "id": 275,
     "char": "望",
     "radical": "月",
+    "zhuyin": "ㄨㄤˋ",
     "semester": "二上",
     "words": [
       "希望",
@@ -3263,6 +3540,7 @@ const DATA = [
     "id": 276,
     "char": "輪",
     "radical": "車",
+    "zhuyin": "ㄌㄨㄣˊ",
     "semester": "二上",
     "words": [
       "輪流",
@@ -3274,6 +3552,7 @@ const DATA = [
     "id": 277,
     "char": "貓",
     "radical": "豸",
+    "zhuyin": "ㄇㄠ",
     "semester": "二上",
     "words": [
       "貓咪",
@@ -3285,6 +3564,7 @@ const DATA = [
     "id": 278,
     "char": "飄",
     "radical": "風",
+    "zhuyin": "ㄆㄧㄠ",
     "semester": "二上",
     "words": [
       "飄揚",
@@ -3296,6 +3576,7 @@ const DATA = [
     "id": 279,
     "char": "等",
     "radical": "竹",
+    "zhuyin": "ㄉㄥˇ",
     "semester": "二上",
     "words": [
       "等待",
@@ -3307,6 +3588,7 @@ const DATA = [
     "id": 280,
     "char": "月",
     "radical": "月",
+    "zhuyin": "ㄩㄝˋ",
     "semester": "二上",
     "words": [
       "月亮",
@@ -3318,6 +3600,7 @@ const DATA = [
     "id": 281,
     "char": "坐",
     "radical": "土",
+    "zhuyin": "ㄗㄨㄛˋ",
     "semester": "二上",
     "words": [
       "坐下",
@@ -3329,6 +3612,7 @@ const DATA = [
     "id": 282,
     "char": "司",
     "radical": "口",
+    "zhuyin": "ㄙ",
     "semester": "二上",
     "words": [
       "司機",
@@ -3340,6 +3624,7 @@ const DATA = [
     "id": 283,
     "char": "屋",
     "radical": "尸",
+    "zhuyin": "ㄨ",
     "semester": "二上",
     "words": [
       "房屋",
@@ -3351,6 +3636,7 @@ const DATA = [
     "id": 284,
     "char": "熱",
     "radical": "火",
+    "zhuyin": "ㄖㄜˋ",
     "semester": "二上",
     "words": [
       "熱天",
@@ -3362,6 +3648,7 @@ const DATA = [
     "id": 285,
     "char": "吹",
     "radical": "口",
+    "zhuyin": "ㄔㄨㄟ",
     "semester": "二上",
     "words": [
       "吹風",
@@ -3373,6 +3660,7 @@ const DATA = [
     "id": 286,
     "char": "乾",
     "radical": "乙",
+    "zhuyin": "ㄑㄧㄢˊ",
     "semester": "二上",
     "words": [
       "乾淨",
@@ -3384,6 +3672,7 @@ const DATA = [
     "id": 287,
     "char": "位",
     "radical": "人",
+    "zhuyin": "ㄨㄟˋ",
     "semester": "二上",
     "words": [
       "位置",
@@ -3395,6 +3684,7 @@ const DATA = [
     "id": 288,
     "char": "夾",
     "radical": "大",
+    "zhuyin": "ㄐㄧㄚ",
     "semester": "二上",
     "words": [
       "夾子",
@@ -3406,6 +3696,7 @@ const DATA = [
     "id": 289,
     "char": "捧",
     "radical": "手",
+    "zhuyin": "ㄆㄥˇ",
     "semester": "二上",
     "words": [
       "捧著",
@@ -3417,6 +3708,7 @@ const DATA = [
     "id": 290,
     "char": "鬧",
     "radical": "鬥",
+    "zhuyin": "ㄋㄠˋ",
     "semester": "二上",
     "words": [
       "熱鬧",
@@ -3428,6 +3720,7 @@ const DATA = [
     "id": 291,
     "char": "叫",
     "radical": "口",
+    "zhuyin": "ㄐㄧㄠˋ",
     "semester": "二上",
     "words": [
       "叫聲",
@@ -3439,6 +3732,7 @@ const DATA = [
     "id": 292,
     "char": "甜",
     "radical": "甘",
+    "zhuyin": "ㄊㄧㄢˊ",
     "semester": "二上",
     "words": [
       "甜甜",
@@ -3450,6 +3744,7 @@ const DATA = [
     "id": 293,
     "char": "本",
     "radical": "木",
+    "zhuyin": "ㄅㄣˇ",
     "semester": "二上",
     "words": [
       "本來",
@@ -3461,6 +3756,7 @@ const DATA = [
     "id": 294,
     "char": "全",
     "radical": "入",
+    "zhuyin": "ㄑㄩㄢˊ",
     "semester": "二上",
     "words": [
       "全部",
@@ -3472,6 +3768,7 @@ const DATA = [
     "id": 295,
     "char": "蝴",
     "radical": "虫",
+    "zhuyin": "ㄏㄨˊ",
     "semester": "二上",
     "words": [
       "蝴蝶"
@@ -3481,6 +3778,7 @@ const DATA = [
     "id": 296,
     "char": "舞",
     "radical": "舛",
+    "zhuyin": "ㄨˇ",
     "semester": "二上",
     "words": [
       "舞蹈",
@@ -3492,6 +3790,7 @@ const DATA = [
     "id": 297,
     "char": "邊",
     "radical": "辵",
+    "zhuyin": "ㄅㄧㄢ",
     "semester": "二上",
     "words": [
       "旁邊",
@@ -3503,6 +3802,7 @@ const DATA = [
     "id": 298,
     "char": "鎮",
     "radical": "金",
+    "zhuyin": "ㄓㄣˋ",
     "semester": "二上",
     "words": [
       "鄉鎮",
@@ -3514,6 +3814,7 @@ const DATA = [
     "id": 299,
     "char": "淡",
     "radical": "水",
+    "zhuyin": "ㄉㄢˋ",
     "semester": "二上",
     "words": [
       "淡水",
@@ -3525,6 +3826,7 @@ const DATA = [
     "id": 300,
     "char": "蛋",
     "radical": "虫",
+    "zhuyin": "ㄉㄢˋ",
     "semester": "二上",
     "words": [
       "雞蛋",
@@ -3536,6 +3838,7 @@ const DATA = [
     "id": 301,
     "char": "蝶",
     "radical": "虫",
+    "zhuyin": "ㄉㄧㄝˊ",
     "semester": "二上",
     "words": [
       "蝴蝶",
@@ -3546,6 +3849,7 @@ const DATA = [
     "id": 302,
     "char": "哇",
     "radical": "口",
+    "zhuyin": "ㄨㄚ˙",
     "semester": "二上",
     "words": [
       "哇！",
@@ -3557,6 +3861,7 @@ const DATA = [
     "id": 303,
     "char": "近",
     "radical": "辵",
+    "zhuyin": "ㄐㄧㄣˋ",
     "semester": "二上",
     "words": [
       "附近",
@@ -3568,6 +3873,7 @@ const DATA = [
     "id": 304,
     "char": "餅",
     "radical": "食",
+    "zhuyin": "ㄅㄧㄥˇ",
     "semester": "二上",
     "words": [
       "餅乾",
@@ -3579,6 +3885,7 @@ const DATA = [
     "id": 305,
     "char": "書",
     "radical": "曰",
+    "zhuyin": "ㄕㄨ",
     "semester": "二上",
     "words": [
       "書本",
@@ -3590,6 +3897,7 @@ const DATA = [
     "id": 306,
     "char": "煎",
     "radical": "火",
+    "zhuyin": "ㄐㄧㄢ",
     "semester": "二上",
     "words": [
       "煎蛋",
@@ -3601,6 +3909,7 @@ const DATA = [
     "id": 307,
     "char": "忙",
     "radical": "心",
+    "zhuyin": "ㄇㄤˊ",
     "semester": "二上",
     "words": [
       "忙碌",
@@ -3612,6 +3921,7 @@ const DATA = [
     "id": 308,
     "char": "往",
     "radical": "彳",
+    "zhuyin": "ㄨㄤˇ",
     "semester": "二上",
     "words": [
       "往前",
@@ -3623,6 +3933,7 @@ const DATA = [
     "id": 309,
     "char": "鄉",
     "radical": "邑",
+    "zhuyin": "ㄒㄧㄤ",
     "semester": "二上",
     "words": [
       "故鄉",
@@ -3634,6 +3945,7 @@ const DATA = [
     "id": 310,
     "char": "節",
     "radical": "竹",
+    "zhuyin": "ㄐㄧㄝˊ",
     "semester": "二上",
     "words": [
       "節日",
@@ -3645,6 +3957,7 @@ const DATA = [
     "id": 311,
     "char": "老",
     "radical": "老",
+    "zhuyin": "ㄌㄠˇ",
     "semester": "二上",
     "words": [
       "老師",
@@ -3656,6 +3969,7 @@ const DATA = [
     "id": 312,
     "char": "圓",
     "radical": "囗",
+    "zhuyin": "ㄩㄢˊ",
     "semester": "二上",
     "words": [
       "圓圓",
@@ -3667,6 +3981,7 @@ const DATA = [
     "id": 313,
     "char": "娶",
     "radical": "女",
+    "zhuyin": "ㄑㄩˇ",
     "semester": "二上",
     "words": [
       "娶妻",
@@ -3677,6 +3992,7 @@ const DATA = [
     "id": 314,
     "char": "容",
     "radical": "宀",
+    "zhuyin": "ㄖㄨㄥˊ",
     "semester": "二上",
     "words": [
       "容易",
@@ -3688,6 +4004,7 @@ const DATA = [
     "id": 315,
     "char": "南",
     "radical": "十",
+    "zhuyin": "ㄋㄢˊ",
     "semester": "二上",
     "words": [
       "南方",
@@ -3699,6 +4016,7 @@ const DATA = [
     "id": 316,
     "char": "排",
     "radical": "手",
+    "zhuyin": "ㄆㄞˊ",
     "semester": "二上",
     "words": [
       "排列",
@@ -3710,6 +4028,7 @@ const DATA = [
     "id": 317,
     "char": "師",
     "radical": "巾",
+    "zhuyin": "ㄕ",
     "semester": "二上",
     "words": [
       "老師",
@@ -3721,6 +4040,7 @@ const DATA = [
     "id": 318,
     "char": "番",
     "radical": "田",
+    "zhuyin": "ㄈㄢ",
     "semester": "二上",
     "words": [
       "番茄",
@@ -3732,6 +4052,7 @@ const DATA = [
     "id": 319,
     "char": "娘",
     "radical": "女",
+    "zhuyin": "ㄋㄧㄤˊ",
     "semester": "二上",
     "words": [
       "姑娘",
@@ -3743,6 +4064,7 @@ const DATA = [
     "id": 320,
     "char": "步",
     "radical": "止",
+    "zhuyin": "ㄅㄨˋ",
     "semester": "二上",
     "words": [
       "步驟",
@@ -3754,6 +4076,7 @@ const DATA = [
     "id": 321,
     "char": "暑",
     "radical": "日",
+    "zhuyin": "ㄕㄨˇ",
     "semester": "二上",
     "words": [
       "暑假",
@@ -3765,6 +4088,7 @@ const DATA = [
     "id": 322,
     "char": "遠",
     "radical": "辵",
+    "zhuyin": "ㄩㄢˇ",
     "semester": "二上",
     "words": [
       "遠處",
@@ -3776,6 +4100,7 @@ const DATA = [
     "id": 323,
     "char": "以",
     "radical": "人",
+    "zhuyin": "ㄧˇ",
     "semester": "二上",
     "words": [
       "以前",
@@ -3787,6 +4112,7 @@ const DATA = [
     "id": 324,
     "char": "吐",
     "radical": "口",
+    "zhuyin": "ㄊㄨˇ",
     "semester": "二上",
     "words": [
       "吐出",
@@ -3798,6 +4124,7 @@ const DATA = [
     "id": 325,
     "char": "黃",
     "radical": "黃",
+    "zhuyin": "ㄏㄨㄤˊ",
     "semester": "二上",
     "words": [
       "黃色",
@@ -3809,6 +4136,7 @@ const DATA = [
     "id": 326,
     "char": "汗",
     "radical": "水",
+    "zhuyin": "ㄏㄢˋ",
     "semester": "二上",
     "words": [
       "汗水",
@@ -3820,6 +4148,7 @@ const DATA = [
     "id": 327,
     "char": "假",
     "radical": "人",
+    "zhuyin": "ㄐㄧㄚˇ",
     "semester": "二上",
     "words": [
       "放假",
@@ -3831,6 +4160,7 @@ const DATA = [
     "id": 328,
     "char": "客",
     "radical": "宀",
+    "zhuyin": "ㄎㄜˋ",
     "semester": "二上",
     "words": [
       "客人",
@@ -3842,6 +4172,7 @@ const DATA = [
     "id": 329,
     "char": "為",
     "radical": "火",
+    "zhuyin": "ㄨㄟˋ",
     "semester": "二上",
     "words": [
       "為什麼",
@@ -3853,6 +4184,7 @@ const DATA = [
     "id": 330,
     "char": "中",
     "radical": "丨",
+    "zhuyin": "ㄓㄨㄥ",
     "semester": "二上",
     "words": [
       "中間",
@@ -3864,6 +4196,7 @@ const DATA = [
     "id": 331,
     "char": "筆",
     "radical": "竹",
+    "zhuyin": "ㄅㄧˇ",
     "semester": "二上",
     "words": [
       "鉛筆",
@@ -3875,6 +4208,7 @@ const DATA = [
     "id": 332,
     "char": "腳",
     "radical": "肉",
+    "zhuyin": "ㄐㄧㄠˇ",
     "semester": "二上",
     "words": [
       "腳步",
@@ -3886,6 +4220,7 @@ const DATA = [
     "id": 333,
     "char": "帶",
     "radical": "巾",
+    "zhuyin": "ㄉㄞˋ",
     "semester": "二上",
     "words": [
       "帶領",
@@ -3897,6 +4232,7 @@ const DATA = [
     "id": 334,
     "char": "買",
     "radical": "貝",
+    "zhuyin": "ㄇㄞˇ",
     "semester": "二上",
     "words": [
       "買東西",
@@ -3908,6 +4244,7 @@ const DATA = [
     "id": 335,
     "char": "故",
     "radical": "攴",
+    "zhuyin": "ㄍㄨˋ",
     "semester": "二上",
     "words": [
       "故事",
@@ -3919,6 +4256,7 @@ const DATA = [
     "id": 336,
     "char": "方",
     "radical": "方",
+    "zhuyin": "ㄈㄤ",
     "semester": "二上",
     "words": [
       "方向",
@@ -3930,6 +4268,7 @@ const DATA = [
     "id": 337,
     "char": "打",
     "radical": "手",
+    "zhuyin": "ㄉㄚˇ",
     "semester": "二上",
     "words": [
       "打開",
@@ -3941,6 +4280,7 @@ const DATA = [
     "id": 338,
     "char": "協",
     "radical": "十",
+    "zhuyin": "ㄒㄧㄝˊ",
     "semester": "二上",
     "words": [
       "協助",
@@ -3952,6 +4292,7 @@ const DATA = [
     "id": 339,
     "char": "跨",
     "radical": "足",
+    "zhuyin": "ㄎㄨㄚˋ",
     "semester": "二上",
     "words": [
       "跨越",
@@ -3963,6 +4304,7 @@ const DATA = [
     "id": 340,
     "char": "親",
     "radical": "見",
+    "zhuyin": "ㄑㄧㄣ",
     "semester": "二上",
     "words": [
       "親愛",
@@ -3974,6 +4316,7 @@ const DATA = [
     "id": 341,
     "char": "用",
     "radical": "用",
+    "zhuyin": "ㄩㄥˋ",
     "semester": "二上",
     "words": [
       "用心",
@@ -3985,6 +4328,7 @@ const DATA = [
     "id": 342,
     "char": "城",
     "radical": "土",
+    "zhuyin": "ㄔㄥˊ",
     "semester": "二上",
     "words": [
       "城市",
@@ -3996,6 +4340,7 @@ const DATA = [
     "id": 343,
     "char": "扮",
     "radical": "手",
+    "zhuyin": "ㄅㄢˋ",
     "semester": "二上",
     "words": [
       "扮演",
@@ -4007,6 +4352,7 @@ const DATA = [
     "id": 344,
     "char": "聲",
     "radical": "耳",
+    "zhuyin": "ㄕㄥ",
     "semester": "二上",
     "words": [
       "聲音",
@@ -4018,6 +4364,7 @@ const DATA = [
     "id": 345,
     "char": "划",
     "radical": "刀",
+    "zhuyin": "ㄏㄨㄚˋ",
     "semester": "二上",
     "words": [
       "划船",
@@ -4029,6 +4376,7 @@ const DATA = [
     "id": 346,
     "char": "如",
     "radical": "女",
+    "zhuyin": "ㄖㄨˊ",
     "semester": "二上",
     "words": [
       "如果",
@@ -4040,6 +4388,7 @@ const DATA = [
     "id": 347,
     "char": "力",
     "radical": "力",
+    "zhuyin": "ㄌㄧˋ",
     "semester": "二上",
     "words": [
       "力氣",
@@ -4051,6 +4400,7 @@ const DATA = [
     "id": 348,
     "char": "堡",
     "radical": "土",
+    "zhuyin": "ㄅㄠˇ",
     "semester": "二上",
     "words": [
       "城堡",
@@ -4062,6 +4412,7 @@ const DATA = [
     "id": 349,
     "char": "樣",
     "radical": "木",
+    "zhuyin": "ㄧㄤˋ",
     "semester": "二上",
     "words": [
       "樣子",
@@ -4073,6 +4424,7 @@ const DATA = [
     "id": 350,
     "char": "河",
     "radical": "水",
+    "zhuyin": "ㄏㄜˊ",
     "semester": "二上",
     "words": [
       "河水",
@@ -4084,6 +4436,7 @@ const DATA = [
     "id": 351,
     "char": "原",
     "radical": "厂",
+    "zhuyin": "ㄩㄢˊ",
     "semester": "二上",
     "words": [
       "原來",
@@ -4095,6 +4448,7 @@ const DATA = [
     "id": 352,
     "char": "意",
     "radical": "心",
+    "zhuyin": "ㄧˋ",
     "semester": "二上",
     "words": [
       "意思",
@@ -4106,6 +4460,7 @@ const DATA = [
     "id": 353,
     "char": "只",
     "radical": "口",
+    "zhuyin": "ㄓˇ",
     "semester": "二上",
     "words": [
       "只有",
@@ -4117,6 +4472,7 @@ const DATA = [
     "id": 354,
     "char": "接",
     "radical": "手",
+    "zhuyin": "ㄐㄧㄝ",
     "semester": "二上",
     "words": [
       "接受",
@@ -4128,6 +4484,7 @@ const DATA = [
     "id": 355,
     "char": "越",
     "radical": "走",
+    "zhuyin": "ㄩㄝˋ",
     "semester": "二上",
     "words": [
       "越來越",
@@ -4139,6 +4496,7 @@ const DATA = [
     "id": 356,
     "char": "氣",
     "radical": "气",
+    "zhuyin": "ㄑㄧˋ",
     "semester": "二上",
     "words": [
       "天氣",
@@ -4150,6 +4508,7 @@ const DATA = [
     "id": 357,
     "char": "捕",
     "radical": "手",
+    "zhuyin": "ㄅㄨˇ",
     "semester": "二上",
     "words": [
       "捕捉",
@@ -4161,6 +4520,7 @@ const DATA = [
     "id": 358,
     "char": "因",
     "radical": "囗",
+    "zhuyin": "ㄧㄣ",
     "semester": "二上",
     "words": [
       "因為",
@@ -4172,6 +4532,7 @@ const DATA = [
     "id": 359,
     "char": "現",
     "radical": "玉",
+    "zhuyin": "ㄒㄧㄢˋ",
     "semester": "二上",
     "words": [
       "現在",
@@ -4183,6 +4544,7 @@ const DATA = [
     "id": 360,
     "char": "畫",
     "radical": "田",
+    "zhuyin": "ㄏㄨㄚˋ",
     "semester": "二上",
     "words": [
       "畫畫",
@@ -4194,6 +4556,7 @@ const DATA = [
     "id": 361,
     "char": "美",
     "radical": "羊",
+    "zhuyin": "ㄇㄟˇ",
     "semester": "二上",
     "words": [
       "美麗",
@@ -4205,6 +4568,7 @@ const DATA = [
     "id": 362,
     "char": "最",
     "radical": "冂",
+    "zhuyin": "ㄗㄨㄟˋ",
     "semester": "二上",
     "words": [
       "最好",
@@ -4216,6 +4580,7 @@ const DATA = [
     "id": 363,
     "char": "活",
     "radical": "水",
+    "zhuyin": "ㄏㄨㄛˊ",
     "semester": "二上",
     "words": [
       "生活",
@@ -4227,6 +4592,7 @@ const DATA = [
     "id": 364,
     "char": "此",
     "radical": "止",
+    "zhuyin": "ㄘˇ",
     "semester": "二上",
     "words": [
       "因此",
@@ -4238,6 +4604,7 @@ const DATA = [
     "id": 365,
     "char": "還",
     "radical": "辵",
+    "zhuyin": "ㄏㄞˊ",
     "semester": "二上",
     "words": [
       "還有",
@@ -4249,6 +4616,7 @@ const DATA = [
     "id": 366,
     "char": "臉",
     "radical": "肉",
+    "zhuyin": "ㄌㄧㄢˇ",
     "semester": "二上",
     "words": [
       "臉上",
@@ -4260,6 +4628,7 @@ const DATA = [
     "id": 367,
     "char": "麗",
     "radical": "鹿",
+    "zhuyin": "ㄌㄧˋ",
     "semester": "二上",
     "words": [
       "美麗",
@@ -4271,6 +4640,7 @@ const DATA = [
     "id": 368,
     "char": "可",
     "radical": "口",
+    "zhuyin": "ㄎㄜˇ",
     "semester": "二上",
     "words": [
       "可以",
@@ -4282,6 +4652,7 @@ const DATA = [
     "id": 369,
     "char": "識",
     "radical": "言",
+    "zhuyin": "ㄕˊ",
     "semester": "二上",
     "words": [
       "認識",
@@ -4293,6 +4664,7 @@ const DATA = [
     "id": 370,
     "char": "色",
     "radical": "色",
+    "zhuyin": "ㄙㄜˋ",
     "semester": "二上",
     "words": [
       "顏色",
@@ -4304,6 +4676,7 @@ const DATA = [
     "id": 371,
     "char": "衣",
     "radical": "衣",
+    "zhuyin": "ㄧ",
     "semester": "二上",
     "words": [
       "衣服",
@@ -4315,6 +4688,7 @@ const DATA = [
     "id": 372,
     "char": "渴",
     "radical": "水",
+    "zhuyin": "ㄎㄜˇ",
     "semester": "二上",
     "words": [
       "口渴",
@@ -4326,6 +4700,7 @@ const DATA = [
     "id": 373,
     "char": "象",
     "radical": "豕",
+    "zhuyin": "ㄒㄧㄤˋ",
     "semester": "二上",
     "words": [
       "大象",
@@ -4337,6 +4712,7 @@ const DATA = [
     "id": 374,
     "char": "冷",
     "radical": "冫",
+    "zhuyin": "ㄌㄥˇ",
     "semester": "二上",
     "words": [
       "冷天",
@@ -4348,6 +4724,7 @@ const DATA = [
     "id": 375,
     "char": "急",
     "radical": "心",
+    "zhuyin": "ㄐㄧˊ",
     "semester": "二上",
     "words": [
       "著急",
@@ -4359,6 +4736,7 @@ const DATA = [
     "id": 376,
     "char": "灰",
     "radical": "火",
+    "zhuyin": "ㄏㄨㄟ",
     "semester": "二上",
     "words": [
       "灰色",
@@ -4370,6 +4748,7 @@ const DATA = [
     "id": 377,
     "char": "胖",
     "radical": "肉",
+    "zhuyin": "ㄆㄤˋ",
     "semester": "二上",
     "words": [
       "胖胖",
@@ -4381,6 +4760,7 @@ const DATA = [
     "id": 378,
     "char": "烏",
     "radical": "火",
+    "zhuyin": "ㄨ",
     "semester": "二上",
     "words": [
       "烏雲",
@@ -4392,6 +4772,7 @@ const DATA = [
     "id": 379,
     "char": "操",
     "radical": "手",
+    "zhuyin": "ㄘㄠ",
     "semester": "二上",
     "words": [
       "操場",
@@ -4403,6 +4784,7 @@ const DATA = [
     "id": 380,
     "char": "冬",
     "radical": "冫",
+    "zhuyin": "ㄉㄨㄥ",
     "semester": "二上",
     "words": [
       "冬天",
@@ -4414,6 +4796,7 @@ const DATA = [
     "id": 381,
     "char": "皮",
     "radical": "皮",
+    "zhuyin": "ㄆㄧˊ",
     "semester": "二上",
     "words": [
       "皮膚",
@@ -4425,6 +4808,7 @@ const DATA = [
     "id": 382,
     "char": "涼",
     "radical": "水",
+    "zhuyin": "ㄌㄧㄤˊ",
     "semester": "二上",
     "words": [
       "涼快",
@@ -4436,6 +4820,7 @@ const DATA = [
     "id": 383,
     "char": "針",
     "radical": "金",
+    "zhuyin": "ㄓㄣ",
     "semester": "二上",
     "words": [
       "針線",
@@ -4447,6 +4832,7 @@ const DATA = [
     "id": 384,
     "char": "喝",
     "radical": "口",
+    "zhuyin": "ㄏㄜ",
     "semester": "二上",
     "words": [
       "喝水",
@@ -4458,6 +4844,7 @@ const DATA = [
     "id": 385,
     "char": "粗",
     "radical": "米",
+    "zhuyin": "ㄘㄨ",
     "semester": "二上",
     "words": [
       "粗細",
@@ -4469,6 +4856,7 @@ const DATA = [
     "id": 386,
     "char": "煙",
     "radical": "火",
+    "zhuyin": "ㄧㄢ",
     "semester": "二上",
     "words": [
       "煙火",
@@ -4480,6 +4868,7 @@ const DATA = [
     "id": 387,
     "char": "具",
     "radical": "八",
+    "zhuyin": "ㄐㄩˋ",
     "semester": "二上",
     "words": [
       "工具",
@@ -4491,6 +4880,7 @@ const DATA = [
     "id": 388,
     "char": "牠",
     "radical": "牛",
+    "zhuyin": "ㄊㄚ",
     "semester": "二上",
     "words": [
       "牠的",
@@ -4501,6 +4891,7 @@ const DATA = [
     "id": 389,
     "char": "簡",
     "radical": "竹",
+    "zhuyin": "ㄐㄧㄢˇ",
     "semester": "二上",
     "words": [
       "簡單",
@@ -4512,6 +4903,7 @@ const DATA = [
     "id": 390,
     "char": "瓶",
     "radical": "瓦",
+    "zhuyin": "ㄆㄧㄥˊ",
     "semester": "二上",
     "words": [
       "瓶子",
@@ -4523,6 +4915,7 @@ const DATA = [
     "id": 391,
     "char": "腿",
     "radical": "肉",
+    "zhuyin": "ㄊㄨㄟˇ",
     "semester": "二上",
     "words": [
       "腿部",
@@ -4534,6 +4927,7 @@ const DATA = [
     "id": 392,
     "char": "火",
     "radical": "火",
+    "zhuyin": "ㄏㄨㄛˇ",
     "semester": "二上",
     "words": [
       "火焰",
@@ -4545,6 +4939,7 @@ const DATA = [
     "id": 393,
     "char": "飛",
     "radical": "飛",
+    "zhuyin": "ㄈㄟ",
     "semester": "二上",
     "words": [
       "飛翔",
@@ -4556,6 +4951,7 @@ const DATA = [
     "id": 394,
     "char": "鼓",
     "radical": "鼓",
+    "zhuyin": "ㄍㄨˇ",
     "semester": "二上",
     "words": [
       "鼓勵",
@@ -4567,6 +4963,7 @@ const DATA = [
     "id": 395,
     "char": "單",
     "radical": "口",
+    "zhuyin": "ㄉㄢ",
     "semester": "二上",
     "words": [
       "單純",
@@ -4578,6 +4975,7 @@ const DATA = [
     "id": 396,
     "char": "法",
     "radical": "水",
+    "zhuyin": "ㄈㄚˇ",
     "semester": "二上",
     "words": [
       "方法",
@@ -4589,6 +4987,7 @@ const DATA = [
     "id": 397,
     "char": "柱",
     "radical": "木",
+    "zhuyin": "ㄓㄨˋ",
     "semester": "二上",
     "words": [
       "柱子",
@@ -4600,6 +4999,7 @@ const DATA = [
     "id": 398,
     "char": "雪",
     "radical": "雨",
+    "zhuyin": "ㄒㄩㄝˇ",
     "semester": "二上",
     "words": [
       "下雪",
@@ -4611,6 +5011,7 @@ const DATA = [
     "id": 399,
     "char": "者",
     "radical": "老",
+    "zhuyin": "ㄓㄜˇ",
     "semester": "二上",
     "words": [
       "作者",
@@ -4622,6 +5023,7 @@ const DATA = [
     "id": 400,
     "char": "絡",
     "radical": "糸",
+    "zhuyin": "ㄌㄨㄛˋ",
     "semester": "二上",
     "words": [
       "聯絡",
@@ -4633,6 +5035,7 @@ const DATA = [
     "id": 401,
     "char": "聰",
     "radical": "耳",
+    "zhuyin": "ㄘㄨㄥ",
     "semester": "二上",
     "words": [
       "聰明",
@@ -4643,6 +5046,7 @@ const DATA = [
     "id": 402,
     "char": "森",
     "radical": "木",
+    "zhuyin": "ㄙㄣ",
     "semester": "二上",
     "words": [
       "森林",
@@ -4653,6 +5057,7 @@ const DATA = [
     "id": 403,
     "char": "砍",
     "radical": "石",
+    "zhuyin": "ㄎㄢˇ",
     "semester": "二上",
     "words": [
       "砍樹",
@@ -4664,6 +5069,7 @@ const DATA = [
     "id": 404,
     "char": "梨",
     "radical": "木",
+    "zhuyin": "ㄌㄧˊ",
     "semester": "二上",
     "words": [
       "梨子",
@@ -4675,6 +5081,7 @@ const DATA = [
     "id": 405,
     "char": "洋",
     "radical": "水",
+    "zhuyin": "ㄧㄤˊ",
     "semester": "二上",
     "words": [
       "海洋",
@@ -4686,6 +5093,7 @@ const DATA = [
     "id": 406,
     "char": "欣",
     "radical": "欠",
+    "zhuyin": "ㄒㄧㄣ",
     "semester": "二上",
     "words": [
       "欣喜",
@@ -4697,6 +5105,7 @@ const DATA = [
     "id": 407,
     "char": "明",
     "radical": "日",
+    "zhuyin": "ㄇㄧㄥˊ",
     "semester": "二上",
     "words": [
       "明天",
@@ -4708,6 +5117,7 @@ const DATA = [
     "id": 408,
     "char": "林",
     "radical": "木",
+    "zhuyin": "ㄌㄧㄣˊ",
     "semester": "二上",
     "words": [
       "樹林",
@@ -4719,6 +5129,7 @@ const DATA = [
     "id": 409,
     "char": "幾",
     "radical": "幺",
+    "zhuyin": "ㄐㄧˇ",
     "semester": "二上",
     "words": [
       "幾個",
@@ -4730,6 +5141,7 @@ const DATA = [
     "id": 410,
     "char": "夜",
     "radical": "夕",
+    "zhuyin": "ㄧㄝˋ",
     "semester": "二上",
     "words": [
       "夜晚",
@@ -4741,6 +5153,7 @@ const DATA = [
     "id": 411,
     "char": "寒",
     "radical": "宀",
+    "zhuyin": "ㄏㄢˊ",
     "semester": "二上",
     "words": [
       "寒冷",
@@ -4752,6 +5165,7 @@ const DATA = [
     "id": 412,
     "char": "發",
     "radical": "癶",
+    "zhuyin": "ㄈㄚ",
     "semester": "二上",
     "words": [
       "發現",
@@ -4763,6 +5177,7 @@ const DATA = [
     "id": 413,
     "char": "臣",
     "radical": "臣",
+    "zhuyin": "ㄔㄣˊ",
     "semester": "二上",
     "words": [
       "臣子",
@@ -4774,6 +5189,7 @@ const DATA = [
     "id": 414,
     "char": "物",
     "radical": "牛",
+    "zhuyin": "ㄨˋ",
     "semester": "二上",
     "words": [
       "動物",
@@ -4785,6 +5201,7 @@ const DATA = [
     "id": 415,
     "char": "部",
     "radical": "邑",
+    "zhuyin": "ㄅㄨˋ",
     "semester": "二上",
     "words": [
       "全部",
@@ -4796,6 +5213,7 @@ const DATA = [
     "id": 416,
     "char": "卻",
     "radical": "卩",
+    "zhuyin": "ㄑㄩㄝˋ",
     "semester": "二上",
     "words": [
       "卻是",
@@ -4807,6 +5225,7 @@ const DATA = [
     "id": 417,
     "char": "北",
     "radical": "匕",
+    "zhuyin": "ㄅㄟˇ",
     "semester": "二上",
     "words": [
       "北方",
@@ -4818,6 +5237,7 @@ const DATA = [
     "id": 418,
     "char": "居",
     "radical": "尸",
+    "zhuyin": "ㄐㄩ",
     "semester": "二上",
     "words": [
       "居住",
@@ -4829,6 +5249,7 @@ const DATA = [
     "id": 419,
     "char": "敢",
     "radical": "攴",
+    "zhuyin": "ㄍㄢˇ",
     "semester": "二上",
     "words": [
       "勇敢",
@@ -4840,6 +5261,7 @@ const DATA = [
     "id": 420,
     "char": "旅",
     "radical": "方",
+    "zhuyin": "ㄌㄩˇ",
     "semester": "二上",
     "words": [
       "旅行",
@@ -4851,6 +5273,7 @@ const DATA = [
     "id": 421,
     "char": "搖",
     "radical": "手",
+    "zhuyin": "ㄧㄠˊ",
     "semester": "二上",
     "words": [
       "搖晃",
@@ -4862,6 +5285,7 @@ const DATA = [
     "id": 422,
     "char": "臺",
     "radical": "至",
+    "zhuyin": "ㄊㄞˊ",
     "semester": "二上",
     "words": [
       "舞台",
@@ -4873,6 +5297,7 @@ const DATA = [
     "id": 423,
     "char": "嘴",
     "radical": "口",
+    "zhuyin": "ㄗㄨㄟˇ",
     "semester": "二上",
     "words": [
       "嘴巴",
@@ -4884,6 +5309,7 @@ const DATA = [
     "id": 424,
     "char": "冒",
     "radical": "冂",
+    "zhuyin": "ㄇㄠˋ",
     "semester": "二上",
     "words": [
       "冒險",
@@ -4895,6 +5321,7 @@ const DATA = [
     "id": 425,
     "char": "東",
     "radical": "木",
+    "zhuyin": "ㄉㄨㄥ",
     "semester": "二上",
     "words": [
       "東方",
@@ -4906,6 +5333,7 @@ const DATA = [
     "id": 426,
     "char": "行",
     "radical": "行",
+    "zhuyin": "ㄒㄧㄥˊ",
     "semester": "二上",
     "words": [
       "行走",
@@ -4917,6 +5345,7 @@ const DATA = [
     "id": 427,
     "char": "沖",
     "radical": "水",
+    "zhuyin": "ㄔㄨㄥ",
     "semester": "二上",
     "words": [
       "沖水",
@@ -4928,6 +5357,7 @@ const DATA = [
     "id": 428,
     "char": "季",
     "radical": "子",
+    "zhuyin": "ㄐㄧˋ",
     "semester": "二上",
     "words": [
       "季節",
@@ -4939,6 +5369,7 @@ const DATA = [
     "id": 429,
     "char": "伸",
     "radical": "人",
+    "zhuyin": "ㄕㄣ",
     "semester": "二上",
     "words": [
       "伸手",
@@ -4950,6 +5381,7 @@ const DATA = [
     "id": 430,
     "char": "圍",
     "radical": "囗",
+    "zhuyin": "ㄨㄟˊ",
     "semester": "二上",
     "words": [
       "圍繞",
@@ -4961,6 +5393,7 @@ const DATA = [
     "id": 431,
     "char": "西",
     "radical": "襾",
+    "zhuyin": "ㄒㄧ",
     "semester": "二上",
     "words": [
       "東西",
@@ -4972,6 +5405,7 @@ const DATA = [
     "id": 432,
     "char": "午",
     "radical": "十",
+    "zhuyin": "ㄨˇ",
     "semester": "二上",
     "words": [
       "中午",
@@ -4983,6 +5417,7 @@ const DATA = [
     "id": 433,
     "char": "首",
     "radical": "首",
+    "zhuyin": "ㄕㄡˇ",
     "semester": "二上",
     "words": [
       "首先",
@@ -4994,6 +5429,7 @@ const DATA = [
     "id": 434,
     "char": "相",
     "radical": "目",
+    "zhuyin": "ㄒㄧㄤ",
     "semester": "二上",
     "words": [
       "相同",
@@ -5005,6 +5441,7 @@ const DATA = [
     "id": 435,
     "char": "飽",
     "radical": "食",
+    "zhuyin": "ㄅㄠˇ",
     "semester": "二上",
     "words": [
       "吃飽",
@@ -5016,6 +5453,7 @@ const DATA = [
     "id": 436,
     "char": "冰",
     "radical": "冰",
+    "zhuyin": "ㄅㄧㄥ",
     "semester": "二上",
     "words": [
       "冰水",
@@ -5027,6 +5465,7 @@ const DATA = [
     "id": 437,
     "char": "直",
     "radical": "目",
+    "zhuyin": "ㄓˊ",
     "semester": "二上",
     "words": [
       "直接",
@@ -5038,6 +5477,7 @@ const DATA = [
     "id": 438,
     "char": "裝",
     "radical": "衣",
+    "zhuyin": "ㄓㄨㄤ",
     "semester": "二上",
     "words": [
       "裝扮",
@@ -5049,6 +5489,7 @@ const DATA = [
     "id": 439,
     "char": "牽",
     "radical": "牛",
+    "zhuyin": "ㄑㄧㄢ",
     "semester": "二上",
     "words": [
       "牽手",
@@ -5060,6 +5501,7 @@ const DATA = [
     "id": 440,
     "char": "反",
     "radical": "又",
+    "zhuyin": "ㄈㄢˇ",
     "semester": "二上",
     "words": [
       "反正",
@@ -5071,6 +5513,7 @@ const DATA = [
     "id": 441,
     "char": "沙",
     "radical": "水",
+    "zhuyin": "ㄕㄚ",
     "semester": "二上",
     "words": [
       "沙灘",
@@ -5082,6 +5525,7 @@ const DATA = [
     "id": 442,
     "char": "咪",
     "radical": "口",
+    "zhuyin": "ㄇㄧ",
     "semester": "二上",
     "words": [
       "貓咪",
@@ -5092,6 +5536,7 @@ const DATA = [
     "id": 443,
     "char": "棒",
     "radical": "木",
+    "zhuyin": "ㄅㄤˋ",
     "semester": "二上",
     "words": [
       "棒棒",
@@ -5103,6 +5548,7 @@ const DATA = [
     "id": 444,
     "char": "許",
     "radical": "言",
+    "zhuyin": "ㄒㄩˇ",
     "semester": "二上",
     "words": [
       "也許",
@@ -5114,6 +5560,7 @@ const DATA = [
     "id": 445,
     "char": "沉",
     "radical": "水",
+    "zhuyin": "ㄔㄣˊ",
     "semester": "二上",
     "words": [
       "沉睡",
@@ -5125,6 +5572,7 @@ const DATA = [
     "id": 446,
     "char": "待",
     "radical": "彳",
+    "zhuyin": "ㄉㄞˋ",
     "semester": "二上",
     "words": [
       "等待",
@@ -5136,6 +5584,7 @@ const DATA = [
     "id": 447,
     "char": "服",
     "radical": "月",
+    "zhuyin": "ㄈㄨˊ",
     "semester": "二上",
     "words": [
       "服裝",
@@ -5147,6 +5596,7 @@ const DATA = [
     "id": 448,
     "char": "團",
     "radical": "囗",
+    "zhuyin": "ㄊㄨㄢˊ",
     "semester": "二上",
     "words": [
       "團結",
@@ -5158,6 +5608,7 @@ const DATA = [
     "id": 449,
     "char": "街",
     "radical": "行",
+    "zhuyin": "ㄐㄧㄝ",
     "semester": "二上",
     "words": [
       "街道",
@@ -5169,6 +5620,7 @@ const DATA = [
     "id": 450,
     "char": "石",
     "radical": "石",
+    "zhuyin": "ㄕˊ",
     "semester": "二上",
     "words": [
       "石頭",
@@ -5180,6 +5632,7 @@ const DATA = [
     "id": 451,
     "char": "少",
     "radical": "小",
+    "zhuyin": "ㄕㄠˇ",
     "semester": "二上",
     "words": [
       "少量",
@@ -5191,6 +5644,7 @@ const DATA = [
     "id": 452,
     "char": "雖",
     "radical": "隹",
+    "zhuyin": "ㄙㄨㄟ",
     "semester": "二上",
     "words": [
       "雖然",
@@ -5202,6 +5656,7 @@ const DATA = [
     "id": 453,
     "char": "站",
     "radical": "立",
+    "zhuyin": "ㄓㄢˋ",
     "semester": "二上",
     "words": [
       "站立",
@@ -5213,6 +5668,7 @@ const DATA = [
     "id": 454,
     "char": "聚",
     "radical": "耳",
+    "zhuyin": "ㄐㄩˋ",
     "semester": "二上",
     "words": [
       "聚集",
@@ -5224,6 +5680,7 @@ const DATA = [
     "id": 455,
     "char": "滿",
     "radical": "水",
+    "zhuyin": "ㄇㄢˇ",
     "semester": "二上",
     "words": [
       "滿意",
@@ -5235,6 +5692,7 @@ const DATA = [
     "id": 456,
     "char": "難",
     "radical": "隹",
+    "zhuyin": "ㄋㄢˊ",
     "semester": "二上",
     "words": [
       "困難",
@@ -5246,6 +5704,7 @@ const DATA = [
     "id": 457,
     "char": "沿",
     "radical": "水",
+    "zhuyin": "ㄧㄢˊ",
     "semester": "二上",
     "words": [
       "沿路",
@@ -5257,6 +5716,7 @@ const DATA = [
     "id": 458,
     "char": "春",
     "radical": "日",
+    "zhuyin": "ㄔㄨㄣ",
     "semester": "二上",
     "words": [
       "春天",
@@ -5268,6 +5728,7 @@ const DATA = [
     "id": 459,
     "char": "翅",
     "radical": "羽",
+    "zhuyin": "ㄔˋ",
     "semester": "二上",
     "words": [
       "翅膀",
@@ -5278,6 +5739,7 @@ const DATA = [
     "id": 460,
     "char": "幸",
     "radical": "干",
+    "zhuyin": "ㄒㄧㄥˋ",
     "semester": "二上",
     "words": [
       "幸福",
@@ -5289,6 +5751,7 @@ const DATA = [
     "id": 461,
     "char": "眼",
     "radical": "目",
+    "zhuyin": "ㄧㄢˇ",
     "semester": "二上",
     "words": [
       "眼睛",
@@ -5300,6 +5763,7 @@ const DATA = [
     "id": 462,
     "char": "忘",
     "radical": "心",
+    "zhuyin": "ㄨㄤˋ",
     "semester": "二上",
     "words": [
       "忘記",
@@ -5311,6 +5775,7 @@ const DATA = [
     "id": 463,
     "char": "然",
     "radical": "火",
+    "zhuyin": "ㄖㄢˊ",
     "semester": "二上",
     "words": [
       "自然",
@@ -5322,6 +5787,7 @@ const DATA = [
     "id": 464,
     "char": "貨",
     "radical": "貝",
+    "zhuyin": "ㄏㄨㄛˋ",
     "semester": "二上",
     "words": [
       "貨物",
@@ -5333,6 +5799,7 @@ const DATA = [
     "id": 465,
     "char": "膀",
     "radical": "肉",
+    "zhuyin": "ㄅㄤˇ",
     "semester": "二上",
     "words": [
       "翅膀",
@@ -5344,6 +5811,7 @@ const DATA = [
     "id": 466,
     "char": "愉",
     "radical": "心",
+    "zhuyin": "ㄩˊ",
     "semester": "二上",
     "words": [
       "愉快",
@@ -5355,6 +5823,7 @@ const DATA = [
     "id": 467,
     "char": "哪",
     "radical": "口",
+    "zhuyin": "ㄋㄚˇ",
     "semester": "二上",
     "words": [
       "哪裡",
@@ -5366,6 +5835,7 @@ const DATA = [
     "id": 468,
     "char": "哈",
     "radical": "口",
+    "zhuyin": "ㄏㄚ",
     "semester": "二上",
     "words": [
       "哈哈",
@@ -5377,6 +5847,7 @@ const DATA = [
     "id": 469,
     "char": "紀",
     "radical": "糸",
+    "zhuyin": "ㄐㄧˋ",
     "semester": "二上",
     "words": [
       "年紀",
@@ -5388,6 +5859,7 @@ const DATA = [
     "id": 470,
     "char": "期",
     "radical": "月",
+    "zhuyin": "ㄑㄧ",
     "semester": "二上",
     "words": [
       "假期",
@@ -5399,6 +5871,7 @@ const DATA = [
     "id": 471,
     "char": "充",
     "radical": "儿",
+    "zhuyin": "ㄔㄨㄥ",
     "semester": "二上",
     "words": [
       "充足",
@@ -5410,6 +5883,7 @@ const DATA = [
     "id": 472,
     "char": "鍋",
     "radical": "金",
+    "zhuyin": "ㄍㄨㄛ",
     "semester": "二上",
     "words": [
       "鍋子",
@@ -5421,6 +5895,7 @@ const DATA = [
     "id": 473,
     "char": "思",
     "radical": "心",
+    "zhuyin": "ㄙ",
     "semester": "二上",
     "words": [
       "思念",
@@ -5432,6 +5907,7 @@ const DATA = [
     "id": 474,
     "char": "但",
     "radical": "人",
+    "zhuyin": "ㄉㄢˋ",
     "semester": "二上",
     "words": [
       "但是",
@@ -5443,6 +5919,7 @@ const DATA = [
     "id": 475,
     "char": "竟",
     "radical": "音",
+    "zhuyin": "ㄐㄧㄥˋ",
     "semester": "二上",
     "words": [
       "竟然",
@@ -5454,6 +5931,7 @@ const DATA = [
     "id": 476,
     "char": "飯",
     "radical": "食",
+    "zhuyin": "ㄈㄢˋ",
     "semester": "二上",
     "words": [
       "吃飯",
@@ -5465,6 +5943,7 @@ const DATA = [
     "id": 477,
     "char": "念",
     "radical": "心",
+    "zhuyin": "ㄋㄧㄢˋ",
     "semester": "二上",
     "words": [
       "思念",
@@ -5476,6 +5955,7 @@ const DATA = [
     "id": 478,
     "char": "妙",
     "radical": "女",
+    "zhuyin": "ㄇㄧㄠˋ",
     "semester": "二上",
     "words": [
       "奇妙",
@@ -5487,6 +5967,7 @@ const DATA = [
     "id": 479,
     "char": "顏",
     "radical": "頁",
+    "zhuyin": "ㄧㄢˊ",
     "semester": "二下",
     "words": [
       "顏色",
@@ -5498,6 +5979,7 @@ const DATA = [
     "id": 480,
     "char": "裳",
     "radical": "衣",
+    "zhuyin": "ㄕㄤ˙",
     "semester": "二下",
     "words": [
       "衣裳",
@@ -5508,6 +5990,7 @@ const DATA = [
     "id": 481,
     "char": "座",
     "radical": "广",
+    "zhuyin": "ㄗㄨㄛˋ",
     "semester": "二下",
     "words": [
       "座位",
@@ -5519,6 +6002,7 @@ const DATA = [
     "id": 482,
     "char": "散",
     "radical": "攴",
+    "zhuyin": "ㄙㄢˋ",
     "semester": "二下",
     "words": [
       "散步",
@@ -5530,6 +6014,7 @@ const DATA = [
     "id": 483,
     "char": "剛",
     "radical": "刀",
+    "zhuyin": "ㄍㄤ",
     "semester": "二下",
     "words": [
       "剛才",
@@ -5541,6 +6026,7 @@ const DATA = [
     "id": 484,
     "char": "教",
     "radical": "攴",
+    "zhuyin": "ㄐㄧㄠˋ",
     "semester": "二下",
     "words": [
       "教室",
@@ -5552,6 +6038,7 @@ const DATA = [
     "id": 485,
     "char": "池",
     "radical": "水",
+    "zhuyin": "ㄔˊ",
     "semester": "二下",
     "words": [
       "池塘",
@@ -5563,6 +6050,7 @@ const DATA = [
     "id": 486,
     "char": "驚",
     "radical": "馬",
+    "zhuyin": "ㄐㄧㄥ",
     "semester": "二下",
     "words": [
       "驚喜",
@@ -5574,6 +6062,7 @@ const DATA = [
     "id": 487,
     "char": "對",
     "radical": "寸",
+    "zhuyin": "ㄉㄨㄟˋ",
     "semester": "二下",
     "words": [
       "對了",
@@ -5585,6 +6074,7 @@ const DATA = [
     "id": 488,
     "char": "芒",
     "radical": "艸",
+    "zhuyin": "ㄇㄤˊ",
     "semester": "二下",
     "words": [
       "芒果",
@@ -5596,6 +6086,7 @@ const DATA = [
     "id": 489,
     "char": "品",
     "radical": "口",
+    "zhuyin": "ㄆㄧㄣˇ",
     "semester": "二下",
     "words": [
       "品嚐",
@@ -5607,6 +6098,7 @@ const DATA = [
     "id": 490,
     "char": "室",
     "radical": "宀",
+    "zhuyin": "ㄕˋ",
     "semester": "二下",
     "words": [
       "教室",
@@ -5618,6 +6110,7 @@ const DATA = [
     "id": 491,
     "char": "塘",
     "radical": "土",
+    "zhuyin": "ㄊㄤˊ",
     "semester": "二下",
     "words": [
       "池塘",
@@ -5629,6 +6122,7 @@ const DATA = [
     "id": 492,
     "char": "躲",
     "radical": "身",
+    "zhuyin": "ㄉㄨㄛˇ",
     "semester": "二下",
     "words": [
       "躲避",
@@ -5640,6 +6134,7 @@ const DATA = [
     "id": 493,
     "char": "表",
     "radical": "衣",
+    "zhuyin": "ㄅㄧㄠˇ",
     "semester": "二下",
     "words": [
       "表示",
@@ -5651,6 +6146,7 @@ const DATA = [
     "id": 494,
     "char": "暗",
     "radical": "日",
+    "zhuyin": "ㄢˋ",
     "semester": "二下",
     "words": [
       "暗暗",
@@ -5662,6 +6158,7 @@ const DATA = [
     "id": 495,
     "char": "採",
     "radical": "手",
+    "zhuyin": "ㄘㄞˇ",
     "semester": "二下",
     "words": [
       "採花",
@@ -5673,6 +6170,7 @@ const DATA = [
     "id": 496,
     "char": "及",
     "radical": "又",
+    "zhuyin": "ㄐㄧˊ",
     "semester": "二下",
     "words": [
       "及時",
@@ -5684,6 +6182,7 @@ const DATA = [
     "id": 497,
     "char": "藍",
     "radical": "艸",
+    "zhuyin": "ㄌㄢˊ",
     "semester": "二下",
     "words": [
       "藍色",
@@ -5695,6 +6194,7 @@ const DATA = [
     "id": 498,
     "char": "房",
     "radical": "戶",
+    "zhuyin": "ㄈㄤˊ",
     "semester": "二下",
     "words": [
       "房子",
@@ -5706,6 +6206,7 @@ const DATA = [
     "id": 499,
     "char": "各",
     "radical": "口",
+    "zhuyin": "ㄍㄜˋ",
     "semester": "二下",
     "words": [
       "各自",
@@ -5717,6 +6218,7 @@ const DATA = [
     "id": 500,
     "char": "照",
     "radical": "火",
+    "zhuyin": "ㄓㄠˋ",
     "semester": "二下",
     "words": [
       "照片",
@@ -5728,6 +6230,7 @@ const DATA = [
     "id": 501,
     "char": "蕉",
     "radical": "艸",
+    "zhuyin": "ㄐㄧㄠ",
     "semester": "二下",
     "words": [
       "香蕉",
@@ -5738,6 +6241,7 @@ const DATA = [
     "id": 502,
     "char": "終",
     "radical": "糸",
+    "zhuyin": "ㄓㄨㄥ",
     "semester": "二下",
     "words": [
       "終於",
@@ -5749,6 +6253,7 @@ const DATA = [
     "id": 503,
     "char": "田",
     "radical": "田",
+    "zhuyin": "ㄊㄧㄢˊ",
     "semester": "二下",
     "words": [
       "田地",
@@ -5760,6 +6265,7 @@ const DATA = [
     "id": 504,
     "char": "間",
     "radical": "門",
+    "zhuyin": "ㄐㄧㄢ",
     "semester": "二下",
     "words": [
       "中間",
@@ -5771,6 +6277,7 @@ const DATA = [
     "id": 505,
     "char": "突",
     "radical": "穴",
+    "zhuyin": "ㄊㄨ",
     "semester": "二下",
     "words": [
       "突然",
@@ -5782,6 +6289,7 @@ const DATA = [
     "id": 506,
     "char": "掛",
     "radical": "手",
+    "zhuyin": "ㄍㄨㄚˋ",
     "semester": "二下",
     "words": [
       "掛上",
@@ -5793,6 +6301,7 @@ const DATA = [
     "id": 507,
     "char": "軍",
     "radical": "車",
+    "zhuyin": "ㄐㄩㄣ",
     "semester": "二下",
     "words": [
       "軍人",
@@ -5804,6 +6313,7 @@ const DATA = [
     "id": 508,
     "char": "立",
     "radical": "立",
+    "zhuyin": "ㄌㄧˋ",
     "semester": "二下",
     "words": [
       "立刻",
@@ -5815,6 +6325,7 @@ const DATA = [
     "id": 509,
     "char": "洞",
     "radical": "水",
+    "zhuyin": "ㄉㄨㄥˋ",
     "semester": "二下",
     "words": [
       "洞口",
@@ -5826,6 +6337,7 @@ const DATA = [
     "id": 510,
     "char": "討",
     "radical": "言",
+    "zhuyin": "ㄊㄠˇ",
     "semester": "二下",
     "words": [
       "討論",
@@ -5837,6 +6349,7 @@ const DATA = [
     "id": 511,
     "char": "強",
     "radical": "弓",
+    "zhuyin": "ㄑㄧㄤˊ",
     "semester": "二下",
     "words": [
       "強壯",
@@ -5848,6 +6361,7 @@ const DATA = [
     "id": 512,
     "char": "角",
     "radical": "角",
+    "zhuyin": "ㄐㄧㄠˇ",
     "semester": "二下",
     "words": [
       "角色",
@@ -5859,6 +6373,7 @@ const DATA = [
     "id": 513,
     "char": "告",
     "radical": "口",
+    "zhuyin": "ㄍㄠˋ",
     "semester": "二下",
     "words": [
       "告訴",
@@ -5870,6 +6385,7 @@ const DATA = [
     "id": 514,
     "char": "刻",
     "radical": "刀",
+    "zhuyin": "ㄎㄜˋ",
     "semester": "二下",
     "words": [
       "立刻",
@@ -5881,6 +6397,7 @@ const DATA = [
     "id": 515,
     "char": "綠",
     "radical": "糸",
+    "zhuyin": "ㄌㄩˋ",
     "semester": "二下",
     "words": [
       "綠色",
@@ -5892,6 +6409,7 @@ const DATA = [
     "id": 516,
     "char": "論",
     "radical": "言",
+    "zhuyin": "ㄌㄨㄣˋ",
     "semester": "二下",
     "words": [
       "討論",
@@ -5903,6 +6421,7 @@ const DATA = [
     "id": 517,
     "char": "被",
     "radical": "衣",
+    "zhuyin": "ㄅㄟˋ",
     "semester": "二下",
     "words": [
       "被子",
@@ -5914,6 +6433,7 @@ const DATA = [
     "id": 518,
     "char": "揚",
     "radical": "手",
+    "zhuyin": "ㄧㄤˊ",
     "semester": "二下",
     "words": [
       "飛揚",
@@ -5925,6 +6445,7 @@ const DATA = [
     "id": 519,
     "char": "訴",
     "radical": "言",
+    "zhuyin": "ㄙㄨˋ",
     "semester": "二下",
     "words": [
       "告訴",
@@ -5936,6 +6457,7 @@ const DATA = [
     "id": 520,
     "char": "抱",
     "radical": "手",
+    "zhuyin": "ㄅㄠˋ",
     "semester": "二下",
     "words": [
       "抱抱",
@@ -5947,6 +6469,7 @@ const DATA = [
     "id": 521,
     "char": "蜜",
     "radical": "虫",
+    "zhuyin": "ㄇㄧˋ",
     "semester": "二下",
     "words": [
       "蜂蜜",
@@ -5958,6 +6481,7 @@ const DATA = [
     "id": 522,
     "char": "指",
     "radical": "手",
+    "zhuyin": "ㄓˇ",
     "semester": "二下",
     "words": [
       "手指",
@@ -5969,6 +6493,7 @@ const DATA = [
     "id": 523,
     "char": "綻",
     "radical": "糸",
+    "zhuyin": "ㄓㄢˋ",
     "semester": "二下",
     "words": [
       "綻放",
@@ -5979,6 +6504,7 @@ const DATA = [
     "id": 524,
     "char": "星",
     "radical": "日",
+    "zhuyin": "ㄒㄧㄥ",
     "semester": "二下",
     "words": [
       "星星",
@@ -5990,6 +6516,7 @@ const DATA = [
     "id": 525,
     "char": "辛",
     "radical": "辛",
+    "zhuyin": "ㄒㄧㄣ",
     "semester": "二下",
     "words": [
       "辛苦",
@@ -6001,6 +6528,7 @@ const DATA = [
     "id": 526,
     "char": "並",
     "radical": "一",
+    "zhuyin": "ㄅㄧㄥˋ",
     "semester": "二下",
     "words": [
       "並且",
@@ -6012,6 +6540,7 @@ const DATA = [
     "id": 527,
     "char": "蜂",
     "radical": "虫",
+    "zhuyin": "ㄈㄥ",
     "semester": "二下",
     "words": [
       "蜜蜂",
@@ -6023,6 +6552,7 @@ const DATA = [
     "id": 528,
     "char": "裙",
     "radical": "衣",
+    "zhuyin": "ㄑㄩㄣˊ",
     "semester": "二下",
     "words": [
       "裙子",
@@ -6034,6 +6564,7 @@ const DATA = [
     "id": 529,
     "char": "特",
     "radical": "牛",
+    "zhuyin": "ㄊㄜˋ",
     "semester": "二下",
     "words": [
       "特別",
@@ -6045,6 +6576,7 @@ const DATA = [
     "id": 530,
     "char": "閃",
     "radical": "門",
+    "zhuyin": "ㄕㄢˇ",
     "semester": "二下",
     "words": [
       "閃光",
@@ -6056,6 +6588,7 @@ const DATA = [
     "id": 531,
     "char": "苦",
     "radical": "艸",
+    "zhuyin": "ㄎㄨˇ",
     "semester": "二下",
     "words": [
       "辛苦",
@@ -6067,6 +6600,7 @@ const DATA = [
     "id": 532,
     "char": "猜",
     "radical": "犬",
+    "zhuyin": "ㄘㄞ",
     "semester": "二下",
     "words": [
       "猜猜",
@@ -6078,6 +6612,7 @@ const DATA = [
     "id": 533,
     "char": "窩",
     "radical": "穴",
+    "zhuyin": "ㄨㄛ",
     "semester": "二下",
     "words": [
       "鳥窩",
@@ -6089,6 +6624,7 @@ const DATA = [
     "id": 534,
     "char": "而",
     "radical": "而",
+    "zhuyin": "ㄦˊ",
     "semester": "二下",
     "words": [
       "而且",
@@ -6100,6 +6636,7 @@ const DATA = [
     "id": 535,
     "char": "舌",
     "radical": "舌",
+    "zhuyin": "ㄕㄜˊ",
     "semester": "二下",
     "words": [
       "舌頭",
@@ -6111,6 +6648,7 @@ const DATA = [
     "id": 536,
     "char": "晶",
     "radical": "日",
+    "zhuyin": "ㄐㄧㄥ",
     "semester": "二下",
     "words": [
       "水晶",
@@ -6122,6 +6660,7 @@ const DATA = [
     "id": 537,
     "char": "流",
     "radical": "水",
+    "zhuyin": "ㄌㄧㄡˊ",
     "semester": "二下",
     "words": [
       "流水",
@@ -6133,6 +6672,7 @@ const DATA = [
     "id": 538,
     "char": "文",
     "radical": "文",
+    "zhuyin": "ㄨㄣˊ",
     "semester": "二下",
     "words": [
       "文字",
@@ -6144,6 +6684,7 @@ const DATA = [
     "id": 539,
     "char": "粉",
     "radical": "米",
+    "zhuyin": "ㄈㄣˇ",
     "semester": "二下",
     "words": [
       "粉紅",
@@ -6155,6 +6696,7 @@ const DATA = [
     "id": 540,
     "char": "且",
     "radical": "一",
+    "zhuyin": "ㄑㄧㄝˇ",
     "semester": "二下",
     "words": [
       "而且",
@@ -6166,6 +6708,7 @@ const DATA = [
     "id": 541,
     "char": "賞",
     "radical": "貝",
+    "zhuyin": "ㄕㄤˇ",
     "semester": "二下",
     "words": [
       "欣賞",
@@ -6177,6 +6720,7 @@ const DATA = [
     "id": 542,
     "char": "當",
     "radical": "田",
+    "zhuyin": "ㄉㄤ",
     "semester": "二下",
     "words": [
       "當然",
@@ -6188,6 +6732,7 @@ const DATA = [
     "id": 543,
     "char": "堅",
     "radical": "土",
+    "zhuyin": "ㄐㄧㄢ",
     "semester": "二下",
     "words": [
       "堅強",
@@ -6199,6 +6744,7 @@ const DATA = [
     "id": 544,
     "char": "借",
     "radical": "人",
+    "zhuyin": "ㄐㄧㄝˋ",
     "semester": "二下",
     "words": [
       "借書",
@@ -6210,6 +6756,7 @@ const DATA = [
     "id": 545,
     "char": "桃",
     "radical": "木",
+    "zhuyin": "ㄊㄠˊ",
     "semester": "二下",
     "words": [
       "桃子",
@@ -6221,6 +6768,7 @@ const DATA = [
     "id": 546,
     "char": "紫",
     "radical": "糸",
+    "zhuyin": "ㄗˇ",
     "semester": "二下",
     "words": [
       "紫色",
@@ -6232,6 +6780,7 @@ const DATA = [
     "id": 547,
     "char": "果",
     "radical": "木",
+    "zhuyin": "ㄍㄨㄛˇ",
     "semester": "二下",
     "words": [
       "水果",
@@ -6243,6 +6792,7 @@ const DATA = [
     "id": 548,
     "char": "睡",
     "radical": "目",
+    "zhuyin": "ㄕㄨㄟˋ",
     "semester": "二下",
     "words": [
       "睡覺",
@@ -6254,6 +6804,7 @@ const DATA = [
     "id": 549,
     "char": "固",
     "radical": "囗",
+    "zhuyin": "ㄍㄨˋ",
     "semester": "二下",
     "words": [
       "固定",
@@ -6265,6 +6816,7 @@ const DATA = [
     "id": 550,
     "char": "枝",
     "radical": "木",
+    "zhuyin": "ㄓ",
     "semester": "二下",
     "words": [
       "樹枝",
@@ -6276,6 +6828,7 @@ const DATA = [
     "id": 551,
     "char": "興",
     "radical": "臼",
+    "zhuyin": "ㄒㄧㄥˋ",
     "semester": "二下",
     "words": [
       "高興",
@@ -6287,6 +6840,7 @@ const DATA = [
     "id": 552,
     "char": "將",
     "radical": "寸",
+    "zhuyin": "ㄐㄧㄤ",
     "semester": "二下",
     "words": [
       "將來",
@@ -6298,6 +6852,7 @@ const DATA = [
     "id": 553,
     "char": "定",
     "radical": "宀",
+    "zhuyin": "ㄉㄧㄥˋ",
     "semester": "二下",
     "words": [
       "一定",
@@ -6309,6 +6864,7 @@ const DATA = [
     "id": 554,
     "char": "悄",
     "radical": "心",
+    "zhuyin": "ㄑㄧㄠ",
     "semester": "二下",
     "words": [
       "悄悄",
@@ -6320,6 +6876,7 @@ const DATA = [
     "id": 555,
     "char": "安",
     "radical": "宀",
+    "zhuyin": "ㄢ",
     "semester": "二下",
     "words": [
       "安全",
@@ -6331,6 +6888,7 @@ const DATA = [
     "id": 556,
     "char": "鉛",
     "radical": "金",
+    "zhuyin": "ㄑㄧㄢ",
     "semester": "二下",
     "words": [
       "鉛筆",
@@ -6341,6 +6899,7 @@ const DATA = [
     "id": 557,
     "char": "處",
     "radical": "虍",
+    "zhuyin": "ㄔㄨˋ",
     "semester": "二下",
     "words": [
       "到處",
@@ -6352,6 +6911,7 @@ const DATA = [
     "id": 558,
     "char": "工",
     "radical": "工",
+    "zhuyin": "ㄍㄨㄥ",
     "semester": "二下",
     "words": [
       "工作",
@@ -6363,6 +6923,7 @@ const DATA = [
     "id": 559,
     "char": "互",
     "radical": "二",
+    "zhuyin": "ㄏㄨˋ",
     "semester": "二下",
     "words": [
       "互相",
@@ -6374,6 +6935,7 @@ const DATA = [
     "id": 560,
     "char": "常",
     "radical": "巾",
+    "zhuyin": "ㄔㄤˊ",
     "semester": "二下",
     "words": [
       "常常",
@@ -6385,6 +6947,7 @@ const DATA = [
     "id": 561,
     "char": "寶",
     "radical": "宀",
+    "zhuyin": "ㄅㄠˇ",
     "semester": "二下",
     "words": [
       "寶貝",
@@ -6396,6 +6959,7 @@ const DATA = [
     "id": 562,
     "char": "校",
     "radical": "木",
+    "zhuyin": "ㄒㄧㄠˋ",
     "semester": "二下",
     "words": [
       "學校",
@@ -6407,6 +6971,7 @@ const DATA = [
     "id": 563,
     "char": "景",
     "radical": "日",
+    "zhuyin": "ㄐㄧㄥˇ",
     "semester": "二下",
     "words": [
       "風景",
@@ -6418,6 +6983,7 @@ const DATA = [
     "id": 564,
     "char": "合",
     "radical": "口",
+    "zhuyin": "ㄏㄜˊ",
     "semester": "二下",
     "words": [
       "合作",
@@ -6429,6 +6995,7 @@ const DATA = [
     "id": 565,
     "char": "換",
     "radical": "手",
+    "zhuyin": "ㄏㄨㄢˋ",
     "semester": "二下",
     "words": [
       "換衣",
@@ -6440,6 +7007,7 @@ const DATA = [
     "id": 566,
     "char": "旁",
     "radical": "方",
+    "zhuyin": "ㄆㄤˊ",
     "semester": "二下",
     "words": [
       "旁邊",
@@ -6451,6 +7019,7 @@ const DATA = [
     "id": 567,
     "char": "貝",
     "radical": "貝",
+    "zhuyin": "ㄅㄟˋ",
     "semester": "二下",
     "words": [
       "貝殼",
@@ -6462,6 +7031,7 @@ const DATA = [
     "id": 568,
     "char": "車",
     "radical": "車",
+    "zhuyin": "ㄔㄜ",
     "semester": "二下",
     "words": [
       "車子",
@@ -6473,6 +7043,7 @@ const DATA = [
     "id": 569,
     "char": "鼠",
     "radical": "鼠",
+    "zhuyin": "ㄕㄨˇ",
     "semester": "二下",
     "words": [
       "老鼠",
@@ -6484,6 +7055,7 @@ const DATA = [
     "id": 570,
     "char": "貼",
     "radical": "貝",
+    "zhuyin": "ㄊㄧㄝ",
     "semester": "二下",
     "words": [
       "貼紙",
@@ -6495,6 +7067,7 @@ const DATA = [
     "id": 571,
     "char": "共",
     "radical": "八",
+    "zhuyin": "ㄍㄨㄥˋ",
     "semester": "二下",
     "words": [
       "共同",
@@ -6506,6 +7079,7 @@ const DATA = [
     "id": 572,
     "char": "臂",
     "radical": "肉",
+    "zhuyin": "ㄅㄧˋ",
     "semester": "二下",
     "words": [
       "手臂",
@@ -6517,6 +7091,7 @@ const DATA = [
     "id": 573,
     "char": "幅",
     "radical": "巾",
+    "zhuyin": "ㄈㄨˊ",
     "semester": "二下",
     "words": [
       "一幅",
@@ -6528,6 +7103,7 @@ const DATA = [
     "id": 574,
     "char": "哥",
     "radical": "口",
+    "zhuyin": "ㄍㄜ",
     "semester": "二下",
     "words": [
       "哥哥",
@@ -6539,6 +7115,7 @@ const DATA = [
     "id": 575,
     "char": "燕",
     "radical": "火",
+    "zhuyin": "ㄧㄢˋ",
     "semester": "二下",
     "words": [
       "燕子",
@@ -6550,6 +7127,7 @@ const DATA = [
     "id": 576,
     "char": "漸",
     "radical": "水",
+    "zhuyin": "ㄐㄧㄢˋ",
     "semester": "二下",
     "words": [
       "漸漸",
@@ -6561,6 +7139,7 @@ const DATA = [
     "id": 577,
     "char": "永",
     "radical": "水",
+    "zhuyin": "ㄩㄥˇ",
     "semester": "二下",
     "words": [
       "永遠",
@@ -6572,6 +7151,7 @@ const DATA = [
     "id": 578,
     "char": "管",
     "radical": "竹",
+    "zhuyin": "ㄍㄨㄢˇ",
     "semester": "二下",
     "words": [
       "管理",
@@ -6583,6 +7163,7 @@ const DATA = [
     "id": 579,
     "char": "牛",
     "radical": "牛",
+    "zhuyin": "ㄋㄧㄡˊ",
     "semester": "二下",
     "words": [
       "牛奶",
@@ -6594,6 +7175,7 @@ const DATA = [
     "id": 580,
     "char": "候",
     "radical": "人",
+    "zhuyin": "ㄏㄡˋ",
     "semester": "二下",
     "words": [
       "時候",
@@ -6605,6 +7187,7 @@ const DATA = [
     "id": 581,
     "char": "壞",
     "radical": "土",
+    "zhuyin": "ㄏㄨㄞˋ",
     "semester": "二下",
     "words": [
       "壞掉",
@@ -6616,6 +7199,7 @@ const DATA = [
     "id": 582,
     "char": "窗",
     "radical": "穴",
+    "zhuyin": "ㄔㄨㄤ",
     "semester": "二下",
     "words": [
       "窗戶",
@@ -6627,6 +7211,7 @@ const DATA = [
     "id": 583,
     "char": "機",
     "radical": "木",
+    "zhuyin": "ㄐㄧ",
     "semester": "二下",
     "words": [
       "機器",
@@ -6638,6 +7223,7 @@ const DATA = [
     "id": 584,
     "char": "騎",
     "radical": "馬",
+    "zhuyin": "ㄑㄧˊ",
     "semester": "二下",
     "words": [
       "騎馬",
@@ -6649,6 +7235,7 @@ const DATA = [
     "id": 585,
     "char": "剪",
     "radical": "刀",
+    "zhuyin": "ㄐㄧㄢˇ",
     "semester": "二下",
     "words": [
       "剪刀",
@@ -6660,6 +7247,7 @@ const DATA = [
     "id": 586,
     "char": "融",
     "radical": "虫",
+    "zhuyin": "ㄖㄨㄥˊ",
     "semester": "二下",
     "words": [
       "融化",
@@ -6671,6 +7259,7 @@ const DATA = [
     "id": 587,
     "char": "避",
     "radical": "辵",
+    "zhuyin": "ㄅㄧˋ",
     "semester": "二下",
     "words": [
       "躲避",
@@ -6682,6 +7271,7 @@ const DATA = [
     "id": 588,
     "char": "蓋",
     "radical": "艸",
+    "zhuyin": "ㄍㄞˋ",
     "semester": "二下",
     "words": [
       "蓋子",
@@ -6693,6 +7283,7 @@ const DATA = [
     "id": 589,
     "char": "踏",
     "radical": "足",
+    "zhuyin": "ㄊㄚˋ",
     "semester": "二下",
     "words": [
       "踏步",
@@ -6704,6 +7295,7 @@ const DATA = [
     "id": 590,
     "char": "慶",
     "radical": "心",
+    "zhuyin": "ㄑㄧㄥˋ",
     "semester": "二下",
     "words": [
       "慶祝",
@@ -6715,6 +7307,7 @@ const DATA = [
     "id": 591,
     "char": "久",
     "radical": "丿",
+    "zhuyin": "ㄐㄧㄡˇ",
     "semester": "二下",
     "words": [
       "很久",
@@ -6726,6 +7319,7 @@ const DATA = [
     "id": 592,
     "char": "狗",
     "radical": "犬",
+    "zhuyin": "ㄍㄡˇ",
     "semester": "二下",
     "words": [
       "小狗",
@@ -6737,6 +7331,7 @@ const DATA = [
     "id": 593,
     "char": "良",
     "radical": "艮",
+    "zhuyin": "ㄌㄧㄤˊ",
     "semester": "二下",
     "words": [
       "良好",
@@ -6748,6 +7343,7 @@ const DATA = [
     "id": 594,
     "char": "熊",
     "radical": "火",
+    "zhuyin": "ㄒㄩㄥˊ",
     "semester": "二下",
     "words": [
       "熊貓",
@@ -6759,6 +7355,7 @@ const DATA = [
     "id": 595,
     "char": "圖",
     "radical": "囗",
+    "zhuyin": "ㄊㄨˊ",
     "semester": "二下",
     "words": [
       "圖畫",
@@ -6770,6 +7367,7 @@ const DATA = [
     "id": 596,
     "char": "巨",
     "radical": "工",
+    "zhuyin": "ㄐㄩˋ",
     "semester": "二下",
     "words": [
       "巨大",
@@ -6781,6 +7379,7 @@ const DATA = [
     "id": 597,
     "char": "條",
     "radical": "木",
+    "zhuyin": "ㄊㄧㄠˊ",
     "semester": "二下",
     "words": [
       "條紋",
@@ -6792,6 +7391,7 @@ const DATA = [
     "id": 598,
     "char": "雞",
     "radical": "隹",
+    "zhuyin": "ㄐㄧ",
     "semester": "二下",
     "words": [
       "雞蛋",
@@ -6803,6 +7403,7 @@ const DATA = [
     "id": 599,
     "char": "孩",
     "radical": "子",
+    "zhuyin": "ㄏㄞˊ",
     "semester": "二下",
     "words": [
       "孩子",
@@ -6814,6 +7415,7 @@ const DATA = [
     "id": 600,
     "char": "朝",
     "radical": "月",
+    "zhuyin": "ㄔㄠˊ",
     "semester": "二下",
     "words": [
       "朝著",
@@ -6825,6 +7427,7 @@ const DATA = [
     "id": 601,
     "char": "館",
     "radical": "食",
+    "zhuyin": "ㄍㄨㄢˇ",
     "semester": "二下",
     "words": [
       "圖書館",
@@ -6836,6 +7439,7 @@ const DATA = [
     "id": 602,
     "char": "累",
     "radical": "糸",
+    "zhuyin": "ㄌㄟˋ",
     "semester": "二下",
     "words": [
       "累了",
@@ -6847,6 +7451,7 @@ const DATA = [
     "id": 603,
     "char": "祕",
     "radical": "示",
+    "zhuyin": "ㄇㄧˋ",
     "semester": "二下",
     "words": [
       "祕密",
@@ -6858,6 +7463,7 @@ const DATA = [
     "id": 604,
     "char": "經",
     "radical": "糸",
+    "zhuyin": "ㄐㄧㄥ",
     "semester": "二下",
     "words": [
       "經過",
@@ -6869,6 +7475,7 @@ const DATA = [
     "id": 605,
     "char": "錢",
     "radical": "金",
+    "zhuyin": "ㄑㄧㄢˊ",
     "semester": "二下",
     "words": [
       "錢幣",
@@ -6880,6 +7487,7 @@ const DATA = [
     "id": 606,
     "char": "踮",
     "radical": "足",
+    "zhuyin": "ㄉㄧㄢˇ",
     "semester": "二下",
     "words": [
       "踮腳",
@@ -6890,6 +7498,7 @@ const DATA = [
     "id": 607,
     "char": "參",
     "radical": "ㄙ",
+    "zhuyin": "ㄘㄢ",
     "semester": "二下",
     "words": [
       "參加",
@@ -6901,6 +7510,7 @@ const DATA = [
     "id": 608,
     "char": "髮",
     "radical": "髟",
+    "zhuyin": "ㄈㄚˋ",
     "semester": "二下",
     "words": [
       "頭髮",
@@ -6912,6 +7522,7 @@ const DATA = [
     "id": 609,
     "char": "兔",
     "radical": "儿",
+    "zhuyin": "ㄊㄨˋ",
     "semester": "二下",
     "words": [
       "兔子",
@@ -6923,6 +7534,7 @@ const DATA = [
     "id": 610,
     "char": "怪",
     "radical": "心",
+    "zhuyin": "ㄍㄨㄞˋ",
     "semester": "二下",
     "words": [
       "奇怪",
@@ -6934,6 +7546,7 @@ const DATA = [
     "id": 611,
     "char": "醒",
     "radical": "酉",
+    "zhuyin": "ㄒㄧㄥˇ",
     "semester": "二下",
     "words": [
       "醒來",
@@ -6945,6 +7558,7 @@ const DATA = [
     "id": 612,
     "char": "尖",
     "radical": "小",
+    "zhuyin": "ㄐㄧㄢ",
     "semester": "二下",
     "words": [
       "尖尖",
@@ -6956,6 +7570,7 @@ const DATA = [
     "id": 613,
     "char": "題",
     "radical": "頁",
+    "zhuyin": "ㄊㄧˊ",
     "semester": "二下",
     "words": [
       "問題",
@@ -6967,6 +7582,7 @@ const DATA = [
     "id": 614,
     "char": "根",
     "radical": "木",
+    "zhuyin": "ㄍㄣ",
     "semester": "二下",
     "words": [
       "根本",
@@ -6978,6 +7594,7 @@ const DATA = [
     "id": 615,
     "char": "其",
     "radical": "八",
+    "zhuyin": "ㄑㄧˊ",
     "semester": "二下",
     "words": [
       "其他",
@@ -6989,6 +7606,7 @@ const DATA = [
     "id": 616,
     "char": "羊",
     "radical": "羊",
+    "zhuyin": "ㄧㄤˊ",
     "semester": "二下",
     "words": [
       "小羊",
@@ -7000,6 +7618,7 @@ const DATA = [
     "id": 617,
     "char": "尾",
     "radical": "尸",
+    "zhuyin": "ㄨㄟˇ",
     "semester": "二下",
     "words": [
       "尾巴",
@@ -7011,6 +7630,7 @@ const DATA = [
     "id": 618,
     "char": "木",
     "radical": "木",
+    "zhuyin": "ㄇㄨˋ",
     "semester": "二下",
     "words": [
       "木頭",
@@ -7022,6 +7642,7 @@ const DATA = [
     "id": 619,
     "char": "士",
     "radical": "士",
+    "zhuyin": "ㄕˋ",
     "semester": "二下",
     "words": [
       "士兵",
@@ -7033,6 +7654,7 @@ const DATA = [
     "id": 620,
     "char": "牆",
     "radical": "爿",
+    "zhuyin": "ㄑㄧㄤˊ",
     "semester": "二下",
     "words": [
       "牆壁",
@@ -7044,6 +7666,7 @@ const DATA = [
     "id": 621,
     "char": "猴",
     "radical": "犬",
+    "zhuyin": "ㄏㄡˊ",
     "semester": "二下",
     "words": [
       "猴子",
@@ -7055,6 +7678,7 @@ const DATA = [
     "id": 622,
     "char": "鴨",
     "radical": "鳥",
+    "zhuyin": "ㄧㄚ",
     "semester": "二下",
     "words": [
       "鴨子",
@@ -7066,6 +7690,7 @@ const DATA = [
     "id": 623,
     "char": "巴",
     "radical": "己",
+    "zhuyin": "ㄅㄚ",
     "semester": "二下",
     "words": [
       "巴士",
@@ -7077,6 +7702,7 @@ const DATA = [
     "id": 624,
     "char": "架",
     "radical": "木",
+    "zhuyin": "ㄐㄧㄚˋ",
     "semester": "二下",
     "words": [
       "架子",
@@ -7088,6 +7714,7 @@ const DATA = [
     "id": 625,
     "char": "講",
     "radical": "言",
+    "zhuyin": "ㄐㄧㄤˇ",
     "semester": "二下",
     "words": [
       "講話",
@@ -7099,6 +7726,7 @@ const DATA = [
     "id": 626,
     "char": "狂",
     "radical": "犬",
+    "zhuyin": "ㄎㄨㄤˊ",
     "semester": "二下",
     "words": [
       "狂風",
@@ -7110,6 +7738,7 @@ const DATA = [
     "id": 627,
     "char": "病",
     "radical": "疒",
+    "zhuyin": "ㄅㄧㄥˋ",
     "semester": "二下",
     "words": [
       "生病",
@@ -7121,6 +7750,7 @@ const DATA = [
     "id": 628,
     "char": "信",
     "radical": "人",
+    "zhuyin": "ㄒㄧㄣˋ",
     "semester": "二下",
     "words": [
       "相信",
@@ -7132,6 +7762,7 @@ const DATA = [
     "id": 629,
     "char": "村",
     "radical": "木",
+    "zhuyin": "ㄘㄨㄣ",
     "semester": "二下",
     "words": [
       "村子",
@@ -7143,6 +7774,7 @@ const DATA = [
     "id": 630,
     "char": "些",
     "radical": "二",
+    "zhuyin": "ㄒㄧㄝ",
     "semester": "二下",
     "words": [
       "一些",
@@ -7154,6 +7786,7 @@ const DATA = [
     "id": 631,
     "char": "甲",
     "radical": "田",
+    "zhuyin": "ㄐㄧㄚˇ",
     "semester": "二下",
     "words": [
       "甲蟲",
@@ -7165,6 +7798,7 @@ const DATA = [
     "id": 632,
     "char": "呼",
     "radical": "口",
+    "zhuyin": "ㄏㄨ",
     "semester": "二下",
     "words": [
       "呼喚",
@@ -7176,6 +7810,7 @@ const DATA = [
     "id": 633,
     "char": "探",
     "radical": "手",
+    "zhuyin": "ㄊㄢˋ",
     "semester": "二下",
     "words": [
       "探索",
@@ -7187,6 +7822,7 @@ const DATA = [
     "id": 634,
     "char": "錯",
     "radical": "金",
+    "zhuyin": "ㄘㄨㄛˋ",
     "semester": "二下",
     "words": [
       "錯誤",
@@ -7198,6 +7834,7 @@ const DATA = [
     "id": 635,
     "char": "貪",
     "radical": "貝",
+    "zhuyin": "ㄊㄢ",
     "semester": "二下",
     "words": [
       "貪心",
@@ -7209,6 +7846,7 @@ const DATA = [
     "id": 636,
     "char": "足",
     "radical": "足",
+    "zhuyin": "ㄗㄨˊ",
     "semester": "二下",
     "words": [
       "足夠",
@@ -7220,6 +7858,7 @@ const DATA = [
     "id": 637,
     "char": "形",
     "radical": "彡",
+    "zhuyin": "ㄒㄧㄥˊ",
     "semester": "二下",
     "words": [
       "形狀",
@@ -7231,6 +7870,7 @@ const DATA = [
     "id": 638,
     "char": "差",
     "radical": "工",
+    "zhuyin": "ㄔㄚ",
     "semester": "二下",
     "words": [
       "差不多",
@@ -7242,6 +7882,7 @@ const DATA = [
     "id": 639,
     "char": "體",
     "radical": "骨",
+    "zhuyin": "ㄊㄧˇ",
     "semester": "二下",
     "words": [
       "身體",
@@ -7253,6 +7894,7 @@ const DATA = [
     "id": 640,
     "char": "睛",
     "radical": "目",
+    "zhuyin": "ㄐㄧㄥ",
     "semester": "二下",
     "words": [
       "眼睛",
@@ -7263,6 +7905,7 @@ const DATA = [
     "id": 641,
     "char": "皇",
     "radical": "白",
+    "zhuyin": "ㄏㄨㄤˊ",
     "semester": "二下",
     "words": [
       "皇帝",
@@ -7274,6 +7917,7 @@ const DATA = [
     "id": 642,
     "char": "蹈",
     "radical": "足",
+    "zhuyin": "ㄉㄠˇ",
     "semester": "二下",
     "words": [
       "舞蹈",
@@ -7284,6 +7928,7 @@ const DATA = [
     "id": 643,
     "char": "志",
     "radical": "心",
+    "zhuyin": "ㄓˋ",
     "semester": "二下",
     "words": [
       "志氣",
@@ -7295,6 +7940,7 @@ const DATA = [
     "id": 644,
     "char": "睜",
     "radical": "目",
+    "zhuyin": "ㄓㄥ",
     "semester": "二下",
     "words": [
       "睜開",
@@ -7306,6 +7952,7 @@ const DATA = [
     "id": 645,
     "char": "惜",
     "radical": "心",
+    "zhuyin": "ㄒㄧ",
     "semester": "二下",
     "words": [
       "珍惜",
@@ -7317,6 +7964,7 @@ const DATA = [
     "id": 646,
     "char": "仔",
     "radical": "人",
+    "zhuyin": "ㄗㄞˇ",
     "semester": "二下",
     "words": [
       "仔細",
@@ -7328,6 +7976,7 @@ const DATA = [
     "id": 647,
     "char": "帝",
     "radical": "巾",
+    "zhuyin": "ㄉㄧˋ",
     "semester": "二下",
     "words": [
       "皇帝",
@@ -7339,6 +7988,7 @@ const DATA = [
     "id": 648,
     "char": "轉",
     "radical": "車",
+    "zhuyin": "ㄓㄨㄢˇ",
     "semester": "二下",
     "words": [
       "轉動",
@@ -7350,6 +8000,7 @@ const DATA = [
     "id": 649,
     "char": "約",
     "radical": "糸",
+    "zhuyin": "ㄩㄝ",
     "semester": "二下",
     "words": [
       "約好",
@@ -7361,6 +8012,7 @@ const DATA = [
     "id": 650,
     "char": "緊",
     "radical": "糸",
+    "zhuyin": "ㄐㄧㄣˇ",
     "semester": "二下",
     "words": [
       "緊張",
@@ -7372,6 +8024,7 @@ const DATA = [
     "id": 651,
     "char": "無",
     "radical": "火",
+    "zhuyin": "ㄨˊ",
     "semester": "二下",
     "words": [
       "無法",
@@ -7383,6 +8036,7 @@ const DATA = [
     "id": 652,
     "char": "細",
     "radical": "糸",
+    "zhuyin": "ㄒㄧˋ",
     "semester": "二下",
     "words": [
       "細心",
@@ -7394,6 +8048,7 @@ const DATA = [
     "id": 653,
     "char": "派",
     "radical": "水",
+    "zhuyin": "ㄆㄞˋ",
     "semester": "二下",
     "words": [
       "派遣",
@@ -7405,6 +8060,7 @@ const DATA = [
     "id": 654,
     "char": "趕",
     "radical": "走",
+    "zhuyin": "ㄍㄢˇ",
     "semester": "二下",
     "words": [
       "趕快",
@@ -7416,6 +8072,7 @@ const DATA = [
     "id": 655,
     "char": "數",
     "radical": "攴",
+    "zhuyin": "ㄕㄨˋ",
     "semester": "二下",
     "words": [
       "數學",
@@ -7427,6 +8084,7 @@ const DATA = [
     "id": 656,
     "char": "餓",
     "radical": "食",
+    "zhuyin": "ㄜˋ",
     "semester": "二下",
     "words": [
       "肚子餓",
@@ -7438,6 +8096,7 @@ const DATA = [
     "id": 657,
     "char": "辦",
     "radical": "辛",
+    "zhuyin": "ㄅㄢˋ",
     "semester": "二下",
     "words": [
       "辦法",
@@ -7449,6 +8108,7 @@ const DATA = [
     "id": 658,
     "char": "能",
     "radical": "肉",
+    "zhuyin": "ㄋㄥˊ",
     "semester": "二下",
     "words": [
       "能力",
@@ -7460,6 +8120,7 @@ const DATA = [
     "id": 659,
     "char": "抓",
     "radical": "手",
+    "zhuyin": "ㄓㄨㄚ",
     "semester": "二下",
     "words": [
       "抓住",
@@ -7471,6 +8132,7 @@ const DATA = [
     "id": 660,
     "char": "耳",
     "radical": "耳",
+    "zhuyin": "ㄦˇ",
     "semester": "二下",
     "words": [
       "耳朵",
@@ -7482,6 +8144,7 @@ const DATA = [
     "id": 661,
     "char": "迎",
     "radical": "辵",
+    "zhuyin": "ㄧㄥˊ",
     "semester": "二下",
     "words": [
       "歡迎",
@@ -7493,6 +8156,7 @@ const DATA = [
     "id": 662,
     "char": "百",
     "radical": "白",
+    "zhuyin": "ㄅㄞˇ",
     "semester": "二下",
     "words": [
       "一百",
@@ -7504,6 +8168,7 @@ const DATA = [
     "id": 663,
     "char": "之",
     "radical": "丿",
+    "zhuyin": "ㄓ",
     "semester": "二下",
     "words": [
       "之後",
@@ -7515,6 +8180,7 @@ const DATA = [
     "id": 664,
     "char": "消",
     "radical": "水",
+    "zhuyin": "ㄒㄧㄠ",
     "semester": "二下",
     "words": [
       "消失",
@@ -7526,6 +8192,7 @@ const DATA = [
     "id": 665,
     "char": "銀",
     "radical": "金",
+    "zhuyin": "ㄧㄣˊ",
     "semester": "二下",
     "words": [
       "銀色",
@@ -7537,6 +8204,7 @@ const DATA = [
     "id": 666,
     "char": "啄",
     "radical": "口",
+    "zhuyin": "ㄓㄨㄛˊ",
     "semester": "二下",
     "words": [
       "啄木鳥",
@@ -7548,6 +8216,7 @@ const DATA = [
     "id": 667,
     "char": "交",
     "radical": "亠",
+    "zhuyin": "ㄐㄧㄠ",
     "semester": "二下",
     "words": [
       "交朋友",
@@ -7559,6 +8228,7 @@ const DATA = [
     "id": 668,
     "char": "食",
     "radical": "食",
+    "zhuyin": "ㄕˊ",
     "semester": "二下",
     "words": [
       "食物",
@@ -7570,6 +8240,7 @@ const DATA = [
     "id": 669,
     "char": "請",
     "radical": "言",
+    "zhuyin": "ㄑㄧㄥˇ",
     "semester": "二下",
     "words": [
       "請問",
@@ -7581,6 +8252,7 @@ const DATA = [
     "id": 670,
     "char": "傳",
     "radical": "人",
+    "zhuyin": "ㄔㄨㄢˊ",
     "semester": "二下",
     "words": [
       "傳說",
@@ -7592,6 +8264,7 @@ const DATA = [
     "id": 671,
     "char": "准",
     "radical": "冫",
+    "zhuyin": "ㄓㄨㄣˇ",
     "semester": "二下",
     "words": [
       "准許",
@@ -7603,6 +8276,7 @@ const DATA = [
     "id": 672,
     "char": "袋",
     "radical": "衣",
+    "zhuyin": "ㄉㄞˋ",
     "semester": "二下",
     "words": [
       "袋子",
@@ -7614,6 +8288,7 @@ const DATA = [
     "id": 673,
     "char": "令",
     "radical": "人",
+    "zhuyin": "ㄌㄧㄥˋ",
     "semester": "二下",
     "words": [
       "命令",
@@ -7625,6 +8300,7 @@ const DATA = [
     "id": 674,
     "char": "桶",
     "radical": "木",
+    "zhuyin": "ㄊㄨㄥˇ",
     "semester": "二下",
     "words": [
       "水桶",
@@ -7636,6 +8312,7 @@ const DATA = [
     "id": 675,
     "char": "鼻",
     "radical": "鼻",
+    "zhuyin": "ㄅㄧˊ",
     "semester": "二下",
     "words": [
       "鼻子",
@@ -7647,6 +8324,7 @@ const DATA = [
     "id": 676,
     "char": "嚇",
     "radical": "口",
+    "zhuyin": "ㄒㄧㄚˋ",
     "semester": "二下",
     "words": [
       "嚇到",
@@ -7658,6 +8336,7 @@ const DATA = [
     "id": 677,
     "char": "島",
     "radical": "山",
+    "zhuyin": "ㄉㄠˇ",
     "semester": "二下",
     "words": [
       "島嶼",
@@ -7669,6 +8348,7 @@ const DATA = [
     "id": 678,
     "char": "世",
     "radical": "一",
+    "zhuyin": "ㄕˋ",
     "semester": "二下",
     "words": [
       "世界",
@@ -7680,6 +8360,7 @@ const DATA = [
     "id": 679,
     "char": "倒",
     "radical": "人",
+    "zhuyin": "ㄉㄠˋ",
     "semester": "二下",
     "words": [
       "倒下",
@@ -7691,6 +8372,7 @@ const DATA = [
     "id": 680,
     "char": "吸",
     "radical": "口",
+    "zhuyin": "ㄒㄧ",
     "semester": "二下",
     "words": [
       "吸氣",
@@ -7702,6 +8384,7 @@ const DATA = [
     "id": 681,
     "char": "忍",
     "radical": "心",
+    "zhuyin": "ㄖㄣˇ",
     "semester": "二下",
     "words": [
       "忍住",
@@ -7713,6 +8396,7 @@ const DATA = [
     "id": 682,
     "char": "元",
     "radical": "儿",
+    "zhuyin": "ㄩㄢˊ",
     "semester": "二下",
     "words": [
       "元旦",
@@ -7724,6 +8408,7 @@ const DATA = [
     "id": 683,
     "char": "摸",
     "radical": "手",
+    "zhuyin": "ㄇㄛ",
     "semester": "二下",
     "words": [
       "摸摸",
@@ -7735,6 +8420,7 @@ const DATA = [
     "id": 684,
     "char": "界",
     "radical": "田",
+    "zhuyin": "ㄐㄧㄝˋ",
     "semester": "二下",
     "words": [
       "世界",
@@ -7746,6 +8432,7 @@ const DATA = [
     "id": 685,
     "char": "量",
     "radical": "里",
+    "zhuyin": "ㄌㄧㄤˋ",
     "semester": "二下",
     "words": [
       "數量",
@@ -7757,6 +8444,7 @@ const DATA = [
     "id": 686,
     "char": "模",
     "radical": "木",
+    "zhuyin": "ㄇㄛˊ",
     "semester": "二下",
     "words": [
       "模仿",
@@ -7768,6 +8456,7 @@ const DATA = [
     "id": 687,
     "char": "住",
     "radical": "人",
+    "zhuyin": "ㄓㄨˋ",
     "semester": "二下",
     "words": [
       "住家",
@@ -7779,6 +8468,7 @@ const DATA = [
     "id": 688,
     "char": "波",
     "radical": "水",
+    "zhuyin": "ㄅㄛ",
     "semester": "二下",
     "words": [
       "波浪",
@@ -7790,6 +8480,7 @@ const DATA = [
     "id": 689,
     "char": "讀",
     "radical": "言",
+    "zhuyin": "ㄉㄨˊ",
     "semester": "二下",
     "words": [
       "閱讀",
@@ -7801,6 +8492,7 @@ const DATA = [
     "id": 690,
     "char": "險",
     "radical": "阜",
+    "zhuyin": "ㄒㄧㄢˇ",
     "semester": "二下",
     "words": [
       "危險",
@@ -7812,6 +8504,7 @@ const DATA = [
     "id": 691,
     "char": "底",
     "radical": "广",
+    "zhuyin": "ㄉㄧˇ",
     "semester": "二下",
     "words": [
       "底部",
@@ -7823,6 +8516,7 @@ const DATA = [
     "id": 692,
     "char": "度",
     "radical": "广",
+    "zhuyin": "ㄉㄨˋ",
     "semester": "二下",
     "words": [
       "程度",
@@ -7834,6 +8528,7 @@ const DATA = [
     "id": 693,
     "char": "顧",
     "radical": "頁",
+    "zhuyin": "ㄍㄨˋ",
     "semester": "二下",
     "words": [
       "照顧",
@@ -7845,6 +8540,7 @@ const DATA = [
     "id": 694,
     "char": "浪",
     "radical": "水",
+    "zhuyin": "ㄌㄤˋ",
     "semester": "二下",
     "words": [
       "波浪",
@@ -7856,6 +8552,7 @@ const DATA = [
     "id": 695,
     "char": "庫",
     "radical": "广",
+    "zhuyin": "ㄎㄨˋ",
     "semester": "二下",
     "words": [
       "倉庫",
@@ -7867,6 +8564,7 @@ const DATA = [
     "id": 696,
     "char": "挖",
     "radical": "手",
+    "zhuyin": "ㄨㄚ",
     "semester": "二下",
     "words": [
       "挖土",
@@ -7878,6 +8576,7 @@ const DATA = [
     "id": 697,
     "char": "議",
     "radical": "言",
+    "zhuyin": "ㄧˋ",
     "semester": "二下",
     "words": [
       "討議",
@@ -7889,6 +8588,7 @@ const DATA = [
     "id": 698,
     "char": "艘",
     "radical": "舟",
+    "zhuyin": "ㄙㄡ",
     "semester": "二下",
     "words": [
       "一艘",
@@ -7899,6 +8599,7 @@ const DATA = [
     "id": 699,
     "char": "邀",
     "radical": "辵",
+    "zhuyin": "ㄧㄠ",
     "semester": "二下",
     "words": [
       "邀請",
@@ -7910,6 +8611,7 @@ const DATA = [
     "id": 700,
     "char": "索",
     "radical": "糸",
+    "zhuyin": "ㄙㄨㄛˇ",
     "semester": "二下",
     "words": [
       "索取",
@@ -7921,6 +8623,7 @@ const DATA = [
     "id": 701,
     "char": "坑",
     "radical": "土",
+    "zhuyin": "ㄎㄥ",
     "semester": "二下",
     "words": [
       "坑洞",
@@ -7932,6 +8635,7 @@ const DATA = [
     "id": 702,
     "char": "鴕",
     "radical": "鳥",
+    "zhuyin": "ㄊㄨㄛˊ",
     "semester": "二下",
     "words": [
       "鴕鳥"
@@ -7941,6 +8645,7 @@ const DATA = [
     "id": 703,
     "char": "掀",
     "radical": "手",
+    "zhuyin": "ㄒㄧㄢ",
     "semester": "二下",
     "words": [
       "掀開",
@@ -7952,6 +8657,7 @@ const DATA = [
     "id": 704,
     "char": "蹦",
     "radical": "足",
+    "zhuyin": "ㄅㄥˋ",
     "semester": "二下",
     "words": [
       "蹦跳",
@@ -7963,6 +8669,7 @@ const DATA = [
     "id": 705,
     "char": "奧",
     "radical": "大",
+    "zhuyin": "ㄠˋ",
     "semester": "二下",
     "words": [
       "奧妙",
@@ -8000,7 +8707,10 @@ function renderGrid(filter) {
       card.className = 'card sem-' + d.semester;
       card.innerHTML =
         '<div class="card-num">#' + d.id + '</div>' +
-        '<div class="card-char">' + d.char + '</div>' +
+        '<div class="card-char-wrap">' +
+          '<div class="card-char">' + d.char + '</div>' +
+          '<div class="card-zhuyin-col">' + zhuyinHtml(d.zhuyin, '0.85rem') + '</div>' +
+        '</div>' +
         '<div class="card-radical">部首：<span>' + d.radical + '</span></div>' +
         '<div class="card-words">' +
           d.words.map(w => '<span class="word-tag">' + w + '</span>').join('') +
@@ -8037,6 +8747,7 @@ function doSearch() {
       '<div class="result-box result-yes">' +
       '<div class="result-icon">🌟</div>' +
       '<div class="result-char">' + d.char + '</div>' +
+      '<div style="display:flex;justify-content:center;margin:-4px 0 10px;">' + zhuyinHtml(d.zhuyin,'1.2rem') + '</div>' +
       '<div class="result-title">已學過！</div>' +
       '<div class="result-meta">康軒 ' + d.semester + '　第 ' + d.id + ' 個生字<br>部首：' + d.radical + '</div>' +
       '<div class="result-words">' + d.words.map(w => '<span class="result-word-tag">' + w + '</span>').join('') + '</div>' +
@@ -8059,6 +8770,29 @@ document.getElementById('searchInput').addEventListener('input', e => {
   if (e.target.value.length > 1) e.target.value = e.target.value.slice(-1);
 });
 
+// ── 注音排版輔助（聲調對應位置） ──
+// size: CSS 值字串，例如 "0.85rem" 或 "5.5mm"
+function zhuyinHtml(zhuyin, size) {
+  if (!zhuyin) return '';
+  // 1聲無符號；2聲頂；3聲中；4聲底；輕聲頂
+  const toneAlign = { 'ˊ': 'flex-start', 'ˇ': 'center', 'ˋ': 'flex-end', '˙': 'flex-start' };
+  let tone = '', phonetic = zhuyin;
+  for (const mark of Object.keys(toneAlign)) {
+    if (zhuyin.endsWith(mark)) { tone = mark; phonetic = zhuyin.slice(0, -1); break; }
+  }
+  const align = toneAlign[tone] || '';
+  const toneCol = tone
+    ? `<div style="display:flex;flex-direction:column;justify-content:${align};
+                   font-size:${size};color:#c0392b;line-height:1;
+                   align-self:stretch;">${tone}</div>`
+    : '';
+  return `<div style="display:inline-flex;align-items:stretch;">
+    <div style="writing-mode:vertical-rl;text-orientation:upright;
+                font-size:${size};color:#c0392b;line-height:1.15;">${phonetic}</div>
+    ${toneCol}
+  </div>`;
+}
+
 // ── 列印練習單 ──
 function openPractice() {
   const activeSemBtn = document.querySelector('.sem-btn.active');
@@ -8071,8 +8805,17 @@ function openPractice() {
 
   function cell(ch, isModel) {
     const bg = isModel ? '#f8f8f8' : 'white';
+    const ZF = (SQ * 0.27) + 'mm';
     const content = isModel
-      ? `<div style="font-size:${SQ * 0.72}mm;line-height:1;color:#222;">${ch}</div>`
+      ? `<div style="
+           display:flex; align-items:center; justify-content:center;
+           width:100%; height:100%; gap:0;
+         ">
+           <div style="font-size:${SQ*0.68}mm;line-height:1;color:#222;flex:0 0 auto;">${ch.char}</div>
+           <div style="flex:0 0 auto; align-self:stretch; display:flex; align-items:center;">
+             ${zhuyinHtml(ch.zhuyin, ZF)}
+           </div>
+         </div>`
       : '';
     return `
       <td style="
@@ -8106,10 +8849,10 @@ function openPractice() {
     for (let g = 0; g < GROUPS_PER_ROW; g++) {
       const d = group[g];
       if (d) {
-        rows += cell(d.char, true);
-        rows += cell('', false);
-        rows += cell('', false);
-        rows += cell('', false);
+        rows += cell(d, true);
+        rows += cell(null, false);
+        rows += cell(null, false);
+        rows += cell(null, false);
       } else {
         rows += `<td colspan="4"></td>`;
       }
