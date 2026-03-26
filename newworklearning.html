@@ -78,6 +78,13 @@
   .sem-2上 { background: #E5FFE8; color: #1e7a30; border-color: #6BCB77; }
   .sem-2下 { background: #FFF5E5; color: #b35a00; border-color: #FFB347; }
   .sem-btn.active { filter: brightness(.85); transform: scale(1.06); box-shadow: 0 3px 10px rgba(0,0,0,.15); }
+  .print-btn {
+    font-size: 1.05rem; font-family: inherit;
+    padding: 9px 22px; border-radius: 50px; border: 2px solid #9b59b6;
+    cursor: pointer; font-weight: bold; transition: all .2s;
+    background: #F9F0FF; color: #7d3c98;
+  }
+  .print-btn:hover { background: #9b59b6; color: white; }
 
   /* SEMESTER LABEL */
   .semester-label {
@@ -215,11 +222,12 @@
 <!-- LIST PAGE -->
 <div id="listPage">
   <div class="filter-bar">
-    <button class="sem-btn sem-all active" onclick="filterSem('all',this)">全部</button>
-    <button class="sem-btn sem-1上" onclick="filterSem('一上',this)">一上</button>
-    <button class="sem-btn sem-1下" onclick="filterSem('一下',this)">一下</button>
-    <button class="sem-btn sem-2上" onclick="filterSem('二上',this)">二上</button>
-    <button class="sem-btn sem-2下" onclick="filterSem('二下',this)">二下</button>
+    <button class="sem-btn sem-all active" data-sem="all"  onclick="filterSem('all',this)">全部</button>
+    <button class="sem-btn sem-1上"        data-sem="一上" onclick="filterSem('一上',this)">一上</button>
+    <button class="sem-btn sem-1下"        data-sem="一下" onclick="filterSem('一下',this)">一下</button>
+    <button class="sem-btn sem-2上"        data-sem="二上" onclick="filterSem('二上',this)">二上</button>
+    <button class="sem-btn sem-2下"        data-sem="二下" onclick="filterSem('二下',this)">二下</button>
+    <button class="print-btn" onclick="openPractice()">🖨️ 列印練習單</button>
   </div>
   <div class="section" id="charGrid"></div>
 </div>
@@ -8050,6 +8058,106 @@ document.getElementById('searchInput').addEventListener('keydown', e => {
 document.getElementById('searchInput').addEventListener('input', e => {
   if (e.target.value.length > 1) e.target.value = e.target.value.slice(-1);
 });
+
+// ── 列印練習單 ──
+function openPractice() {
+  const activeSemBtn = document.querySelector('.sem-btn.active');
+  const filter = activeSemBtn ? activeSemBtn.dataset.sem : 'all';
+  const chars  = filter === 'all' ? DATA : DATA.filter(d => d.semester === filter);
+  const label  = filter === 'all' ? '全部' : ('康軒' + filter);
+
+  const SQ = 22; // 格子大小 mm
+  const GROUPS_PER_ROW = 2; // 每行幾個字
+
+  function cell(ch, isModel) {
+    const bg = isModel ? '#f8f8f8' : 'white';
+    const content = isModel
+      ? `<div style="font-size:${SQ * 0.72}mm;line-height:1;color:#222;">${ch}</div>`
+      : '';
+    return `
+      <td style="
+        width:${SQ}mm; height:${SQ}mm; min-width:${SQ}mm;
+        border:1.8px solid #444; background:${bg};
+        text-align:center; vertical-align:middle;
+        padding:0; position:relative;
+      ">
+        <div style="
+          position:absolute; top:50%; left:0; right:0;
+          border-top:1px dashed #ccc; pointer-events:none;
+        "></div>
+        <div style="
+          position:absolute; left:50%; top:0; bottom:0;
+          border-left:1px dashed #ccc; pointer-events:none;
+        "></div>
+        ${content}
+      </td>`;
+  }
+
+  function spacer() {
+    return `<td style="width:8mm;min-width:8mm;"></td>`;
+  }
+
+  let rows = '';
+  for (let i = 0; i < chars.length; i += GROUPS_PER_ROW) {
+    const group = chars.slice(i, i + GROUPS_PER_ROW);
+
+    // 田字格行
+    rows += '<tr style="page-break-inside:avoid;">';
+    for (let g = 0; g < GROUPS_PER_ROW; g++) {
+      const d = group[g];
+      if (d) {
+        rows += cell(d.char, true);
+        rows += cell('', false);
+        rows += cell('', false);
+        rows += cell('', false);
+      } else {
+        rows += `<td colspan="4"></td>`;
+      }
+      if (g < GROUPS_PER_ROW - 1) rows += spacer();
+    }
+    rows += '</tr>';
+
+    // 詞語小字行
+    rows += '<tr>';
+    for (let g = 0; g < GROUPS_PER_ROW; g++) {
+      const d = group[g];
+      rows += `<td colspan="4" style="font-size:8pt; color:#666; padding:2px 2px 8px; vertical-align:top;">`;
+      if (d) rows += `部首：${d.radical}　${d.words.join('、')}`;
+      rows += '</td>';
+      if (g < GROUPS_PER_ROW - 1) rows += spacer();
+    }
+    rows += '</tr>';
+  }
+
+  const html = `<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>Chavez 練習單 - ${label}</title>
+<style>
+  @page { size: A4 portrait; margin: 12mm 14mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "標楷體","DFKai-SB","BiauKai",serif; }
+  h2 { text-align:center; font-size:14pt; margin-bottom:10px; letter-spacing:2px; }
+  .sub { text-align:center; font-size:9pt; color:#888; margin-bottom:14px; }
+  table { border-collapse:collapse; }
+  @media print { body { -webkit-print-color-adjust:exact; print-color-adjust:exact; } }
+</style>
+</head>
+<body>
+<h2>Chavez 國語練習單　${label}</h2>
+<p class="sub">共 ${chars.length} 個生字　▸ 每字提供 3 格練習空間</p>
+<table>
+  <tbody>${rows}</tbody>
+</table>
+<script>window.onload=function(){window.print();}<\/script>
+</body>
+</html>`;
+
+  const win = window.open('', '_blank');
+  win.document.write(html);
+  win.document.close();
+}
 </script>
 </body>
 </html>
