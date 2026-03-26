@@ -1,0 +1,8055 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chanvez 國語生字表</title>
+<style>
+  :root {
+    --c1: #FF6B6B; --c2: #FFD93D; --c3: #6BCB77; --c4: #4D96FF;
+    --bg: #FFF9F0; --card-bg: #ffffff;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "標楷體", "DFKai-SB", "BiauKai", serif; background: var(--bg); color: #333; }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white; text-align: center; padding: 40px 20px 30px;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: ""; position: absolute; top: -40px; left: -40px;
+    width: 200px; height: 200px; border-radius: 50%;
+    background: rgba(255,255,255,.08);
+  }
+  .hero::after {
+    content: ""; position: absolute; bottom: -60px; right: -30px;
+    width: 250px; height: 250px; border-radius: 50%;
+    background: rgba(255,255,255,.06);
+  }
+  .hero-icons { display: flex; justify-content: center; gap: 20px; margin-bottom: 16px; position: relative; z-index: 1; }
+  .hero-icons img { width: 64px; height: 64px; filter: drop-shadow(0 3px 6px rgba(0,0,0,.35)); }
+  .hero h1 { font-size: 2.6rem; letter-spacing: 6px; text-shadow: 0 2px 10px rgba(0,0,0,.3); position: relative; z-index: 1; }
+  .hero p  { font-size: 1.15rem; margin-top: 10px; opacity: .88; letter-spacing: 2px; position: relative; z-index: 1; }
+
+  /* NAV TABS */
+  .tab-bar {
+    display: flex; justify-content: center; gap: 14px;
+    padding: 20px 16px; background: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,.07); position: sticky; top: 0; z-index: 100;
+  }
+  .tab-btn {
+    font-size: 1.15rem; font-family: inherit;
+    padding: 11px 28px; border-radius: 50px; border: 2.5px solid transparent;
+    cursor: pointer; transition: all .2s; font-weight: bold;
+    display: flex; align-items: center; gap: 7px;
+  }
+  .tab-btn.list   { background: #EEF2FF; color: #4D96FF; border-color: #4D96FF; }
+  .tab-btn.search { background: #FFF0F0; color: #FF6B6B; border-color: #FF6B6B; }
+  .tab-btn.list.active   { background: #4D96FF; color: white; }
+  .tab-btn.search.active { background: #FF6B6B; color: white; }
+
+  /* STATS */
+  .stats-bar {
+    display: flex; justify-content: center; gap: 24px; flex-wrap: wrap;
+    padding: 14px 16px; background: white; border-bottom: 1px solid #eee;
+  }
+  .stat-item { text-align: center; }
+  .stat-num  { font-size: 1.8rem; font-weight: bold; }
+  .stat-num.c1 { color: #FF6B6B; }
+  .stat-num.c2 { color: #4D96FF; }
+  .stat-num.c3 { color: #3AAB4A; }
+  .stat-label  { font-size: .85rem; color: #888; margin-top: 2px; }
+
+  /* FILTER */
+  .filter-bar {
+    display: flex; flex-wrap: wrap; justify-content: center;
+    gap: 10px; padding: 18px 16px; background: var(--bg);
+  }
+  .sem-btn {
+    font-size: 1.05rem; font-family: inherit;
+    padding: 9px 22px; border-radius: 50px; border: 2px solid transparent;
+    cursor: pointer; font-weight: bold; transition: all .2s;
+  }
+  .sem-all { background: #e8e8e8; color: #555; border-color: #ccc; }
+  .sem-1上 { background: #FFE5E5; color: #c0392b; border-color: #FF6B6B; }
+  .sem-1下 { background: #E5F4FF; color: #1a5fa0; border-color: #4D96FF; }
+  .sem-2上 { background: #E5FFE8; color: #1e7a30; border-color: #6BCB77; }
+  .sem-2下 { background: #FFF5E5; color: #b35a00; border-color: #FFB347; }
+  .sem-btn.active { filter: brightness(.85); transform: scale(1.06); box-shadow: 0 3px 10px rgba(0,0,0,.15); }
+
+  /* SEMESTER LABEL */
+  .semester-label {
+    font-size: 1.25rem; font-weight: bold; margin: 18px 0 12px;
+    padding: 7px 20px; border-radius: 50px; display: inline-block;
+  }
+  .sem-label-一上 { background: #FFE5E5; color: #c0392b; }
+  .sem-label-一下 { background: #E5F4FF; color: #1a5fa0; }
+  .sem-label-二上 { background: #E5FFE8; color: #1e7a30; }
+  .sem-label-二下 { background: #FFF5E5; color: #b35a00; }
+
+  /* GRID */
+  .section { padding: 8px 16px 32px; }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(165px, 1fr));
+    gap: 14px;
+  }
+  .card {
+    background: white; border-radius: 18px; padding: 16px 12px 14px;
+    box-shadow: 0 2px 12px rgba(0,0,0,.08); text-align: center;
+    transition: transform .15s, box-shadow .15s;
+    border-top: 5px solid #4D96FF;
+  }
+  .card:hover { transform: translateY(-4px); box-shadow: 0 8px 20px rgba(0,0,0,.13); }
+  .card.sem-一上 { border-color: #FF6B6B; }
+  .card.sem-一下 { border-color: #4D96FF; }
+  .card.sem-二上 { border-color: #6BCB77; }
+  .card.sem-二下 { border-color: #FFB347; }
+
+  .card-num  { font-size: .78rem; color: #bbb; margin-bottom: 2px; }
+  .card-char { font-size: 3.2rem; line-height: 1.2; color: #222; }
+  .card-radical {
+    font-size: .88rem; color: #999; margin: 5px 0 10px;
+    display: flex; align-items: center; justify-content: center; gap: 4px;
+  }
+  .card-radical span { font-size: 1.05rem; color: #555; font-weight: bold; }
+  .card-words { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; }
+  .word-tag {
+    font-size: 1rem; border-radius: 20px; padding: 4px 11px;
+    background: #F0F4FF; color: #4D6FA8;
+  }
+  .card.sem-一上 .word-tag { background: #FFF0F0; color: #a03030; }
+  .card.sem-一下 .word-tag { background: #EFF6FF; color: #1a5fa0; }
+  .card.sem-二上 .word-tag { background: #EFFFEF; color: #1a7030; }
+  .card.sem-二下 .word-tag { background: #FFF8EE; color: #8a4500; }
+
+  /* SEARCH PAGE */
+  .search-section {
+    max-width: 600px; margin: 40px auto; padding: 0 20px;
+    display: none;
+  }
+  .search-box-wrap { display: flex; gap: 10px; margin-bottom: 28px; }
+  #searchInput {
+    flex: 1; font-size: 2.2rem; font-family: inherit;
+    text-align: center; border: 3px solid #ddd; border-radius: 16px;
+    padding: 12px 16px; outline: none; transition: border .2s;
+    letter-spacing: 10px; background: white;
+  }
+  #searchInput:focus { border-color: #FF6B6B; box-shadow: 0 0 0 4px rgba(255,107,107,.15); }
+  #searchBtn {
+    font-size: 1.15rem; font-family: inherit;
+    background: #FF6B6B; color: white; border: none;
+    border-radius: 16px; padding: 12px 26px; cursor: pointer;
+    font-weight: bold; transition: background .2s; white-space: nowrap;
+  }
+  #searchBtn:hover { background: #e05555; }
+
+  .result-box {
+    border-radius: 22px; padding: 32px 24px; text-align: center;
+    animation: popIn .3s ease;
+  }
+  @keyframes popIn { from { transform: scale(.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+  .result-yes { background: linear-gradient(135deg, #EFFFEF, #C8F7D0); border: 2.5px solid #6BCB77; }
+  .result-no  { background: linear-gradient(135deg, #FFF5F5, #FFE0E0); border: 2.5px solid #FF6B6B; }
+  .result-icon  { font-size: 4rem; }
+  .result-char  { font-size: 4.5rem; margin: 10px 0 6px; }
+  .result-title { font-size: 1.4rem; font-weight: bold; margin-bottom: 14px; }
+  .result-yes .result-title { color: #2e7d32; }
+  .result-no  .result-title { color: #c0392b; }
+  .result-meta  { font-size: 1rem; color: #555; margin-bottom: 12px; line-height: 1.7; }
+  .result-words { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 14px; }
+  .result-word-tag {
+    font-size: 1.05rem; background: white; border-radius: 20px;
+    padding: 5px 16px; box-shadow: 0 2px 6px rgba(0,0,0,.1);
+  }
+  .hint { text-align: center; color: #bbb; font-size: 1rem; margin-top: 20px; line-height: 2; }
+
+  /* RESPONSIVE */
+  @media (max-width: 480px) {
+    .hero h1 { font-size: 2rem; }
+    .hero-icons img { width: 50px; height: 50px; }
+    .grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; }
+    .card-char { font-size: 2.7rem; }
+    .tab-btn { font-size: 1rem; padding: 9px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-icons">
+    <img src="reading.png" alt="reading">
+    <img src="study.png"   alt="study">
+    <img src="leader.png"  alt="leader">
+  </div>
+  <h1>國語生字表</h1>
+  <p>康軒版　一上 ▸ 一下 ▸ 二上 ▸ 二下</p>
+</div>
+
+<div class="stats-bar">
+  <div class="stat-item">
+    <div class="stat-num c1" id="cnt1上">-</div>
+    <div class="stat-label">一上生字</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num c2" id="cnt1下">-</div>
+    <div class="stat-label">一下生字</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num c3" id="cnt2上">-</div>
+    <div class="stat-label">二上生字</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num" style="color:#FFB347;" id="cnt2下">-</div>
+    <div class="stat-label">二下生字</div>
+  </div>
+</div>
+
+<div class="tab-bar">
+  <button class="tab-btn list active" onclick="switchTab('list')">📖 生字列表</button>
+  <button class="tab-btn search" onclick="switchTab('search')">🔍 查詢生字</button>
+</div>
+
+<!-- LIST PAGE -->
+<div id="listPage">
+  <div class="filter-bar">
+    <button class="sem-btn sem-all active" onclick="filterSem('all',this)">全部</button>
+    <button class="sem-btn sem-1上" onclick="filterSem('一上',this)">一上</button>
+    <button class="sem-btn sem-1下" onclick="filterSem('一下',this)">一下</button>
+    <button class="sem-btn sem-2上" onclick="filterSem('二上',this)">二上</button>
+    <button class="sem-btn sem-2下" onclick="filterSem('二下',this)">二下</button>
+  </div>
+  <div class="section" id="charGrid"></div>
+</div>
+
+<!-- SEARCH PAGE -->
+<div class="search-section" id="searchPage">
+  <div class="search-box-wrap">
+    <input id="searchInput" type="text" maxlength="1" placeholder="輸入一個字">
+    <button id="searchBtn" onclick="doSearch()">查詢</button>
+  </div>
+  <div id="searchResult"></div>
+  <p class="hint">輸入一個國字，查看是否已學過 ✨<br>支援鍵盤 Enter 快速查詢</p>
+</div>
+
+<script>
+const DATA = [
+  {
+    "id": 1,
+    "char": "拍",
+    "radical": "手",
+    "semester": "一上",
+    "words": [
+      "拍手",
+      "拍打",
+      "拍球"
+    ]
+  },
+  {
+    "id": 2,
+    "char": "個",
+    "radical": "人",
+    "semester": "一上",
+    "words": [
+      "一個",
+      "個人",
+      "個子"
+    ]
+  },
+  {
+    "id": 3,
+    "char": "人",
+    "radical": "人",
+    "semester": "一上",
+    "words": [
+      "人人",
+      "大人",
+      "人們"
+    ]
+  },
+  {
+    "id": 4,
+    "char": "晚",
+    "radical": "日",
+    "semester": "一上",
+    "words": [
+      "晚上",
+      "晚安",
+      "晚餐"
+    ]
+  },
+  {
+    "id": 5,
+    "char": "手",
+    "radical": "手",
+    "semester": "一上",
+    "words": [
+      "手心",
+      "手指",
+      "洗手"
+    ]
+  },
+  {
+    "id": 6,
+    "char": "秋",
+    "radical": "禾",
+    "semester": "一上",
+    "words": [
+      "秋天",
+      "秋風",
+      "中秋"
+    ]
+  },
+  {
+    "id": 7,
+    "char": "拉",
+    "radical": "手",
+    "semester": "一上",
+    "words": [
+      "拉手",
+      "拉開",
+      "拉麵"
+    ]
+  },
+  {
+    "id": 8,
+    "char": "王",
+    "radical": "玉",
+    "semester": "一上",
+    "words": [
+      "王子",
+      "國王",
+      "王后"
+    ]
+  },
+  {
+    "id": 9,
+    "char": "左",
+    "radical": "工",
+    "semester": "一上",
+    "words": [
+      "左手",
+      "左右",
+      "左邊"
+    ]
+  },
+  {
+    "id": 10,
+    "char": "千",
+    "radical": "十",
+    "semester": "一上",
+    "words": [
+      "千萬",
+      "千里",
+      "一千"
+    ]
+  },
+  {
+    "id": 11,
+    "char": "看",
+    "radical": "目",
+    "semester": "一上",
+    "words": [
+      "看書",
+      "看見",
+      "好看"
+    ]
+  },
+  {
+    "id": 12,
+    "char": "主",
+    "radical": "丶",
+    "semester": "一上",
+    "words": [
+      "主人",
+      "主角",
+      "主意"
+    ]
+  },
+  {
+    "id": 13,
+    "char": "右",
+    "radical": "口",
+    "semester": "一上",
+    "words": [
+      "右手",
+      "右邊",
+      "左右"
+    ]
+  },
+  {
+    "id": 14,
+    "char": "和",
+    "radical": "口",
+    "semester": "一上",
+    "words": [
+      "和平",
+      "和好",
+      "溫和"
+    ]
+  },
+  {
+    "id": 15,
+    "char": "找",
+    "radical": "手",
+    "semester": "一上",
+    "words": [
+      "找人",
+      "找到",
+      "尋找"
+    ]
+  },
+  {
+    "id": 16,
+    "char": "又",
+    "radical": "又",
+    "semester": "一上",
+    "words": [
+      "又大又好",
+      "又再次",
+      "又來了"
+    ]
+  },
+  {
+    "id": 17,
+    "char": "你",
+    "radical": "人",
+    "semester": "一上",
+    "words": [
+      "你好",
+      "你們",
+      "謝謝你"
+    ]
+  },
+  {
+    "id": 18,
+    "char": "玩",
+    "radical": "玉",
+    "semester": "一上",
+    "words": [
+      "玩耍",
+      "玩具",
+      "玩水"
+    ]
+  },
+  {
+    "id": 19,
+    "char": "隻",
+    "radical": "隹",
+    "semester": "一上",
+    "words": [
+      "一隻",
+      "隻身",
+      "兩隻"
+    ]
+  },
+  {
+    "id": 20,
+    "char": "路",
+    "radical": "足",
+    "semester": "一上",
+    "words": [
+      "路口",
+      "路邊",
+      "道路"
+    ]
+  },
+  {
+    "id": 21,
+    "char": "他",
+    "radical": "人",
+    "semester": "一上",
+    "words": [
+      "他人",
+      "他們",
+      "其他"
+    ]
+  },
+  {
+    "id": 22,
+    "char": "陪",
+    "radical": "阜",
+    "semester": "一上",
+    "words": [
+      "陪伴",
+      "陪同",
+      "陪玩"
+    ]
+  },
+  {
+    "id": 23,
+    "char": "青",
+    "radical": "青",
+    "semester": "一上",
+    "words": [
+      "青草",
+      "青色",
+      "青蛙"
+    ]
+  },
+  {
+    "id": 24,
+    "char": "長",
+    "radical": "長",
+    "semester": "一上",
+    "words": [
+      "長大",
+      "長短",
+      "生長"
+    ]
+  },
+  {
+    "id": 25,
+    "char": "也",
+    "radical": "乙",
+    "semester": "一上",
+    "words": [
+      "也是",
+      "也好",
+      "也許"
+    ]
+  },
+  {
+    "id": 26,
+    "char": "高",
+    "radical": "高",
+    "semester": "一上",
+    "words": [
+      "高山",
+      "高興",
+      "高大"
+    ]
+  },
+  {
+    "id": 27,
+    "char": "蛙",
+    "radical": "虫",
+    "semester": "一上",
+    "words": [
+      "青蛙",
+      "蛙鳴",
+      "蛙泳"
+    ]
+  },
+  {
+    "id": 28,
+    "char": "白",
+    "radical": "白",
+    "semester": "一上",
+    "words": [
+      "白色",
+      "白雲",
+      "白天"
+    ]
+  },
+  {
+    "id": 29,
+    "char": "上",
+    "radical": "一",
+    "semester": "一上",
+    "words": [
+      "上面",
+      "上學",
+      "上去"
+    ]
+  },
+  {
+    "id": 30,
+    "char": "山",
+    "radical": "山",
+    "semester": "一上",
+    "words": [
+      "山上",
+      "山水",
+      "高山"
+    ]
+  },
+  {
+    "id": 31,
+    "char": "開",
+    "radical": "門",
+    "semester": "一上",
+    "words": [
+      "開心",
+      "開門",
+      "打開"
+    ]
+  },
+  {
+    "id": 32,
+    "char": "花",
+    "radical": "艸",
+    "semester": "一上",
+    "words": [
+      "花朵",
+      "花園",
+      "開花"
+    ]
+  },
+  {
+    "id": 33,
+    "char": "下",
+    "radical": "一",
+    "semester": "一上",
+    "words": [
+      "下面",
+      "下午",
+      "下來"
+    ]
+  },
+  {
+    "id": 34,
+    "char": "到",
+    "radical": "刀",
+    "semester": "一上",
+    "words": [
+      "到了",
+      "到達",
+      "到處"
+    ]
+  },
+  {
+    "id": 35,
+    "char": "心",
+    "radical": "心",
+    "semester": "一上",
+    "words": [
+      "心情",
+      "開心",
+      "用心"
+    ]
+  },
+  {
+    "id": 36,
+    "char": "紅",
+    "radical": "糸",
+    "semester": "一上",
+    "words": [
+      "紅色",
+      "紅花",
+      "紅豆"
+    ]
+  },
+  {
+    "id": 37,
+    "char": "這",
+    "radical": "辵",
+    "semester": "一上",
+    "words": [
+      "這裡",
+      "這個",
+      "這樣"
+    ]
+  },
+  {
+    "id": 38,
+    "char": "大",
+    "radical": "大",
+    "semester": "一上",
+    "words": [
+      "大家",
+      "大人",
+      "大小"
+    ]
+  },
+  {
+    "id": 39,
+    "char": "比",
+    "radical": "比",
+    "semester": "一上",
+    "words": [
+      "比較",
+      "比賽",
+      "相比"
+    ]
+  },
+  {
+    "id": 40,
+    "char": "走",
+    "radical": "走",
+    "semester": "一上",
+    "words": [
+      "走路",
+      "走開",
+      "散步"
+    ]
+  },
+  {
+    "id": 41,
+    "char": "是",
+    "radical": "日",
+    "semester": "一上",
+    "words": [
+      "是的",
+      "是否",
+      "就是"
+    ]
+  },
+  {
+    "id": 42,
+    "char": "海",
+    "radical": "水",
+    "semester": "一上",
+    "words": [
+      "海水",
+      "海邊",
+      "大海"
+    ]
+  },
+  {
+    "id": 43,
+    "char": "門",
+    "radical": "門",
+    "semester": "一上",
+    "words": [
+      "門口",
+      "大門",
+      "開門"
+    ]
+  },
+  {
+    "id": 44,
+    "char": "在",
+    "radical": "土",
+    "semester": "一上",
+    "words": [
+      "在家",
+      "在哪",
+      "存在"
+    ]
+  },
+  {
+    "id": 45,
+    "char": "誰",
+    "radical": "言",
+    "semester": "一上",
+    "words": [
+      "誰啊",
+      "是誰",
+      "誰的"
+    ]
+  },
+  {
+    "id": 46,
+    "char": "朋",
+    "radical": "月",
+    "semester": "一上",
+    "words": [
+      "朋友",
+      "好朋友",
+      "交朋友"
+    ]
+  },
+  {
+    "id": 47,
+    "char": "裡",
+    "radical": "衣",
+    "semester": "一上",
+    "words": [
+      "裡面",
+      "這裡",
+      "那裡"
+    ]
+  },
+  {
+    "id": 48,
+    "char": "向",
+    "radical": "口",
+    "semester": "一上",
+    "words": [
+      "方向",
+      "向前",
+      "朝向"
+    ]
+  },
+  {
+    "id": 49,
+    "char": "的",
+    "radical": "白",
+    "semester": "一上",
+    "words": [
+      "我的",
+      "美麗的",
+      "漂亮的"
+    ]
+  },
+  {
+    "id": 50,
+    "char": "友",
+    "radical": "又",
+    "semester": "一上",
+    "words": [
+      "朋友",
+      "好友",
+      "友好"
+    ]
+  },
+  {
+    "id": 51,
+    "char": "外",
+    "radical": "夕",
+    "semester": "一上",
+    "words": [
+      "外面",
+      "外出",
+      "室外"
+    ]
+  },
+  {
+    "id": 52,
+    "char": "說",
+    "radical": "言",
+    "semester": "一上",
+    "words": [
+      "說話",
+      "說明",
+      "聽說"
+    ]
+  },
+  {
+    "id": 53,
+    "char": "我",
+    "radical": "戈",
+    "semester": "一上",
+    "words": [
+      "我們",
+      "自我",
+      "我的"
+    ]
+  },
+  {
+    "id": 54,
+    "char": "們",
+    "radical": "人",
+    "semester": "一上",
+    "words": [
+      "我們",
+      "你們",
+      "他們"
+    ]
+  },
+  {
+    "id": 55,
+    "char": "有",
+    "radical": "月",
+    "semester": "一上",
+    "words": [
+      "有趣",
+      "有人",
+      "沒有"
+    ]
+  },
+  {
+    "id": 56,
+    "char": "朵",
+    "radical": "木",
+    "semester": "一上",
+    "words": [
+      "花朵",
+      "一朵",
+      "耳朵"
+    ]
+  },
+  {
+    "id": 57,
+    "char": "分",
+    "radical": "刀",
+    "semester": "一上",
+    "words": [
+      "分開",
+      "分享",
+      "十分"
+    ]
+  },
+  {
+    "id": 58,
+    "char": "起",
+    "radical": "走",
+    "semester": "一上",
+    "words": [
+      "起來",
+      "起床",
+      "一起"
+    ]
+  },
+  {
+    "id": 59,
+    "char": "什",
+    "radical": "人",
+    "semester": "一上",
+    "words": [
+      "什麼",
+      "為什麼"
+    ]
+  },
+  {
+    "id": 60,
+    "char": "從",
+    "radical": "彳",
+    "semester": "一上",
+    "words": [
+      "從前",
+      "從來",
+      "從小"
+    ]
+  },
+  {
+    "id": 61,
+    "char": "好",
+    "radical": "女",
+    "semester": "一上",
+    "words": [
+      "好的",
+      "好吃",
+      "好看"
+    ]
+  },
+  {
+    "id": 62,
+    "char": "子",
+    "radical": "子",
+    "semester": "一上",
+    "words": [
+      "子女",
+      "孩子",
+      "桌子"
+    ]
+  },
+  {
+    "id": 63,
+    "char": "麼",
+    "radical": "麻",
+    "semester": "一上",
+    "words": [
+      "什麼",
+      "這麼",
+      "怎麼"
+    ]
+  },
+  {
+    "id": 64,
+    "char": "頭",
+    "radical": "頁",
+    "semester": "一上",
+    "words": [
+      "頭上",
+      "頭髮",
+      "點頭"
+    ]
+  },
+  {
+    "id": 65,
+    "char": "了",
+    "radical": "亅",
+    "semester": "一上",
+    "words": [
+      "好了",
+      "走了",
+      "大了"
+    ]
+  },
+  {
+    "id": 66,
+    "char": "小",
+    "radical": "小",
+    "semester": "一上",
+    "words": [
+      "小心",
+      "小狗",
+      "大小"
+    ]
+  },
+  {
+    "id": 67,
+    "char": "不",
+    "radical": "一",
+    "semester": "一上",
+    "words": [
+      "不好",
+      "不是",
+      "不要"
+    ]
+  },
+  {
+    "id": 68,
+    "char": "那",
+    "radical": "邑",
+    "semester": "一上",
+    "words": [
+      "那裡",
+      "那個",
+      "那麼"
+    ]
+  },
+  {
+    "id": 69,
+    "char": "啊",
+    "radical": "口",
+    "semester": "一上",
+    "words": [
+      "啊呀",
+      "哦啊",
+      "真啊"
+    ]
+  },
+  {
+    "id": 70,
+    "char": "課",
+    "radical": "言",
+    "semester": "一上",
+    "words": [
+      "上課",
+      "課本",
+      "功課"
+    ]
+  },
+  {
+    "id": 71,
+    "char": "同",
+    "radical": "口",
+    "semester": "一上",
+    "words": [
+      "同學",
+      "相同",
+      "同心"
+    ]
+  },
+  {
+    "id": 72,
+    "char": "多",
+    "radical": "夕",
+    "semester": "一上",
+    "words": [
+      "多少",
+      "很多",
+      "多多"
+    ]
+  },
+  {
+    "id": 73,
+    "char": "兩",
+    "radical": "入",
+    "semester": "一上",
+    "words": [
+      "兩個",
+      "兩人",
+      "兩隻"
+    ]
+  },
+  {
+    "id": 74,
+    "char": "早",
+    "radical": "日",
+    "semester": "一上",
+    "words": [
+      "早上",
+      "早安",
+      "早點"
+    ]
+  },
+  {
+    "id": 75,
+    "char": "要",
+    "radical": "襾",
+    "semester": "一下",
+    "words": [
+      "要求",
+      "重要",
+      "需要"
+    ]
+  },
+  {
+    "id": 76,
+    "char": "輕",
+    "radical": "車",
+    "semester": "一下",
+    "words": [
+      "輕鬆",
+      "輕巧",
+      "年輕"
+    ]
+  },
+  {
+    "id": 77,
+    "char": "過",
+    "radical": "辵",
+    "semester": "一下",
+    "words": [
+      "過來",
+      "過去",
+      "經過"
+    ]
+  },
+  {
+    "id": 78,
+    "char": "享",
+    "radical": "亠",
+    "semester": "一下",
+    "words": [
+      "享受",
+      "享用",
+      "分享"
+    ]
+  },
+  {
+    "id": 79,
+    "char": "伴",
+    "radical": "人",
+    "semester": "一下",
+    "words": [
+      "伴侶",
+      "陪伴",
+      "同伴"
+    ]
+  },
+  {
+    "id": 80,
+    "char": "躺",
+    "radical": "身",
+    "semester": "一下",
+    "words": [
+      "躺下",
+      "躺著",
+      "平躺"
+    ]
+  },
+  {
+    "id": 81,
+    "char": "靜",
+    "radical": "青",
+    "semester": "一下",
+    "words": [
+      "安靜",
+      "靜止",
+      "平靜"
+    ]
+  },
+  {
+    "id": 82,
+    "char": "快",
+    "radical": "心",
+    "semester": "一下",
+    "words": [
+      "快樂",
+      "快速",
+      "快點"
+    ]
+  },
+  {
+    "id": 83,
+    "char": "後",
+    "radical": "彳",
+    "semester": "一下",
+    "words": [
+      "後面",
+      "後來",
+      "以後"
+    ]
+  },
+  {
+    "id": 84,
+    "char": "受",
+    "radical": "又",
+    "semester": "一下",
+    "words": [
+      "接受",
+      "受到",
+      "享受"
+    ]
+  },
+  {
+    "id": 85,
+    "char": "奶",
+    "radical": "女",
+    "semester": "一下",
+    "words": [
+      "奶奶",
+      "牛奶",
+      "奶茶"
+    ]
+  },
+  {
+    "id": 86,
+    "char": "自",
+    "radical": "自",
+    "semester": "一下",
+    "words": [
+      "自己",
+      "自然",
+      "自由"
+    ]
+  },
+  {
+    "id": 87,
+    "char": "天",
+    "radical": "大",
+    "semester": "一下",
+    "words": [
+      "天空",
+      "天氣",
+      "今天"
+    ]
+  },
+  {
+    "id": 88,
+    "char": "歌",
+    "radical": "欠",
+    "semester": "一下",
+    "words": [
+      "唱歌",
+      "歌曲",
+      "歌聲"
+    ]
+  },
+  {
+    "id": 89,
+    "char": "吃",
+    "radical": "口",
+    "semester": "一下",
+    "words": [
+      "吃飯",
+      "吃東西",
+      "好吃"
+    ]
+  },
+  {
+    "id": 90,
+    "char": "溫",
+    "radical": "水",
+    "semester": "一下",
+    "words": [
+      "溫暖",
+      "溫度",
+      "體溫"
+    ]
+  },
+  {
+    "id": 91,
+    "char": "跟",
+    "radical": "足",
+    "semester": "一下",
+    "words": [
+      "跟著",
+      "跟前",
+      "跟隨"
+    ]
+  },
+  {
+    "id": 92,
+    "char": "己",
+    "radical": "己",
+    "semester": "一下",
+    "words": [
+      "自己",
+      "知己"
+    ]
+  },
+  {
+    "id": 93,
+    "char": "空",
+    "radical": "穴",
+    "semester": "一下",
+    "words": [
+      "空中",
+      "天空",
+      "空氣"
+    ]
+  },
+  {
+    "id": 94,
+    "char": "出",
+    "radical": "凵",
+    "semester": "一下",
+    "words": [
+      "出來",
+      "出去",
+      "出口"
+    ]
+  },
+  {
+    "id": 95,
+    "char": "菜",
+    "radical": "艸",
+    "semester": "一下",
+    "words": [
+      "蔬菜",
+      "菜園",
+      "菜色"
+    ]
+  },
+  {
+    "id": 96,
+    "char": "暖",
+    "radical": "日",
+    "semester": "一下",
+    "words": [
+      "溫暖",
+      "暖和",
+      "暖氣"
+    ]
+  },
+  {
+    "id": 97,
+    "char": "班",
+    "radical": "玉",
+    "semester": "一下",
+    "words": [
+      "班級",
+      "上班",
+      "全班"
+    ]
+  },
+  {
+    "id": 98,
+    "char": "變",
+    "radical": "言",
+    "semester": "一下",
+    "words": [
+      "改變",
+      "變化",
+      "變大"
+    ]
+  },
+  {
+    "id": 99,
+    "char": "雲",
+    "radical": "雨",
+    "semester": "一下",
+    "words": [
+      "白雲",
+      "雲朵",
+      "烏雲"
+    ]
+  },
+  {
+    "id": 100,
+    "char": "新",
+    "radical": "斤",
+    "semester": "一下",
+    "words": [
+      "新的",
+      "新年",
+      "全新"
+    ]
+  },
+  {
+    "id": 101,
+    "char": "就",
+    "radical": "尢",
+    "semester": "一下",
+    "words": [
+      "就是",
+      "就好",
+      "已就"
+    ]
+  },
+  {
+    "id": 102,
+    "char": "種",
+    "radical": "禾",
+    "semester": "一下",
+    "words": [
+      "種類",
+      "種子",
+      "種花"
+    ]
+  },
+  {
+    "id": 103,
+    "char": "床",
+    "radical": "广",
+    "semester": "一下",
+    "words": [
+      "床上",
+      "起床",
+      "床鋪"
+    ]
+  },
+  {
+    "id": 104,
+    "char": "成",
+    "radical": "戈",
+    "semester": "一下",
+    "words": [
+      "成功",
+      "完成",
+      "成長"
+    ]
+  },
+  {
+    "id": 105,
+    "char": "水",
+    "radical": "水",
+    "semester": "一下",
+    "words": [
+      "水果",
+      "水中",
+      "喝水"
+    ]
+  },
+  {
+    "id": 106,
+    "char": "芽",
+    "radical": "艸",
+    "semester": "一下",
+    "words": [
+      "芽苗",
+      "發芽",
+      "嫩芽"
+    ]
+  },
+  {
+    "id": 107,
+    "char": "桌",
+    "radical": "木",
+    "semester": "一下",
+    "words": [
+      "桌子",
+      "書桌",
+      "桌上"
+    ]
+  },
+  {
+    "id": 108,
+    "char": "問",
+    "radical": "口",
+    "semester": "一下",
+    "words": [
+      "問題",
+      "問好",
+      "請問"
+    ]
+  },
+  {
+    "id": 109,
+    "char": "弟",
+    "radical": "弓",
+    "semester": "一下",
+    "words": [
+      "弟弟",
+      "兄弟",
+      "小弟"
+    ]
+  },
+  {
+    "id": 110,
+    "char": "棉",
+    "radical": "木",
+    "semester": "一下",
+    "words": [
+      "棉花",
+      "棉被",
+      "棉布"
+    ]
+  },
+  {
+    "id": 111,
+    "char": "蟲",
+    "radical": "虫",
+    "semester": "一下",
+    "words": [
+      "昆蟲",
+      "小蟲",
+      "蟲子"
+    ]
+  },
+  {
+    "id": 112,
+    "char": "聞",
+    "radical": "耳",
+    "semester": "一下",
+    "words": [
+      "新聞",
+      "聞到",
+      "聽聞"
+    ]
+  },
+  {
+    "id": 113,
+    "char": "真",
+    "radical": "目",
+    "semester": "一下",
+    "words": [
+      "真的",
+      "真心",
+      "認真"
+    ]
+  },
+  {
+    "id": 114,
+    "char": "怎",
+    "radical": "心",
+    "semester": "一下",
+    "words": [
+      "怎麼",
+      "怎樣",
+      "不知怎"
+    ]
+  },
+  {
+    "id": 115,
+    "char": "她",
+    "radical": "女",
+    "semester": "一下",
+    "words": [
+      "她的",
+      "她們",
+      "他她"
+    ]
+  },
+  {
+    "id": 116,
+    "char": "糖",
+    "radical": "米",
+    "semester": "一下",
+    "words": [
+      "糖果",
+      "砂糖",
+      "甜糖"
+    ]
+  },
+  {
+    "id": 117,
+    "char": "鳥",
+    "radical": "鳥",
+    "semester": "一下",
+    "words": [
+      "小鳥",
+      "鳥叫",
+      "鳥兒"
+    ]
+  },
+  {
+    "id": 118,
+    "char": "身",
+    "radical": "身",
+    "semester": "一下",
+    "words": [
+      "身體",
+      "身上",
+      "全身"
+    ]
+  },
+  {
+    "id": 119,
+    "char": "鞋",
+    "radical": "革",
+    "semester": "一下",
+    "words": [
+      "鞋子",
+      "鞋帶",
+      "球鞋"
+    ]
+  },
+  {
+    "id": 120,
+    "char": "做",
+    "radical": "人",
+    "semester": "一下",
+    "words": [
+      "做到",
+      "做好",
+      "工作"
+    ]
+  },
+  {
+    "id": 121,
+    "char": "酒",
+    "radical": "酉",
+    "semester": "一下",
+    "words": [
+      "果汁",
+      "飲料"
+    ]
+  },
+  {
+    "id": 122,
+    "char": "黑",
+    "radical": "黑",
+    "semester": "一下",
+    "words": [
+      "黑色",
+      "黑板",
+      "黑夜"
+    ]
+  },
+  {
+    "id": 123,
+    "char": "草",
+    "radical": "艸",
+    "semester": "一下",
+    "words": [
+      "草地",
+      "草原",
+      "青草"
+    ]
+  },
+  {
+    "id": 124,
+    "char": "香",
+    "radical": "香",
+    "semester": "一下",
+    "words": [
+      "香味",
+      "香甜",
+      "香氣"
+    ]
+  },
+  {
+    "id": 125,
+    "char": "回",
+    "radical": "囗",
+    "semester": "一下",
+    "words": [
+      "回家",
+      "回來",
+      "回答"
+    ]
+  },
+  {
+    "id": 126,
+    "char": "它",
+    "radical": "宀",
+    "semester": "一下",
+    "words": [
+      "它的",
+      "這個",
+      "那它"
+    ]
+  },
+  {
+    "id": 127,
+    "char": "拿",
+    "radical": "手",
+    "semester": "一下",
+    "words": [
+      "拿取",
+      "拿出",
+      "拿著"
+    ]
+  },
+  {
+    "id": 128,
+    "char": "鵝",
+    "radical": "鳥",
+    "semester": "一下",
+    "words": [
+      "白鵝",
+      "鵝毛",
+      "天鵝"
+    ]
+  },
+  {
+    "id": 129,
+    "char": "先",
+    "radical": "儿",
+    "semester": "一下",
+    "words": [
+      "先生",
+      "先後",
+      "首先"
+    ]
+  },
+  {
+    "id": 130,
+    "char": "呢",
+    "radical": "口",
+    "semester": "一下",
+    "words": [
+      "呢喃",
+      "是呢",
+      "好呢"
+    ]
+  },
+  {
+    "id": 131,
+    "char": "家",
+    "radical": "宀",
+    "semester": "一下",
+    "words": [
+      "家人",
+      "回家",
+      "家裡"
+    ]
+  },
+  {
+    "id": 132,
+    "char": "才",
+    "radical": "手",
+    "semester": "一下",
+    "words": [
+      "才能",
+      "才華",
+      "剛才"
+    ]
+  },
+  {
+    "id": 133,
+    "char": "卡",
+    "radical": "卜",
+    "semester": "一下",
+    "words": [
+      "卡片",
+      "卡通",
+      "名卡"
+    ]
+  },
+  {
+    "id": 134,
+    "char": "得",
+    "radical": "彳",
+    "semester": "一下",
+    "words": [
+      "得到",
+      "覺得",
+      "得意"
+    ]
+  },
+  {
+    "id": 135,
+    "char": "完",
+    "radical": "宀",
+    "semester": "一下",
+    "words": [
+      "完成",
+      "完全",
+      "完好"
+    ]
+  },
+  {
+    "id": 136,
+    "char": "媽",
+    "radical": "女",
+    "semester": "一下",
+    "words": [
+      "媽媽",
+      "媽咪",
+      "爸媽"
+    ]
+  },
+  {
+    "id": 137,
+    "char": "把",
+    "radical": "手",
+    "semester": "一下",
+    "words": [
+      "把手",
+      "把握",
+      "一把"
+    ]
+  },
+  {
+    "id": 138,
+    "char": "需",
+    "radical": "雨",
+    "semester": "一下",
+    "words": [
+      "需要",
+      "需求",
+      "所需"
+    ]
+  },
+  {
+    "id": 139,
+    "char": "片",
+    "radical": "片",
+    "semester": "一下",
+    "words": [
+      "片刻",
+      "影片",
+      "一片"
+    ]
+  },
+  {
+    "id": 140,
+    "char": "更",
+    "radical": "日",
+    "semester": "一下",
+    "words": [
+      "更好",
+      "更多",
+      "更大"
+    ]
+  },
+  {
+    "id": 141,
+    "char": "再",
+    "radical": "冂",
+    "semester": "一下",
+    "words": [
+      "再見",
+      "再次",
+      "再來"
+    ]
+  },
+  {
+    "id": 142,
+    "char": "音",
+    "radical": "音",
+    "semester": "一下",
+    "words": [
+      "音樂",
+      "音符",
+      "聲音"
+    ]
+  },
+  {
+    "id": 143,
+    "char": "脫",
+    "radical": "肉",
+    "semester": "一下",
+    "words": [
+      "脫下",
+      "脫掉",
+      "脫鞋"
+    ]
+  },
+  {
+    "id": 144,
+    "char": "於",
+    "radical": "方",
+    "semester": "一下",
+    "words": [
+      "於是",
+      "在於",
+      "對於"
+    ]
+  },
+  {
+    "id": 145,
+    "char": "給",
+    "radical": "糸",
+    "semester": "一下",
+    "words": [
+      "給你",
+      "給我",
+      "交給"
+    ]
+  },
+  {
+    "id": 146,
+    "char": "漂",
+    "radical": "水",
+    "semester": "一下",
+    "words": [
+      "漂亮",
+      "漂流",
+      "漂白"
+    ]
+  },
+  {
+    "id": 147,
+    "char": "去",
+    "radical": "ㄙ",
+    "semester": "一下",
+    "words": [
+      "去哪",
+      "過去",
+      "去年"
+    ]
+  },
+  {
+    "id": 148,
+    "char": "樂",
+    "radical": "木",
+    "semester": "一下",
+    "words": [
+      "音樂",
+      "快樂",
+      "樂趣"
+    ]
+  },
+  {
+    "id": 149,
+    "char": "爸",
+    "radical": "父",
+    "semester": "一下",
+    "words": [
+      "爸爸",
+      "爸媽"
+    ]
+  },
+  {
+    "id": 150,
+    "char": "澆",
+    "radical": "水",
+    "semester": "一下",
+    "words": [
+      "澆水",
+      "澆花",
+      "澆灌"
+    ]
+  },
+  {
+    "id": 151,
+    "char": "寫",
+    "radical": "宀",
+    "semester": "一下",
+    "words": [
+      "寫字",
+      "寫作",
+      "書寫"
+    ]
+  },
+  {
+    "id": 152,
+    "char": "亮",
+    "radical": "亠",
+    "semester": "一下",
+    "words": [
+      "漂亮",
+      "明亮",
+      "月亮"
+    ]
+  },
+  {
+    "id": 153,
+    "char": "園",
+    "radical": "囗",
+    "semester": "一下",
+    "words": [
+      "公園",
+      "花園",
+      "樂園"
+    ]
+  },
+  {
+    "id": 154,
+    "char": "會",
+    "radical": "曰",
+    "semester": "一下",
+    "words": [
+      "學會",
+      "開會",
+      "會說"
+    ]
+  },
+  {
+    "id": 155,
+    "char": "靠",
+    "radical": "非",
+    "semester": "一下",
+    "words": [
+      "靠近",
+      "依靠",
+      "靠邊"
+    ]
+  },
+  {
+    "id": 156,
+    "char": "陽",
+    "radical": "阜",
+    "semester": "一下",
+    "words": [
+      "太陽",
+      "陽光",
+      "陽台"
+    ]
+  },
+  {
+    "id": 157,
+    "char": "喜",
+    "radical": "口",
+    "semester": "一下",
+    "words": [
+      "喜歡",
+      "喜樂",
+      "可喜"
+    ]
+  },
+  {
+    "id": 158,
+    "char": "妹",
+    "radical": "女",
+    "semester": "一下",
+    "words": [
+      "妹妹",
+      "姐妹",
+      "小妹"
+    ]
+  },
+  {
+    "id": 159,
+    "char": "聽",
+    "radical": "耳",
+    "semester": "一下",
+    "words": [
+      "聽話",
+      "聽見",
+      "好聽"
+    ]
+  },
+  {
+    "id": 160,
+    "char": "始",
+    "radical": "女",
+    "semester": "一下",
+    "words": [
+      "開始",
+      "始終",
+      "創始"
+    ]
+  },
+  {
+    "id": 161,
+    "char": "見",
+    "radical": "見",
+    "semester": "一下",
+    "words": [
+      "見到",
+      "看見",
+      "再見"
+    ]
+  },
+  {
+    "id": 162,
+    "char": "光",
+    "radical": "儿",
+    "semester": "一下",
+    "words": [
+      "光明",
+      "陽光",
+      "燈光"
+    ]
+  },
+  {
+    "id": 163,
+    "char": "歡",
+    "radical": "欠",
+    "semester": "一下",
+    "words": [
+      "歡迎",
+      "喜歡",
+      "歡樂"
+    ]
+  },
+  {
+    "id": 164,
+    "char": "雨",
+    "radical": "雨",
+    "semester": "一下",
+    "words": [
+      "下雨",
+      "雨水",
+      "雨傘"
+    ]
+  },
+  {
+    "id": 165,
+    "char": "沒",
+    "radical": "水",
+    "semester": "一下",
+    "words": [
+      "沒有",
+      "沒好",
+      "沒去"
+    ]
+  },
+  {
+    "id": 166,
+    "char": "來",
+    "radical": "人",
+    "semester": "一下",
+    "words": [
+      "來了",
+      "來到",
+      "過來"
+    ]
+  },
+  {
+    "id": 167,
+    "char": "像",
+    "radical": "人",
+    "semester": "一下",
+    "words": [
+      "好像",
+      "圖像",
+      "像是"
+    ]
+  },
+  {
+    "id": 168,
+    "char": "放",
+    "radical": "攴",
+    "semester": "一下",
+    "words": [
+      "放學",
+      "放心",
+      "放下"
+    ]
+  },
+  {
+    "id": 169,
+    "char": "您",
+    "radical": "心",
+    "semester": "一下",
+    "words": [
+      "您好",
+      "謝謝您",
+      "請問您"
+    ]
+  },
+  {
+    "id": 170,
+    "char": "雙",
+    "radical": "隹",
+    "semester": "一下",
+    "words": [
+      "雙手",
+      "雙腳",
+      "一雙"
+    ]
+  },
+  {
+    "id": 171,
+    "char": "正",
+    "radical": "止",
+    "semester": "一下",
+    "words": [
+      "正確",
+      "正好",
+      "正式"
+    ]
+  },
+  {
+    "id": 172,
+    "char": "重",
+    "radical": "里",
+    "semester": "一下",
+    "words": [
+      "重要",
+      "體重",
+      "重量"
+    ]
+  },
+  {
+    "id": 173,
+    "char": "船",
+    "radical": "舟",
+    "semester": "一下",
+    "words": [
+      "船上",
+      "坐船",
+      "小船"
+    ]
+  },
+  {
+    "id": 174,
+    "char": "院",
+    "radical": "阜",
+    "semester": "一下",
+    "words": [
+      "院子",
+      "庭院",
+      "學院"
+    ]
+  },
+  {
+    "id": 175,
+    "char": "都",
+    "radical": "邑",
+    "semester": "一下",
+    "words": [
+      "都是",
+      "都好",
+      "首都"
+    ]
+  },
+  {
+    "id": 176,
+    "char": "穿",
+    "radical": "穴",
+    "semester": "一下",
+    "words": [
+      "穿衣",
+      "穿鞋",
+      "穿越"
+    ]
+  },
+  {
+    "id": 177,
+    "char": "唱",
+    "radical": "口",
+    "semester": "一下",
+    "words": [
+      "唱歌",
+      "合唱",
+      "唱出"
+    ]
+  },
+  {
+    "id": 178,
+    "char": "短",
+    "radical": "矢",
+    "semester": "一下",
+    "words": [
+      "短短",
+      "長短",
+      "短暫"
+    ]
+  },
+  {
+    "id": 179,
+    "char": "港",
+    "radical": "水",
+    "semester": "一下",
+    "words": [
+      "港口",
+      "香港",
+      "港邊"
+    ]
+  },
+  {
+    "id": 180,
+    "char": "公",
+    "radical": "八",
+    "semester": "一下",
+    "words": [
+      "公園",
+      "公車",
+      "公司"
+    ]
+  },
+  {
+    "id": 181,
+    "char": "作",
+    "radical": "人",
+    "semester": "一下",
+    "words": [
+      "工作",
+      "作業",
+      "作者"
+    ]
+  },
+  {
+    "id": 182,
+    "char": "滴",
+    "radical": "水",
+    "semester": "一下",
+    "words": [
+      "水滴",
+      "一滴",
+      "滴水"
+    ]
+  },
+  {
+    "id": 183,
+    "char": "著",
+    "radical": "艸",
+    "semester": "一下",
+    "words": [
+      "著急",
+      "穿著",
+      "著名"
+    ]
+  },
+  {
+    "id": 184,
+    "char": "陣",
+    "radical": "阜",
+    "semester": "一下",
+    "words": [
+      "陣雨",
+      "陣風",
+      "一陣"
+    ]
+  },
+  {
+    "id": 185,
+    "char": "口",
+    "radical": "口",
+    "semester": "一下",
+    "words": [
+      "口水",
+      "出口",
+      "入口"
+    ]
+  },
+  {
+    "id": 186,
+    "char": "話",
+    "radical": "言",
+    "semester": "一下",
+    "words": [
+      "說話",
+      "對話",
+      "電話"
+    ]
+  },
+  {
+    "id": 187,
+    "char": "夢",
+    "radical": "夕",
+    "semester": "一下",
+    "words": [
+      "夢想",
+      "做夢",
+      "夢到"
+    ]
+  },
+  {
+    "id": 188,
+    "char": "遊",
+    "radical": "辵",
+    "semester": "一下",
+    "words": [
+      "遊戲",
+      "旅遊",
+      "遊樂"
+    ]
+  },
+  {
+    "id": 189,
+    "char": "戲",
+    "radical": "戈",
+    "semester": "一下",
+    "words": [
+      "遊戲",
+      "戲水",
+      "看戲"
+    ]
+  },
+  {
+    "id": 190,
+    "char": "低",
+    "radical": "人",
+    "semester": "一下",
+    "words": [
+      "低頭",
+      "高低",
+      "降低"
+    ]
+  },
+  {
+    "id": 191,
+    "char": "每",
+    "radical": "毋",
+    "semester": "一下",
+    "words": [
+      "每天",
+      "每個",
+      "每次"
+    ]
+  },
+  {
+    "id": 192,
+    "char": "謝",
+    "radical": "言",
+    "semester": "一下",
+    "words": [
+      "謝謝",
+      "感謝",
+      "道謝"
+    ]
+  },
+  {
+    "id": 193,
+    "char": "顆",
+    "radical": "頁",
+    "semester": "一下",
+    "words": [
+      "一顆",
+      "顆粒",
+      "兩顆"
+    ]
+  },
+  {
+    "id": 194,
+    "char": "刷",
+    "radical": "刀",
+    "semester": "一下",
+    "words": [
+      "刷牙",
+      "刷子",
+      "牙刷"
+    ]
+  },
+  {
+    "id": 195,
+    "char": "件",
+    "radical": "人",
+    "semester": "一下",
+    "words": [
+      "一件",
+      "件事",
+      "條件"
+    ]
+  },
+  {
+    "id": 196,
+    "char": "想",
+    "radical": "心",
+    "semester": "一下",
+    "words": [
+      "想法",
+      "想到",
+      "心想"
+    ]
+  },
+  {
+    "id": 197,
+    "char": "珍",
+    "radical": "玉",
+    "semester": "一下",
+    "words": [
+      "珍惜",
+      "珍貴",
+      "珍珠"
+    ]
+  },
+  {
+    "id": 198,
+    "char": "樹",
+    "radical": "木",
+    "semester": "一下",
+    "words": [
+      "樹木",
+      "大樹",
+      "樹葉"
+    ]
+  },
+  {
+    "id": 199,
+    "char": "事",
+    "radical": "亅",
+    "semester": "一下",
+    "words": [
+      "事情",
+      "故事",
+      "做事"
+    ]
+  },
+  {
+    "id": 200,
+    "char": "燈",
+    "radical": "火",
+    "semester": "一下",
+    "words": [
+      "燈光",
+      "電燈",
+      "燈籠"
+    ]
+  },
+  {
+    "id": 201,
+    "char": "珠",
+    "radical": "玉",
+    "semester": "一下",
+    "words": [
+      "珍珠",
+      "水珠",
+      "眼珠"
+    ]
+  },
+  {
+    "id": 202,
+    "char": "葉",
+    "radical": "艸",
+    "semester": "一下",
+    "words": [
+      "樹葉",
+      "葉子",
+      "落葉"
+    ]
+  },
+  {
+    "id": 203,
+    "char": "情",
+    "radical": "心",
+    "semester": "一下",
+    "words": [
+      "心情",
+      "感情",
+      "情形"
+    ]
+  },
+  {
+    "id": 204,
+    "char": "前",
+    "radical": "刀",
+    "semester": "一下",
+    "words": [
+      "前面",
+      "以前",
+      "向前"
+    ]
+  },
+  {
+    "id": 205,
+    "char": "落",
+    "radical": "艸",
+    "semester": "一下",
+    "words": [
+      "落下",
+      "落葉",
+      "降落"
+    ]
+  },
+  {
+    "id": 206,
+    "char": "很",
+    "radical": "彳",
+    "semester": "一下",
+    "words": [
+      "很好",
+      "很多",
+      "很棒"
+    ]
+  },
+  {
+    "id": 207,
+    "char": "生",
+    "radical": "生",
+    "semester": "一下",
+    "words": [
+      "生日",
+      "學生",
+      "生活"
+    ]
+  },
+  {
+    "id": 208,
+    "char": "點",
+    "radical": "黑",
+    "semester": "一下",
+    "words": [
+      "地點",
+      "一點",
+      "點心"
+    ]
+  },
+  {
+    "id": 209,
+    "char": "面",
+    "radical": "面",
+    "semester": "一下",
+    "words": [
+      "面前",
+      "裡面",
+      "臉面"
+    ]
+  },
+  {
+    "id": 210,
+    "char": "認",
+    "radical": "言",
+    "semester": "一下",
+    "words": [
+      "認識",
+      "認真",
+      "確認"
+    ]
+  },
+  {
+    "id": 211,
+    "char": "日",
+    "radical": "日",
+    "semester": "一下",
+    "words": [
+      "日子",
+      "今日",
+      "日出"
+    ]
+  },
+  {
+    "id": 212,
+    "char": "半",
+    "radical": "十",
+    "semester": "一下",
+    "words": [
+      "一半",
+      "半天",
+      "半夜"
+    ]
+  },
+  {
+    "id": 213,
+    "char": "魚",
+    "radical": "魚",
+    "semester": "一下",
+    "words": [
+      "魚兒",
+      "金魚",
+      "魚水"
+    ]
+  },
+  {
+    "id": 214,
+    "char": "送",
+    "radical": "辵",
+    "semester": "一下",
+    "words": [
+      "送給",
+      "送行",
+      "運送"
+    ]
+  },
+  {
+    "id": 215,
+    "char": "今",
+    "radical": "人",
+    "semester": "一下",
+    "words": [
+      "今天",
+      "今日",
+      "如今"
+    ]
+  },
+  {
+    "id": 216,
+    "char": "清",
+    "radical": "水",
+    "semester": "一下",
+    "words": [
+      "清楚",
+      "清水",
+      "清晨"
+    ]
+  },
+  {
+    "id": 217,
+    "char": "缸",
+    "radical": "缶",
+    "semester": "一下",
+    "words": [
+      "魚缸",
+      "水缸",
+      "花缸"
+    ]
+  },
+  {
+    "id": 218,
+    "char": "地",
+    "radical": "土",
+    "semester": "一下",
+    "words": [
+      "地上",
+      "土地",
+      "地方"
+    ]
+  },
+  {
+    "id": 219,
+    "char": "記",
+    "radical": "言",
+    "semester": "一下",
+    "words": [
+      "記住",
+      "記得",
+      "日記"
+    ]
+  },
+  {
+    "id": 220,
+    "char": "楚",
+    "radical": "木",
+    "semester": "一下",
+    "words": [
+      "清楚",
+      "楚楚"
+    ]
+  },
+  {
+    "id": 221,
+    "char": "金",
+    "radical": "金",
+    "semester": "一下",
+    "words": [
+      "金色",
+      "金魚",
+      "黃金"
+    ]
+  },
+  {
+    "id": 222,
+    "char": "化",
+    "radical": "匕",
+    "semester": "一下",
+    "words": [
+      "變化",
+      "化學",
+      "美化"
+    ]
+  },
+  {
+    "id": 223,
+    "char": "時",
+    "radical": "日",
+    "semester": "一下",
+    "words": [
+      "時間",
+      "時候",
+      "有時"
+    ]
+  },
+  {
+    "id": 224,
+    "char": "停",
+    "radical": "人",
+    "semester": "一下",
+    "words": [
+      "停下",
+      "停車",
+      "停住"
+    ]
+  },
+  {
+    "id": 225,
+    "char": "游",
+    "radical": "水",
+    "semester": "一下",
+    "words": [
+      "游泳",
+      "游水",
+      "游魚"
+    ]
+  },
+  {
+    "id": 226,
+    "char": "趣",
+    "radical": "走",
+    "semester": "一下",
+    "words": [
+      "有趣",
+      "趣味",
+      "興趣"
+    ]
+  },
+  {
+    "id": 227,
+    "char": "知",
+    "radical": "矢",
+    "semester": "一下",
+    "words": [
+      "知道",
+      "知識",
+      "得知"
+    ]
+  },
+  {
+    "id": 228,
+    "char": "休",
+    "radical": "人",
+    "semester": "一下",
+    "words": [
+      "休息",
+      "休假",
+      "午休"
+    ]
+  },
+  {
+    "id": 229,
+    "char": "彩",
+    "radical": "彡",
+    "semester": "一下",
+    "words": [
+      "彩色",
+      "彩虹",
+      "精彩"
+    ]
+  },
+  {
+    "id": 230,
+    "char": "線",
+    "radical": "糸",
+    "semester": "一下",
+    "words": [
+      "線條",
+      "彩線",
+      "線索"
+    ]
+  },
+  {
+    "id": 231,
+    "char": "道",
+    "radical": "辵",
+    "semester": "一下",
+    "words": [
+      "道路",
+      "知道",
+      "道理"
+    ]
+  },
+  {
+    "id": 232,
+    "char": "息",
+    "radical": "心",
+    "semester": "一下",
+    "words": [
+      "休息",
+      "消息",
+      "氣息"
+    ]
+  },
+  {
+    "id": 233,
+    "char": "虹",
+    "radical": "虫",
+    "semester": "一下",
+    "words": [
+      "彩虹",
+      "虹橋"
+    ]
+  },
+  {
+    "id": 234,
+    "char": "風",
+    "radical": "風",
+    "semester": "一下",
+    "words": [
+      "風雨",
+      "春風",
+      "風箏"
+    ]
+  },
+  {
+    "id": 235,
+    "char": "嗎",
+    "radical": "口",
+    "semester": "一下",
+    "words": [
+      "是嗎",
+      "好嗎",
+      "對嗎"
+    ]
+  },
+  {
+    "id": 236,
+    "char": "兒",
+    "radical": "儿",
+    "semester": "一下",
+    "words": [
+      "兒子",
+      "兒童",
+      "小兒"
+    ]
+  },
+  {
+    "id": 237,
+    "char": "太",
+    "radical": "大",
+    "semester": "一下",
+    "words": [
+      "太陽",
+      "太好",
+      "太多"
+    ]
+  },
+  {
+    "id": 238,
+    "char": "箏",
+    "radical": "竹",
+    "semester": "一下",
+    "words": [
+      "風箏",
+      "箏聲"
+    ]
+  },
+  {
+    "id": 239,
+    "char": "學",
+    "radical": "子",
+    "semester": "一下",
+    "words": [
+      "學生",
+      "學習",
+      "上學"
+    ]
+  },
+  {
+    "id": 240,
+    "char": "吧",
+    "radical": "口",
+    "semester": "一下",
+    "words": [
+      "好吧",
+      "去吧",
+      "對吧"
+    ]
+  },
+  {
+    "id": 241,
+    "char": "國",
+    "radical": "囗",
+    "semester": "一下",
+    "words": [
+      "國家",
+      "國語",
+      "全國"
+    ]
+  },
+  {
+    "id": 242,
+    "char": "升",
+    "radical": "十",
+    "semester": "一下",
+    "words": [
+      "升旗",
+      "升起",
+      "上升"
+    ]
+  },
+  {
+    "id": 243,
+    "char": "收",
+    "radical": "攴",
+    "semester": "一下",
+    "words": [
+      "收拾",
+      "收到",
+      "回收"
+    ]
+  },
+  {
+    "id": 244,
+    "char": "幫",
+    "radical": "巾",
+    "semester": "一下",
+    "words": [
+      "幫忙",
+      "幫助",
+      "幫手"
+    ]
+  },
+  {
+    "id": 245,
+    "char": "掃",
+    "radical": "手",
+    "semester": "一下",
+    "words": [
+      "掃地",
+      "打掃",
+      "掃除"
+    ]
+  },
+  {
+    "id": 246,
+    "char": "神",
+    "radical": "示",
+    "semester": "一下",
+    "words": [
+      "神奇",
+      "精神",
+      "神仙"
+    ]
+  },
+  {
+    "id": 247,
+    "char": "張",
+    "radical": "弓",
+    "semester": "一下",
+    "words": [
+      "張開",
+      "緊張",
+      "一張"
+    ]
+  },
+  {
+    "id": 248,
+    "char": "加",
+    "radical": "力",
+    "semester": "一下",
+    "words": [
+      "加油",
+      "加入",
+      "增加"
+    ]
+  },
+  {
+    "id": 249,
+    "char": "除",
+    "radical": "阜",
+    "semester": "一下",
+    "words": [
+      "除了",
+      "掃除",
+      "去除"
+    ]
+  },
+  {
+    "id": 250,
+    "char": "奇",
+    "radical": "大",
+    "semester": "一下",
+    "words": [
+      "奇怪",
+      "好奇",
+      "神奇"
+    ]
+  },
+  {
+    "id": 251,
+    "char": "祝",
+    "radical": "示",
+    "semester": "一下",
+    "words": [
+      "祝福",
+      "祝賀",
+      "慶祝"
+    ]
+  },
+  {
+    "id": 252,
+    "char": "油",
+    "radical": "水",
+    "semester": "一下",
+    "words": [
+      "加油",
+      "油畫",
+      "石油"
+    ]
+  },
+  {
+    "id": 253,
+    "char": "洗",
+    "radical": "水",
+    "semester": "一下",
+    "words": [
+      "洗手",
+      "洗澡",
+      "清洗"
+    ]
+  },
+  {
+    "id": 254,
+    "char": "跑",
+    "radical": "足",
+    "semester": "一下",
+    "words": [
+      "跑步",
+      "奔跑",
+      "跑開"
+    ]
+  },
+  {
+    "id": 255,
+    "char": "福",
+    "radical": "示",
+    "semester": "一下",
+    "words": [
+      "祝福",
+      "幸福",
+      "福氣"
+    ]
+  },
+  {
+    "id": 256,
+    "char": "慢",
+    "radical": "心",
+    "semester": "一下",
+    "words": [
+      "慢慢",
+      "緩慢",
+      "慢走"
+    ]
+  },
+  {
+    "id": 257,
+    "char": "淨",
+    "radical": "水",
+    "semester": "一下",
+    "words": [
+      "乾淨",
+      "清淨",
+      "淨水"
+    ]
+  },
+  {
+    "id": 258,
+    "char": "跳",
+    "radical": "足",
+    "semester": "一下",
+    "words": [
+      "跳舞",
+      "跳繩",
+      "跳高"
+    ]
+  },
+  {
+    "id": 259,
+    "char": "第",
+    "radical": "竹",
+    "semester": "一下",
+    "words": [
+      "第一",
+      "第二",
+      "第三"
+    ]
+  },
+  {
+    "id": 260,
+    "char": "馬",
+    "radical": "馬",
+    "semester": "一下",
+    "words": [
+      "馬兒",
+      "馬上",
+      "小馬"
+    ]
+  },
+  {
+    "id": 261,
+    "char": "笑",
+    "radical": "竹",
+    "semester": "一下",
+    "words": [
+      "笑容",
+      "笑聲",
+      "大笑"
+    ]
+  },
+  {
+    "id": 262,
+    "char": "次",
+    "radical": "欠",
+    "semester": "一下",
+    "words": [
+      "每次",
+      "一次",
+      "這次"
+    ]
+  },
+  {
+    "id": 263,
+    "char": "年",
+    "radical": "干",
+    "semester": "二上",
+    "words": [
+      "新年",
+      "年紀",
+      "今年"
+    ]
+  },
+  {
+    "id": 264,
+    "char": "茄",
+    "radical": "艸",
+    "semester": "二上",
+    "words": [
+      "番茄",
+      "茄子"
+    ]
+  },
+  {
+    "id": 265,
+    "char": "巷",
+    "radical": "己",
+    "semester": "二上",
+    "words": [
+      "巷子",
+      "小巷",
+      "巷口"
+    ]
+  },
+  {
+    "id": 266,
+    "char": "運",
+    "radical": "辵",
+    "semester": "二上",
+    "words": [
+      "運動",
+      "幸運",
+      "運氣"
+    ]
+  },
+  {
+    "id": 267,
+    "char": "竹",
+    "radical": "竹",
+    "semester": "二上",
+    "words": [
+      "竹子",
+      "竹筍",
+      "竹林"
+    ]
+  },
+  {
+    "id": 268,
+    "char": "進",
+    "radical": "辵",
+    "semester": "二上",
+    "words": [
+      "進來",
+      "進步",
+      "前進"
+    ]
+  },
+  {
+    "id": 269,
+    "char": "希",
+    "radical": "巾",
+    "semester": "二上",
+    "words": [
+      "希望",
+      "希奇"
+    ]
+  },
+  {
+    "id": 270,
+    "char": "切",
+    "radical": "刀",
+    "semester": "二上",
+    "words": [
+      "切開",
+      "親切",
+      "一切"
+    ]
+  },
+  {
+    "id": 271,
+    "char": "叔",
+    "radical": "又",
+    "semester": "二上",
+    "words": [
+      "叔叔",
+      "伯叔"
+    ]
+  },
+  {
+    "id": 272,
+    "char": "動",
+    "radical": "力",
+    "semester": "二上",
+    "words": [
+      "動物",
+      "運動",
+      "行動"
+    ]
+  },
+  {
+    "id": 273,
+    "char": "籃",
+    "radical": "竹",
+    "semester": "二上",
+    "words": [
+      "籃球",
+      "籃子",
+      "花籃"
+    ]
+  },
+  {
+    "id": 274,
+    "char": "愛",
+    "radical": "心",
+    "semester": "二上",
+    "words": [
+      "愛心",
+      "喜愛",
+      "愛護"
+    ]
+  },
+  {
+    "id": 275,
+    "char": "望",
+    "radical": "月",
+    "semester": "二上",
+    "words": [
+      "希望",
+      "盼望",
+      "看望"
+    ]
+  },
+  {
+    "id": 276,
+    "char": "輪",
+    "radical": "車",
+    "semester": "二上",
+    "words": [
+      "輪流",
+      "車輪",
+      "輪子"
+    ]
+  },
+  {
+    "id": 277,
+    "char": "貓",
+    "radical": "豸",
+    "semester": "二上",
+    "words": [
+      "貓咪",
+      "小貓",
+      "貓兒"
+    ]
+  },
+  {
+    "id": 278,
+    "char": "飄",
+    "radical": "風",
+    "semester": "二上",
+    "words": [
+      "飄揚",
+      "飄落",
+      "飄動"
+    ]
+  },
+  {
+    "id": 279,
+    "char": "等",
+    "radical": "竹",
+    "semester": "二上",
+    "words": [
+      "等待",
+      "等一下",
+      "平等"
+    ]
+  },
+  {
+    "id": 280,
+    "char": "月",
+    "radical": "月",
+    "semester": "二上",
+    "words": [
+      "月亮",
+      "月光",
+      "月球"
+    ]
+  },
+  {
+    "id": 281,
+    "char": "坐",
+    "radical": "土",
+    "semester": "二上",
+    "words": [
+      "坐下",
+      "坐好",
+      "座位"
+    ]
+  },
+  {
+    "id": 282,
+    "char": "司",
+    "radical": "口",
+    "semester": "二上",
+    "words": [
+      "司機",
+      "公司",
+      "上司"
+    ]
+  },
+  {
+    "id": 283,
+    "char": "屋",
+    "radical": "尸",
+    "semester": "二上",
+    "words": [
+      "房屋",
+      "小屋",
+      "屋子"
+    ]
+  },
+  {
+    "id": 284,
+    "char": "熱",
+    "radical": "火",
+    "semester": "二上",
+    "words": [
+      "熱天",
+      "熱水",
+      "熱情"
+    ]
+  },
+  {
+    "id": 285,
+    "char": "吹",
+    "radical": "口",
+    "semester": "二上",
+    "words": [
+      "吹風",
+      "吹奏",
+      "吹氣"
+    ]
+  },
+  {
+    "id": 286,
+    "char": "乾",
+    "radical": "乙",
+    "semester": "二上",
+    "words": [
+      "乾淨",
+      "乾燥",
+      "乾脆"
+    ]
+  },
+  {
+    "id": 287,
+    "char": "位",
+    "radical": "人",
+    "semester": "二上",
+    "words": [
+      "位置",
+      "座位",
+      "幾位"
+    ]
+  },
+  {
+    "id": 288,
+    "char": "夾",
+    "radical": "大",
+    "semester": "二上",
+    "words": [
+      "夾子",
+      "夾菜",
+      "夾住"
+    ]
+  },
+  {
+    "id": 289,
+    "char": "捧",
+    "radical": "手",
+    "semester": "二上",
+    "words": [
+      "捧著",
+      "捧場",
+      "捧花"
+    ]
+  },
+  {
+    "id": 290,
+    "char": "鬧",
+    "radical": "鬥",
+    "semester": "二上",
+    "words": [
+      "熱鬧",
+      "鬧鐘",
+      "鬧著"
+    ]
+  },
+  {
+    "id": 291,
+    "char": "叫",
+    "radical": "口",
+    "semester": "二上",
+    "words": [
+      "叫聲",
+      "大叫",
+      "叫做"
+    ]
+  },
+  {
+    "id": 292,
+    "char": "甜",
+    "radical": "甘",
+    "semester": "二上",
+    "words": [
+      "甜甜",
+      "甜蜜",
+      "甜點"
+    ]
+  },
+  {
+    "id": 293,
+    "char": "本",
+    "radical": "木",
+    "semester": "二上",
+    "words": [
+      "本來",
+      "基本",
+      "書本"
+    ]
+  },
+  {
+    "id": 294,
+    "char": "全",
+    "radical": "入",
+    "semester": "二上",
+    "words": [
+      "全部",
+      "全家",
+      "安全"
+    ]
+  },
+  {
+    "id": 295,
+    "char": "蝴",
+    "radical": "虫",
+    "semester": "二上",
+    "words": [
+      "蝴蝶"
+    ]
+  },
+  {
+    "id": 296,
+    "char": "舞",
+    "radical": "舛",
+    "semester": "二上",
+    "words": [
+      "舞蹈",
+      "跳舞",
+      "舞台"
+    ]
+  },
+  {
+    "id": 297,
+    "char": "邊",
+    "radical": "辵",
+    "semester": "二上",
+    "words": [
+      "旁邊",
+      "這邊",
+      "邊上"
+    ]
+  },
+  {
+    "id": 298,
+    "char": "鎮",
+    "radical": "金",
+    "semester": "二上",
+    "words": [
+      "鄉鎮",
+      "安鎮",
+      "城鎮"
+    ]
+  },
+  {
+    "id": 299,
+    "char": "淡",
+    "radical": "水",
+    "semester": "二上",
+    "words": [
+      "淡水",
+      "清淡",
+      "淡淡"
+    ]
+  },
+  {
+    "id": 300,
+    "char": "蛋",
+    "radical": "虫",
+    "semester": "二上",
+    "words": [
+      "雞蛋",
+      "蛋糕",
+      "蛋白"
+    ]
+  },
+  {
+    "id": 301,
+    "char": "蝶",
+    "radical": "虫",
+    "semester": "二上",
+    "words": [
+      "蝴蝶",
+      "彩蝶"
+    ]
+  },
+  {
+    "id": 302,
+    "char": "哇",
+    "radical": "口",
+    "semester": "二上",
+    "words": [
+      "哇！",
+      "哇好",
+      "哇嗚"
+    ]
+  },
+  {
+    "id": 303,
+    "char": "近",
+    "radical": "辵",
+    "semester": "二上",
+    "words": [
+      "附近",
+      "接近",
+      "最近"
+    ]
+  },
+  {
+    "id": 304,
+    "char": "餅",
+    "radical": "食",
+    "semester": "二上",
+    "words": [
+      "餅乾",
+      "月餅",
+      "餅干"
+    ]
+  },
+  {
+    "id": 305,
+    "char": "書",
+    "radical": "曰",
+    "semester": "二上",
+    "words": [
+      "書本",
+      "看書",
+      "書包"
+    ]
+  },
+  {
+    "id": 306,
+    "char": "煎",
+    "radical": "火",
+    "semester": "二上",
+    "words": [
+      "煎蛋",
+      "煎魚",
+      "煎餅"
+    ]
+  },
+  {
+    "id": 307,
+    "char": "忙",
+    "radical": "心",
+    "semester": "二上",
+    "words": [
+      "忙碌",
+      "忙著",
+      "幫忙"
+    ]
+  },
+  {
+    "id": 308,
+    "char": "往",
+    "radical": "彳",
+    "semester": "二上",
+    "words": [
+      "往前",
+      "往來",
+      "以往"
+    ]
+  },
+  {
+    "id": 309,
+    "char": "鄉",
+    "radical": "邑",
+    "semester": "二上",
+    "words": [
+      "故鄉",
+      "鄉村",
+      "家鄉"
+    ]
+  },
+  {
+    "id": 310,
+    "char": "節",
+    "radical": "竹",
+    "semester": "二上",
+    "words": [
+      "節日",
+      "節慶",
+      "假節"
+    ]
+  },
+  {
+    "id": 311,
+    "char": "老",
+    "radical": "老",
+    "semester": "二上",
+    "words": [
+      "老師",
+      "老人",
+      "年老"
+    ]
+  },
+  {
+    "id": 312,
+    "char": "圓",
+    "radical": "囗",
+    "semester": "二上",
+    "words": [
+      "圓圓",
+      "圓形",
+      "圓滿"
+    ]
+  },
+  {
+    "id": 313,
+    "char": "娶",
+    "radical": "女",
+    "semester": "二上",
+    "words": [
+      "娶妻",
+      "迎娶"
+    ]
+  },
+  {
+    "id": 314,
+    "char": "容",
+    "radical": "宀",
+    "semester": "二上",
+    "words": [
+      "容易",
+      "笑容",
+      "包容"
+    ]
+  },
+  {
+    "id": 315,
+    "char": "南",
+    "radical": "十",
+    "semester": "二上",
+    "words": [
+      "南方",
+      "南邊",
+      "南北"
+    ]
+  },
+  {
+    "id": 316,
+    "char": "排",
+    "radical": "手",
+    "semester": "二上",
+    "words": [
+      "排列",
+      "排隊",
+      "排行"
+    ]
+  },
+  {
+    "id": 317,
+    "char": "師",
+    "radical": "巾",
+    "semester": "二上",
+    "words": [
+      "老師",
+      "醫師",
+      "師父"
+    ]
+  },
+  {
+    "id": 318,
+    "char": "番",
+    "radical": "田",
+    "semester": "二上",
+    "words": [
+      "番茄",
+      "番外",
+      "輪番"
+    ]
+  },
+  {
+    "id": 319,
+    "char": "娘",
+    "radical": "女",
+    "semester": "二上",
+    "words": [
+      "姑娘",
+      "媽媽",
+      "新娘"
+    ]
+  },
+  {
+    "id": 320,
+    "char": "步",
+    "radical": "止",
+    "semester": "二上",
+    "words": [
+      "步驟",
+      "散步",
+      "進步"
+    ]
+  },
+  {
+    "id": 321,
+    "char": "暑",
+    "radical": "日",
+    "semester": "二上",
+    "words": [
+      "暑假",
+      "酷暑",
+      "暑熱"
+    ]
+  },
+  {
+    "id": 322,
+    "char": "遠",
+    "radical": "辵",
+    "semester": "二上",
+    "words": [
+      "遠處",
+      "遠近",
+      "遠方"
+    ]
+  },
+  {
+    "id": 323,
+    "char": "以",
+    "radical": "人",
+    "semester": "二上",
+    "words": [
+      "以前",
+      "可以",
+      "所以"
+    ]
+  },
+  {
+    "id": 324,
+    "char": "吐",
+    "radical": "口",
+    "semester": "二上",
+    "words": [
+      "吐出",
+      "吐氣",
+      "嘔吐"
+    ]
+  },
+  {
+    "id": 325,
+    "char": "黃",
+    "radical": "黃",
+    "semester": "二上",
+    "words": [
+      "黃色",
+      "黃金",
+      "黃昏"
+    ]
+  },
+  {
+    "id": 326,
+    "char": "汗",
+    "radical": "水",
+    "semester": "二上",
+    "words": [
+      "汗水",
+      "流汗",
+      "汗珠"
+    ]
+  },
+  {
+    "id": 327,
+    "char": "假",
+    "radical": "人",
+    "semester": "二上",
+    "words": [
+      "放假",
+      "假日",
+      "假期"
+    ]
+  },
+  {
+    "id": 328,
+    "char": "客",
+    "radical": "宀",
+    "semester": "二上",
+    "words": [
+      "客人",
+      "客氣",
+      "旅客"
+    ]
+  },
+  {
+    "id": 329,
+    "char": "為",
+    "radical": "火",
+    "semester": "二上",
+    "words": [
+      "為什麼",
+      "因為",
+      "為了"
+    ]
+  },
+  {
+    "id": 330,
+    "char": "中",
+    "radical": "丨",
+    "semester": "二上",
+    "words": [
+      "中間",
+      "中心",
+      "中午"
+    ]
+  },
+  {
+    "id": 331,
+    "char": "筆",
+    "radical": "竹",
+    "semester": "二上",
+    "words": [
+      "鉛筆",
+      "毛筆",
+      "筆記"
+    ]
+  },
+  {
+    "id": 332,
+    "char": "腳",
+    "radical": "肉",
+    "semester": "二上",
+    "words": [
+      "腳步",
+      "雙腳",
+      "腳印"
+    ]
+  },
+  {
+    "id": 333,
+    "char": "帶",
+    "radical": "巾",
+    "semester": "二上",
+    "words": [
+      "帶領",
+      "帶來",
+      "帶走"
+    ]
+  },
+  {
+    "id": 334,
+    "char": "買",
+    "radical": "貝",
+    "semester": "二上",
+    "words": [
+      "買東西",
+      "購買",
+      "買賣"
+    ]
+  },
+  {
+    "id": 335,
+    "char": "故",
+    "radical": "攴",
+    "semester": "二上",
+    "words": [
+      "故事",
+      "故意",
+      "故鄉"
+    ]
+  },
+  {
+    "id": 336,
+    "char": "方",
+    "radical": "方",
+    "semester": "二上",
+    "words": [
+      "方向",
+      "方法",
+      "地方"
+    ]
+  },
+  {
+    "id": 337,
+    "char": "打",
+    "radical": "手",
+    "semester": "二上",
+    "words": [
+      "打開",
+      "打球",
+      "打掃"
+    ]
+  },
+  {
+    "id": 338,
+    "char": "協",
+    "radical": "十",
+    "semester": "二上",
+    "words": [
+      "協助",
+      "合協",
+      "協力"
+    ]
+  },
+  {
+    "id": 339,
+    "char": "跨",
+    "radical": "足",
+    "semester": "二上",
+    "words": [
+      "跨越",
+      "跨步",
+      "跨過"
+    ]
+  },
+  {
+    "id": 340,
+    "char": "親",
+    "radical": "見",
+    "semester": "二上",
+    "words": [
+      "親愛",
+      "親人",
+      "親切"
+    ]
+  },
+  {
+    "id": 341,
+    "char": "用",
+    "radical": "用",
+    "semester": "二上",
+    "words": [
+      "用心",
+      "使用",
+      "用法"
+    ]
+  },
+  {
+    "id": 342,
+    "char": "城",
+    "radical": "土",
+    "semester": "二上",
+    "words": [
+      "城市",
+      "城堡",
+      "城牆"
+    ]
+  },
+  {
+    "id": 343,
+    "char": "扮",
+    "radical": "手",
+    "semester": "二上",
+    "words": [
+      "扮演",
+      "裝扮",
+      "打扮"
+    ]
+  },
+  {
+    "id": 344,
+    "char": "聲",
+    "radical": "耳",
+    "semester": "二上",
+    "words": [
+      "聲音",
+      "聲音",
+      "大聲"
+    ]
+  },
+  {
+    "id": 345,
+    "char": "划",
+    "radical": "刀",
+    "semester": "二上",
+    "words": [
+      "划船",
+      "划算",
+      "划動"
+    ]
+  },
+  {
+    "id": 346,
+    "char": "如",
+    "radical": "女",
+    "semester": "二上",
+    "words": [
+      "如果",
+      "如同",
+      "如何"
+    ]
+  },
+  {
+    "id": 347,
+    "char": "力",
+    "radical": "力",
+    "semester": "二上",
+    "words": [
+      "力氣",
+      "努力",
+      "力量"
+    ]
+  },
+  {
+    "id": 348,
+    "char": "堡",
+    "radical": "土",
+    "semester": "二上",
+    "words": [
+      "城堡",
+      "堡壘",
+      "堡疊"
+    ]
+  },
+  {
+    "id": 349,
+    "char": "樣",
+    "radical": "木",
+    "semester": "二上",
+    "words": [
+      "樣子",
+      "各樣",
+      "怎樣"
+    ]
+  },
+  {
+    "id": 350,
+    "char": "河",
+    "radical": "水",
+    "semester": "二上",
+    "words": [
+      "河水",
+      "河邊",
+      "河流"
+    ]
+  },
+  {
+    "id": 351,
+    "char": "原",
+    "radical": "厂",
+    "semester": "二上",
+    "words": [
+      "原來",
+      "原因",
+      "草原"
+    ]
+  },
+  {
+    "id": 352,
+    "char": "意",
+    "radical": "心",
+    "semester": "二上",
+    "words": [
+      "意思",
+      "注意",
+      "滿意"
+    ]
+  },
+  {
+    "id": 353,
+    "char": "只",
+    "radical": "口",
+    "semester": "二上",
+    "words": [
+      "只有",
+      "只是",
+      "只好"
+    ]
+  },
+  {
+    "id": 354,
+    "char": "接",
+    "radical": "手",
+    "semester": "二上",
+    "words": [
+      "接受",
+      "接著",
+      "接近"
+    ]
+  },
+  {
+    "id": 355,
+    "char": "越",
+    "radical": "走",
+    "semester": "二上",
+    "words": [
+      "越來越",
+      "超越",
+      "越過"
+    ]
+  },
+  {
+    "id": 356,
+    "char": "氣",
+    "radical": "气",
+    "semester": "二上",
+    "words": [
+      "天氣",
+      "氣球",
+      "氣象"
+    ]
+  },
+  {
+    "id": 357,
+    "char": "捕",
+    "radical": "手",
+    "semester": "二上",
+    "words": [
+      "捕捉",
+      "捕魚",
+      "捕獲"
+    ]
+  },
+  {
+    "id": 358,
+    "char": "因",
+    "radical": "囗",
+    "semester": "二上",
+    "words": [
+      "因為",
+      "因此",
+      "原因"
+    ]
+  },
+  {
+    "id": 359,
+    "char": "現",
+    "radical": "玉",
+    "semester": "二上",
+    "words": [
+      "現在",
+      "出現",
+      "發現"
+    ]
+  },
+  {
+    "id": 360,
+    "char": "畫",
+    "radical": "田",
+    "semester": "二上",
+    "words": [
+      "畫畫",
+      "圖畫",
+      "畫作"
+    ]
+  },
+  {
+    "id": 361,
+    "char": "美",
+    "radical": "羊",
+    "semester": "二上",
+    "words": [
+      "美麗",
+      "美好",
+      "美術"
+    ]
+  },
+  {
+    "id": 362,
+    "char": "最",
+    "radical": "冂",
+    "semester": "二上",
+    "words": [
+      "最好",
+      "最大",
+      "最後"
+    ]
+  },
+  {
+    "id": 363,
+    "char": "活",
+    "radical": "水",
+    "semester": "二上",
+    "words": [
+      "生活",
+      "活動",
+      "活潑"
+    ]
+  },
+  {
+    "id": 364,
+    "char": "此",
+    "radical": "止",
+    "semester": "二上",
+    "words": [
+      "因此",
+      "彼此",
+      "此刻"
+    ]
+  },
+  {
+    "id": 365,
+    "char": "還",
+    "radical": "辵",
+    "semester": "二上",
+    "words": [
+      "還有",
+      "還是",
+      "還好"
+    ]
+  },
+  {
+    "id": 366,
+    "char": "臉",
+    "radical": "肉",
+    "semester": "二上",
+    "words": [
+      "臉上",
+      "臉色",
+      "笑臉"
+    ]
+  },
+  {
+    "id": 367,
+    "char": "麗",
+    "radical": "鹿",
+    "semester": "二上",
+    "words": [
+      "美麗",
+      "秀麗",
+      "麗日"
+    ]
+  },
+  {
+    "id": 368,
+    "char": "可",
+    "radical": "口",
+    "semester": "二上",
+    "words": [
+      "可以",
+      "可愛",
+      "可是"
+    ]
+  },
+  {
+    "id": 369,
+    "char": "識",
+    "radical": "言",
+    "semester": "二上",
+    "words": [
+      "認識",
+      "知識",
+      "見識"
+    ]
+  },
+  {
+    "id": 370,
+    "char": "色",
+    "radical": "色",
+    "semester": "二上",
+    "words": [
+      "顏色",
+      "色彩",
+      "彩色"
+    ]
+  },
+  {
+    "id": 371,
+    "char": "衣",
+    "radical": "衣",
+    "semester": "二上",
+    "words": [
+      "衣服",
+      "穿衣",
+      "衣裳"
+    ]
+  },
+  {
+    "id": 372,
+    "char": "渴",
+    "radical": "水",
+    "semester": "二上",
+    "words": [
+      "口渴",
+      "渴望",
+      "渴飲"
+    ]
+  },
+  {
+    "id": 373,
+    "char": "象",
+    "radical": "豕",
+    "semester": "二上",
+    "words": [
+      "大象",
+      "象徵",
+      "現象"
+    ]
+  },
+  {
+    "id": 374,
+    "char": "冷",
+    "radical": "冫",
+    "semester": "二上",
+    "words": [
+      "冷天",
+      "冷水",
+      "冰冷"
+    ]
+  },
+  {
+    "id": 375,
+    "char": "急",
+    "radical": "心",
+    "semester": "二上",
+    "words": [
+      "著急",
+      "緊急",
+      "急忙"
+    ]
+  },
+  {
+    "id": 376,
+    "char": "灰",
+    "radical": "火",
+    "semester": "二上",
+    "words": [
+      "灰色",
+      "灰塵",
+      "灰白"
+    ]
+  },
+  {
+    "id": 377,
+    "char": "胖",
+    "radical": "肉",
+    "semester": "二上",
+    "words": [
+      "胖胖",
+      "肥胖",
+      "圓胖"
+    ]
+  },
+  {
+    "id": 378,
+    "char": "烏",
+    "radical": "火",
+    "semester": "二上",
+    "words": [
+      "烏雲",
+      "烏黑",
+      "烏龜"
+    ]
+  },
+  {
+    "id": 379,
+    "char": "操",
+    "radical": "手",
+    "semester": "二上",
+    "words": [
+      "操場",
+      "體操",
+      "操作"
+    ]
+  },
+  {
+    "id": 380,
+    "char": "冬",
+    "radical": "冫",
+    "semester": "二上",
+    "words": [
+      "冬天",
+      "冬季",
+      "寒冬"
+    ]
+  },
+  {
+    "id": 381,
+    "char": "皮",
+    "radical": "皮",
+    "semester": "二上",
+    "words": [
+      "皮膚",
+      "皮球",
+      "牛皮"
+    ]
+  },
+  {
+    "id": 382,
+    "char": "涼",
+    "radical": "水",
+    "semester": "二上",
+    "words": [
+      "涼快",
+      "涼水",
+      "清涼"
+    ]
+  },
+  {
+    "id": 383,
+    "char": "針",
+    "radical": "金",
+    "semester": "二上",
+    "words": [
+      "針線",
+      "打針",
+      "指針"
+    ]
+  },
+  {
+    "id": 384,
+    "char": "喝",
+    "radical": "口",
+    "semester": "二上",
+    "words": [
+      "喝水",
+      "喝茶",
+      "喝湯"
+    ]
+  },
+  {
+    "id": 385,
+    "char": "粗",
+    "radical": "米",
+    "semester": "二上",
+    "words": [
+      "粗細",
+      "粗心",
+      "粗糙"
+    ]
+  },
+  {
+    "id": 386,
+    "char": "煙",
+    "radical": "火",
+    "semester": "二上",
+    "words": [
+      "煙火",
+      "煙霧",
+      "抽煙"
+    ]
+  },
+  {
+    "id": 387,
+    "char": "具",
+    "radical": "八",
+    "semester": "二上",
+    "words": [
+      "工具",
+      "玩具",
+      "道具"
+    ]
+  },
+  {
+    "id": 388,
+    "char": "牠",
+    "radical": "牛",
+    "semester": "二上",
+    "words": [
+      "牠的",
+      "牠們"
+    ]
+  },
+  {
+    "id": 389,
+    "char": "簡",
+    "radical": "竹",
+    "semester": "二上",
+    "words": [
+      "簡單",
+      "簡介",
+      "簡易"
+    ]
+  },
+  {
+    "id": 390,
+    "char": "瓶",
+    "radical": "瓦",
+    "semester": "二上",
+    "words": [
+      "瓶子",
+      "花瓶",
+      "瓶蓋"
+    ]
+  },
+  {
+    "id": 391,
+    "char": "腿",
+    "radical": "肉",
+    "semester": "二上",
+    "words": [
+      "腿部",
+      "雙腿",
+      "大腿"
+    ]
+  },
+  {
+    "id": 392,
+    "char": "火",
+    "radical": "火",
+    "semester": "二上",
+    "words": [
+      "火焰",
+      "火山",
+      "火車"
+    ]
+  },
+  {
+    "id": 393,
+    "char": "飛",
+    "radical": "飛",
+    "semester": "二上",
+    "words": [
+      "飛翔",
+      "飛行",
+      "起飛"
+    ]
+  },
+  {
+    "id": 394,
+    "char": "鼓",
+    "radical": "鼓",
+    "semester": "二上",
+    "words": [
+      "鼓勵",
+      "打鼓",
+      "鼓聲"
+    ]
+  },
+  {
+    "id": 395,
+    "char": "單",
+    "radical": "口",
+    "semester": "二上",
+    "words": [
+      "單純",
+      "簡單",
+      "單獨"
+    ]
+  },
+  {
+    "id": 396,
+    "char": "法",
+    "radical": "水",
+    "semester": "二上",
+    "words": [
+      "方法",
+      "辦法",
+      "無法"
+    ]
+  },
+  {
+    "id": 397,
+    "char": "柱",
+    "radical": "木",
+    "semester": "二上",
+    "words": [
+      "柱子",
+      "支柱",
+      "圓柱"
+    ]
+  },
+  {
+    "id": 398,
+    "char": "雪",
+    "radical": "雨",
+    "semester": "二上",
+    "words": [
+      "下雪",
+      "雪白",
+      "白雪"
+    ]
+  },
+  {
+    "id": 399,
+    "char": "者",
+    "radical": "老",
+    "semester": "二上",
+    "words": [
+      "作者",
+      "讀者",
+      "或者"
+    ]
+  },
+  {
+    "id": 400,
+    "char": "絡",
+    "radical": "糸",
+    "semester": "二上",
+    "words": [
+      "聯絡",
+      "絡繹",
+      "網絡"
+    ]
+  },
+  {
+    "id": 401,
+    "char": "聰",
+    "radical": "耳",
+    "semester": "二上",
+    "words": [
+      "聰明",
+      "聰慧"
+    ]
+  },
+  {
+    "id": 402,
+    "char": "森",
+    "radical": "木",
+    "semester": "二上",
+    "words": [
+      "森林",
+      "森嚴"
+    ]
+  },
+  {
+    "id": 403,
+    "char": "砍",
+    "radical": "石",
+    "semester": "二上",
+    "words": [
+      "砍樹",
+      "砍柴",
+      "砍斷"
+    ]
+  },
+  {
+    "id": 404,
+    "char": "梨",
+    "radical": "木",
+    "semester": "二上",
+    "words": [
+      "梨子",
+      "水梨",
+      "梨花"
+    ]
+  },
+  {
+    "id": 405,
+    "char": "洋",
+    "radical": "水",
+    "semester": "二上",
+    "words": [
+      "海洋",
+      "洋娃娃",
+      "大洋"
+    ]
+  },
+  {
+    "id": 406,
+    "char": "欣",
+    "radical": "欠",
+    "semester": "二上",
+    "words": [
+      "欣喜",
+      "欣賞",
+      "歡欣"
+    ]
+  },
+  {
+    "id": 407,
+    "char": "明",
+    "radical": "日",
+    "semester": "二上",
+    "words": [
+      "明天",
+      "明亮",
+      "說明"
+    ]
+  },
+  {
+    "id": 408,
+    "char": "林",
+    "radical": "木",
+    "semester": "二上",
+    "words": [
+      "樹林",
+      "森林",
+      "林間"
+    ]
+  },
+  {
+    "id": 409,
+    "char": "幾",
+    "radical": "幺",
+    "semester": "二上",
+    "words": [
+      "幾個",
+      "幾乎",
+      "多幾"
+    ]
+  },
+  {
+    "id": 410,
+    "char": "夜",
+    "radical": "夕",
+    "semester": "二上",
+    "words": [
+      "夜晚",
+      "夜空",
+      "深夜"
+    ]
+  },
+  {
+    "id": 411,
+    "char": "寒",
+    "radical": "宀",
+    "semester": "二上",
+    "words": [
+      "寒冷",
+      "寒假",
+      "嚴寒"
+    ]
+  },
+  {
+    "id": 412,
+    "char": "發",
+    "radical": "癶",
+    "semester": "二上",
+    "words": [
+      "發現",
+      "發現",
+      "出發"
+    ]
+  },
+  {
+    "id": 413,
+    "char": "臣",
+    "radical": "臣",
+    "semester": "二上",
+    "words": [
+      "臣子",
+      "大臣",
+      "君臣"
+    ]
+  },
+  {
+    "id": 414,
+    "char": "物",
+    "radical": "牛",
+    "semester": "二上",
+    "words": [
+      "動物",
+      "物品",
+      "食物"
+    ]
+  },
+  {
+    "id": 415,
+    "char": "部",
+    "radical": "邑",
+    "semester": "二上",
+    "words": [
+      "全部",
+      "部分",
+      "部首"
+    ]
+  },
+  {
+    "id": 416,
+    "char": "卻",
+    "radical": "卩",
+    "semester": "二上",
+    "words": [
+      "卻是",
+      "卻又",
+      "可卻"
+    ]
+  },
+  {
+    "id": 417,
+    "char": "北",
+    "radical": "匕",
+    "semester": "二上",
+    "words": [
+      "北方",
+      "北邊",
+      "南北"
+    ]
+  },
+  {
+    "id": 418,
+    "char": "居",
+    "radical": "尸",
+    "semester": "二上",
+    "words": [
+      "居住",
+      "居家",
+      "鄰居"
+    ]
+  },
+  {
+    "id": 419,
+    "char": "敢",
+    "radical": "攴",
+    "semester": "二上",
+    "words": [
+      "勇敢",
+      "敢做",
+      "不敢"
+    ]
+  },
+  {
+    "id": 420,
+    "char": "旅",
+    "radical": "方",
+    "semester": "二上",
+    "words": [
+      "旅行",
+      "旅遊",
+      "旅客"
+    ]
+  },
+  {
+    "id": 421,
+    "char": "搖",
+    "radical": "手",
+    "semester": "二上",
+    "words": [
+      "搖晃",
+      "搖擺",
+      "搖頭"
+    ]
+  },
+  {
+    "id": 422,
+    "char": "臺",
+    "radical": "至",
+    "semester": "二上",
+    "words": [
+      "舞台",
+      "臺上",
+      "臺灣"
+    ]
+  },
+  {
+    "id": 423,
+    "char": "嘴",
+    "radical": "口",
+    "semester": "二上",
+    "words": [
+      "嘴巴",
+      "嘴角",
+      "開嘴"
+    ]
+  },
+  {
+    "id": 424,
+    "char": "冒",
+    "radical": "冂",
+    "semester": "二上",
+    "words": [
+      "冒險",
+      "感冒",
+      "冒出"
+    ]
+  },
+  {
+    "id": 425,
+    "char": "東",
+    "radical": "木",
+    "semester": "二上",
+    "words": [
+      "東方",
+      "東西",
+      "東邊"
+    ]
+  },
+  {
+    "id": 426,
+    "char": "行",
+    "radical": "行",
+    "semester": "二上",
+    "words": [
+      "行走",
+      "行動",
+      "進行"
+    ]
+  },
+  {
+    "id": 427,
+    "char": "沖",
+    "radical": "水",
+    "semester": "二上",
+    "words": [
+      "沖水",
+      "沖涼",
+      "沖刷"
+    ]
+  },
+  {
+    "id": 428,
+    "char": "季",
+    "radical": "子",
+    "semester": "二上",
+    "words": [
+      "季節",
+      "春季",
+      "四季"
+    ]
+  },
+  {
+    "id": 429,
+    "char": "伸",
+    "radical": "人",
+    "semester": "二上",
+    "words": [
+      "伸手",
+      "延伸",
+      "伸展"
+    ]
+  },
+  {
+    "id": 430,
+    "char": "圍",
+    "radical": "囗",
+    "semester": "二上",
+    "words": [
+      "圍繞",
+      "周圍",
+      "圍巾"
+    ]
+  },
+  {
+    "id": 431,
+    "char": "西",
+    "radical": "襾",
+    "semester": "二上",
+    "words": [
+      "東西",
+      "西方",
+      "西邊"
+    ]
+  },
+  {
+    "id": 432,
+    "char": "午",
+    "radical": "十",
+    "semester": "二上",
+    "words": [
+      "中午",
+      "上午",
+      "下午"
+    ]
+  },
+  {
+    "id": 433,
+    "char": "首",
+    "radical": "首",
+    "semester": "二上",
+    "words": [
+      "首先",
+      "首頁",
+      "回首"
+    ]
+  },
+  {
+    "id": 434,
+    "char": "相",
+    "radical": "目",
+    "semester": "二上",
+    "words": [
+      "相同",
+      "互相",
+      "相信"
+    ]
+  },
+  {
+    "id": 435,
+    "char": "飽",
+    "radical": "食",
+    "semester": "二上",
+    "words": [
+      "吃飽",
+      "飽足",
+      "飽滿"
+    ]
+  },
+  {
+    "id": 436,
+    "char": "冰",
+    "radical": "冰",
+    "semester": "二上",
+    "words": [
+      "冰水",
+      "冰淇淋",
+      "冰塊"
+    ]
+  },
+  {
+    "id": 437,
+    "char": "直",
+    "radical": "目",
+    "semester": "二上",
+    "words": [
+      "直接",
+      "直線",
+      "一直"
+    ]
+  },
+  {
+    "id": 438,
+    "char": "裝",
+    "radical": "衣",
+    "semester": "二上",
+    "words": [
+      "裝扮",
+      "衣裝",
+      "打扮"
+    ]
+  },
+  {
+    "id": 439,
+    "char": "牽",
+    "radical": "牛",
+    "semester": "二上",
+    "words": [
+      "牽手",
+      "牽引",
+      "牽掛"
+    ]
+  },
+  {
+    "id": 440,
+    "char": "反",
+    "radical": "又",
+    "semester": "二上",
+    "words": [
+      "反正",
+      "相反",
+      "反面"
+    ]
+  },
+  {
+    "id": 441,
+    "char": "沙",
+    "radical": "水",
+    "semester": "二上",
+    "words": [
+      "沙灘",
+      "沙子",
+      "沙漠"
+    ]
+  },
+  {
+    "id": 442,
+    "char": "咪",
+    "radical": "口",
+    "semester": "二上",
+    "words": [
+      "貓咪",
+      "咪咪"
+    ]
+  },
+  {
+    "id": 443,
+    "char": "棒",
+    "radical": "木",
+    "semester": "二上",
+    "words": [
+      "棒棒",
+      "棒球",
+      "很棒"
+    ]
+  },
+  {
+    "id": 444,
+    "char": "許",
+    "radical": "言",
+    "semester": "二上",
+    "words": [
+      "也許",
+      "許多",
+      "允許"
+    ]
+  },
+  {
+    "id": 445,
+    "char": "沉",
+    "radical": "水",
+    "semester": "二上",
+    "words": [
+      "沉睡",
+      "深沉",
+      "沉下"
+    ]
+  },
+  {
+    "id": 446,
+    "char": "待",
+    "radical": "彳",
+    "semester": "二上",
+    "words": [
+      "等待",
+      "待人",
+      "待著"
+    ]
+  },
+  {
+    "id": 447,
+    "char": "服",
+    "radical": "月",
+    "semester": "二上",
+    "words": [
+      "服裝",
+      "衣服",
+      "服從"
+    ]
+  },
+  {
+    "id": 448,
+    "char": "團",
+    "radical": "囗",
+    "semester": "二上",
+    "words": [
+      "團結",
+      "圓團",
+      "團體"
+    ]
+  },
+  {
+    "id": 449,
+    "char": "街",
+    "radical": "行",
+    "semester": "二上",
+    "words": [
+      "街道",
+      "街上",
+      "大街"
+    ]
+  },
+  {
+    "id": 450,
+    "char": "石",
+    "radical": "石",
+    "semester": "二上",
+    "words": [
+      "石頭",
+      "岩石",
+      "石板"
+    ]
+  },
+  {
+    "id": 451,
+    "char": "少",
+    "radical": "小",
+    "semester": "二上",
+    "words": [
+      "少量",
+      "多少",
+      "少見"
+    ]
+  },
+  {
+    "id": 452,
+    "char": "雖",
+    "radical": "隹",
+    "semester": "二上",
+    "words": [
+      "雖然",
+      "雖是",
+      "雖好"
+    ]
+  },
+  {
+    "id": 453,
+    "char": "站",
+    "radical": "立",
+    "semester": "二上",
+    "words": [
+      "站立",
+      "站好",
+      "車站"
+    ]
+  },
+  {
+    "id": 454,
+    "char": "聚",
+    "radical": "耳",
+    "semester": "二上",
+    "words": [
+      "聚集",
+      "聚會",
+      "團聚"
+    ]
+  },
+  {
+    "id": 455,
+    "char": "滿",
+    "radical": "水",
+    "semester": "二上",
+    "words": [
+      "滿意",
+      "滿足",
+      "充滿"
+    ]
+  },
+  {
+    "id": 456,
+    "char": "難",
+    "radical": "隹",
+    "semester": "二上",
+    "words": [
+      "困難",
+      "難過",
+      "難以"
+    ]
+  },
+  {
+    "id": 457,
+    "char": "沿",
+    "radical": "水",
+    "semester": "二上",
+    "words": [
+      "沿路",
+      "沿著",
+      "沿邊"
+    ]
+  },
+  {
+    "id": 458,
+    "char": "春",
+    "radical": "日",
+    "semester": "二上",
+    "words": [
+      "春天",
+      "春節",
+      "春風"
+    ]
+  },
+  {
+    "id": 459,
+    "char": "翅",
+    "radical": "羽",
+    "semester": "二上",
+    "words": [
+      "翅膀",
+      "翅翼"
+    ]
+  },
+  {
+    "id": 460,
+    "char": "幸",
+    "radical": "干",
+    "semester": "二上",
+    "words": [
+      "幸福",
+      "幸運",
+      "幸好"
+    ]
+  },
+  {
+    "id": 461,
+    "char": "眼",
+    "radical": "目",
+    "semester": "二上",
+    "words": [
+      "眼睛",
+      "眼前",
+      "眼神"
+    ]
+  },
+  {
+    "id": 462,
+    "char": "忘",
+    "radical": "心",
+    "semester": "二上",
+    "words": [
+      "忘記",
+      "忘了",
+      "遺忘"
+    ]
+  },
+  {
+    "id": 463,
+    "char": "然",
+    "radical": "火",
+    "semester": "二上",
+    "words": [
+      "自然",
+      "當然",
+      "雖然"
+    ]
+  },
+  {
+    "id": 464,
+    "char": "貨",
+    "radical": "貝",
+    "semester": "二上",
+    "words": [
+      "貨物",
+      "百貨",
+      "貨品"
+    ]
+  },
+  {
+    "id": 465,
+    "char": "膀",
+    "radical": "肉",
+    "semester": "二上",
+    "words": [
+      "翅膀",
+      "臂膀",
+      "膀胱"
+    ]
+  },
+  {
+    "id": 466,
+    "char": "愉",
+    "radical": "心",
+    "semester": "二上",
+    "words": [
+      "愉快",
+      "愉悅",
+      "歡愉"
+    ]
+  },
+  {
+    "id": 467,
+    "char": "哪",
+    "radical": "口",
+    "semester": "二上",
+    "words": [
+      "哪裡",
+      "哪個",
+      "在哪"
+    ]
+  },
+  {
+    "id": 468,
+    "char": "哈",
+    "radical": "口",
+    "semester": "二上",
+    "words": [
+      "哈哈",
+      "哈囉",
+      "哈欠"
+    ]
+  },
+  {
+    "id": 469,
+    "char": "紀",
+    "radical": "糸",
+    "semester": "二上",
+    "words": [
+      "年紀",
+      "記紀",
+      "日記"
+    ]
+  },
+  {
+    "id": 470,
+    "char": "期",
+    "radical": "月",
+    "semester": "二上",
+    "words": [
+      "假期",
+      "期待",
+      "星期"
+    ]
+  },
+  {
+    "id": 471,
+    "char": "充",
+    "radical": "儿",
+    "semester": "二上",
+    "words": [
+      "充足",
+      "充滿",
+      "充電"
+    ]
+  },
+  {
+    "id": 472,
+    "char": "鍋",
+    "radical": "金",
+    "semester": "二上",
+    "words": [
+      "鍋子",
+      "火鍋",
+      "鍋蓋"
+    ]
+  },
+  {
+    "id": 473,
+    "char": "思",
+    "radical": "心",
+    "semester": "二上",
+    "words": [
+      "思念",
+      "意思",
+      "思考"
+    ]
+  },
+  {
+    "id": 474,
+    "char": "但",
+    "radical": "人",
+    "semester": "二上",
+    "words": [
+      "但是",
+      "雖然但",
+      "但願"
+    ]
+  },
+  {
+    "id": 475,
+    "char": "竟",
+    "radical": "音",
+    "semester": "二上",
+    "words": [
+      "竟然",
+      "竟是",
+      "究竟"
+    ]
+  },
+  {
+    "id": 476,
+    "char": "飯",
+    "radical": "食",
+    "semester": "二上",
+    "words": [
+      "吃飯",
+      "米飯",
+      "飯前"
+    ]
+  },
+  {
+    "id": 477,
+    "char": "念",
+    "radical": "心",
+    "semester": "二上",
+    "words": [
+      "思念",
+      "念書",
+      "念頭"
+    ]
+  },
+  {
+    "id": 478,
+    "char": "妙",
+    "radical": "女",
+    "semester": "二上",
+    "words": [
+      "奇妙",
+      "美妙",
+      "巧妙"
+    ]
+  },
+  {
+    "id": 479,
+    "char": "顏",
+    "radical": "頁",
+    "semester": "二下",
+    "words": [
+      "顏色",
+      "顏料",
+      "五顏六色"
+    ]
+  },
+  {
+    "id": 480,
+    "char": "裳",
+    "radical": "衣",
+    "semester": "二下",
+    "words": [
+      "衣裳",
+      "裙裳"
+    ]
+  },
+  {
+    "id": 481,
+    "char": "座",
+    "radical": "广",
+    "semester": "二下",
+    "words": [
+      "座位",
+      "星座",
+      "山座"
+    ]
+  },
+  {
+    "id": 482,
+    "char": "散",
+    "radical": "攴",
+    "semester": "二下",
+    "words": [
+      "散步",
+      "分散",
+      "散開"
+    ]
+  },
+  {
+    "id": 483,
+    "char": "剛",
+    "radical": "刀",
+    "semester": "二下",
+    "words": [
+      "剛才",
+      "剛好",
+      "剛剛"
+    ]
+  },
+  {
+    "id": 484,
+    "char": "教",
+    "radical": "攴",
+    "semester": "二下",
+    "words": [
+      "教室",
+      "老師教",
+      "教書"
+    ]
+  },
+  {
+    "id": 485,
+    "char": "池",
+    "radical": "水",
+    "semester": "二下",
+    "words": [
+      "池塘",
+      "游泳池",
+      "水池"
+    ]
+  },
+  {
+    "id": 486,
+    "char": "驚",
+    "radical": "馬",
+    "semester": "二下",
+    "words": [
+      "驚喜",
+      "驚嚇",
+      "吃驚"
+    ]
+  },
+  {
+    "id": 487,
+    "char": "對",
+    "radical": "寸",
+    "semester": "二下",
+    "words": [
+      "對了",
+      "對不起",
+      "對面"
+    ]
+  },
+  {
+    "id": 488,
+    "char": "芒",
+    "radical": "艸",
+    "semester": "二下",
+    "words": [
+      "芒果",
+      "光芒",
+      "麥芒"
+    ]
+  },
+  {
+    "id": 489,
+    "char": "品",
+    "radical": "口",
+    "semester": "二下",
+    "words": [
+      "品嚐",
+      "物品",
+      "作品"
+    ]
+  },
+  {
+    "id": 490,
+    "char": "室",
+    "radical": "宀",
+    "semester": "二下",
+    "words": [
+      "教室",
+      "室內",
+      "臥室"
+    ]
+  },
+  {
+    "id": 491,
+    "char": "塘",
+    "radical": "土",
+    "semester": "二下",
+    "words": [
+      "池塘",
+      "荷塘",
+      "塘邊"
+    ]
+  },
+  {
+    "id": 492,
+    "char": "躲",
+    "radical": "身",
+    "semester": "二下",
+    "words": [
+      "躲避",
+      "躲藏",
+      "躲貓貓"
+    ]
+  },
+  {
+    "id": 493,
+    "char": "表",
+    "radical": "衣",
+    "semester": "二下",
+    "words": [
+      "表示",
+      "表情",
+      "手表"
+    ]
+  },
+  {
+    "id": 494,
+    "char": "暗",
+    "radical": "日",
+    "semester": "二下",
+    "words": [
+      "暗暗",
+      "黑暗",
+      "暗示"
+    ]
+  },
+  {
+    "id": 495,
+    "char": "採",
+    "radical": "手",
+    "semester": "二下",
+    "words": [
+      "採花",
+      "採果",
+      "採集"
+    ]
+  },
+  {
+    "id": 496,
+    "char": "及",
+    "radical": "又",
+    "semester": "二下",
+    "words": [
+      "及時",
+      "以及",
+      "來不及"
+    ]
+  },
+  {
+    "id": 497,
+    "char": "藍",
+    "radical": "艸",
+    "semester": "二下",
+    "words": [
+      "藍色",
+      "藍天",
+      "藍藍"
+    ]
+  },
+  {
+    "id": 498,
+    "char": "房",
+    "radical": "戶",
+    "semester": "二下",
+    "words": [
+      "房子",
+      "房間",
+      "廚房"
+    ]
+  },
+  {
+    "id": 499,
+    "char": "各",
+    "radical": "口",
+    "semester": "二下",
+    "words": [
+      "各自",
+      "各種",
+      "各地"
+    ]
+  },
+  {
+    "id": 500,
+    "char": "照",
+    "radical": "火",
+    "semester": "二下",
+    "words": [
+      "照片",
+      "照顧",
+      "按照"
+    ]
+  },
+  {
+    "id": 501,
+    "char": "蕉",
+    "radical": "艸",
+    "semester": "二下",
+    "words": [
+      "香蕉",
+      "芭蕉"
+    ]
+  },
+  {
+    "id": 502,
+    "char": "終",
+    "radical": "糸",
+    "semester": "二下",
+    "words": [
+      "終於",
+      "最終",
+      "始終"
+    ]
+  },
+  {
+    "id": 503,
+    "char": "田",
+    "radical": "田",
+    "semester": "二下",
+    "words": [
+      "田地",
+      "稻田",
+      "水田"
+    ]
+  },
+  {
+    "id": 504,
+    "char": "間",
+    "radical": "門",
+    "semester": "二下",
+    "words": [
+      "中間",
+      "房間",
+      "時間"
+    ]
+  },
+  {
+    "id": 505,
+    "char": "突",
+    "radical": "穴",
+    "semester": "二下",
+    "words": [
+      "突然",
+      "突破",
+      "衝突"
+    ]
+  },
+  {
+    "id": 506,
+    "char": "掛",
+    "radical": "手",
+    "semester": "二下",
+    "words": [
+      "掛上",
+      "掛著",
+      "掛號"
+    ]
+  },
+  {
+    "id": 507,
+    "char": "軍",
+    "radical": "車",
+    "semester": "二下",
+    "words": [
+      "軍人",
+      "三軍",
+      "軍隊"
+    ]
+  },
+  {
+    "id": 508,
+    "char": "立",
+    "radical": "立",
+    "semester": "二下",
+    "words": [
+      "立刻",
+      "站立",
+      "立正"
+    ]
+  },
+  {
+    "id": 509,
+    "char": "洞",
+    "radical": "水",
+    "semester": "二下",
+    "words": [
+      "洞口",
+      "山洞",
+      "洞穴"
+    ]
+  },
+  {
+    "id": 510,
+    "char": "討",
+    "radical": "言",
+    "semester": "二下",
+    "words": [
+      "討論",
+      "討好",
+      "討厭"
+    ]
+  },
+  {
+    "id": 511,
+    "char": "強",
+    "radical": "弓",
+    "semester": "二下",
+    "words": [
+      "強壯",
+      "勉強",
+      "強大"
+    ]
+  },
+  {
+    "id": 512,
+    "char": "角",
+    "radical": "角",
+    "semester": "二下",
+    "words": [
+      "角色",
+      "轉角",
+      "角落"
+    ]
+  },
+  {
+    "id": 513,
+    "char": "告",
+    "radical": "口",
+    "semester": "二下",
+    "words": [
+      "告訴",
+      "報告",
+      "告別"
+    ]
+  },
+  {
+    "id": 514,
+    "char": "刻",
+    "radical": "刀",
+    "semester": "二下",
+    "words": [
+      "立刻",
+      "深刻",
+      "刻苦"
+    ]
+  },
+  {
+    "id": 515,
+    "char": "綠",
+    "radical": "糸",
+    "semester": "二下",
+    "words": [
+      "綠色",
+      "綠草",
+      "翠綠"
+    ]
+  },
+  {
+    "id": 516,
+    "char": "論",
+    "radical": "言",
+    "semester": "二下",
+    "words": [
+      "討論",
+      "結論",
+      "論文"
+    ]
+  },
+  {
+    "id": 517,
+    "char": "被",
+    "radical": "衣",
+    "semester": "二下",
+    "words": [
+      "被子",
+      "被動",
+      "被窩"
+    ]
+  },
+  {
+    "id": 518,
+    "char": "揚",
+    "radical": "手",
+    "semester": "二下",
+    "words": [
+      "飛揚",
+      "表揚",
+      "揚起"
+    ]
+  },
+  {
+    "id": 519,
+    "char": "訴",
+    "radical": "言",
+    "semester": "二下",
+    "words": [
+      "告訴",
+      "訴說",
+      "傾訴"
+    ]
+  },
+  {
+    "id": 520,
+    "char": "抱",
+    "radical": "手",
+    "semester": "二下",
+    "words": [
+      "抱抱",
+      "擁抱",
+      "懷抱"
+    ]
+  },
+  {
+    "id": 521,
+    "char": "蜜",
+    "radical": "虫",
+    "semester": "二下",
+    "words": [
+      "蜂蜜",
+      "甜蜜",
+      "蜜糖"
+    ]
+  },
+  {
+    "id": 522,
+    "char": "指",
+    "radical": "手",
+    "semester": "二下",
+    "words": [
+      "手指",
+      "指著",
+      "指示"
+    ]
+  },
+  {
+    "id": 523,
+    "char": "綻",
+    "radical": "糸",
+    "semester": "二下",
+    "words": [
+      "綻放",
+      "開綻"
+    ]
+  },
+  {
+    "id": 524,
+    "char": "星",
+    "radical": "日",
+    "semester": "二下",
+    "words": [
+      "星星",
+      "明星",
+      "星光"
+    ]
+  },
+  {
+    "id": 525,
+    "char": "辛",
+    "radical": "辛",
+    "semester": "二下",
+    "words": [
+      "辛苦",
+      "辛辣",
+      "辛勤"
+    ]
+  },
+  {
+    "id": 526,
+    "char": "並",
+    "radical": "一",
+    "semester": "二下",
+    "words": [
+      "並且",
+      "並排",
+      "不並"
+    ]
+  },
+  {
+    "id": 527,
+    "char": "蜂",
+    "radical": "虫",
+    "semester": "二下",
+    "words": [
+      "蜜蜂",
+      "蜂蜜",
+      "蜂巢"
+    ]
+  },
+  {
+    "id": 528,
+    "char": "裙",
+    "radical": "衣",
+    "semester": "二下",
+    "words": [
+      "裙子",
+      "裙擺",
+      "穿裙"
+    ]
+  },
+  {
+    "id": 529,
+    "char": "特",
+    "radical": "牛",
+    "semester": "二下",
+    "words": [
+      "特別",
+      "特色",
+      "特殊"
+    ]
+  },
+  {
+    "id": 530,
+    "char": "閃",
+    "radical": "門",
+    "semester": "二下",
+    "words": [
+      "閃光",
+      "閃亮",
+      "閃電"
+    ]
+  },
+  {
+    "id": 531,
+    "char": "苦",
+    "radical": "艸",
+    "semester": "二下",
+    "words": [
+      "辛苦",
+      "苦苦",
+      "吃苦"
+    ]
+  },
+  {
+    "id": 532,
+    "char": "猜",
+    "radical": "犬",
+    "semester": "二下",
+    "words": [
+      "猜猜",
+      "猜謎",
+      "猜測"
+    ]
+  },
+  {
+    "id": 533,
+    "char": "窩",
+    "radical": "穴",
+    "semester": "二下",
+    "words": [
+      "鳥窩",
+      "窩裡",
+      "暖窩"
+    ]
+  },
+  {
+    "id": 534,
+    "char": "而",
+    "radical": "而",
+    "semester": "二下",
+    "words": [
+      "而且",
+      "然而",
+      "從而"
+    ]
+  },
+  {
+    "id": 535,
+    "char": "舌",
+    "radical": "舌",
+    "semester": "二下",
+    "words": [
+      "舌頭",
+      "舌尖",
+      "口舌"
+    ]
+  },
+  {
+    "id": 536,
+    "char": "晶",
+    "radical": "日",
+    "semester": "二下",
+    "words": [
+      "水晶",
+      "晶亮",
+      "結晶"
+    ]
+  },
+  {
+    "id": 537,
+    "char": "流",
+    "radical": "水",
+    "semester": "二下",
+    "words": [
+      "流水",
+      "流動",
+      "河流"
+    ]
+  },
+  {
+    "id": 538,
+    "char": "文",
+    "radical": "文",
+    "semester": "二下",
+    "words": [
+      "文字",
+      "文章",
+      "語文"
+    ]
+  },
+  {
+    "id": 539,
+    "char": "粉",
+    "radical": "米",
+    "semester": "二下",
+    "words": [
+      "粉紅",
+      "粉筆",
+      "花粉"
+    ]
+  },
+  {
+    "id": 540,
+    "char": "且",
+    "radical": "一",
+    "semester": "二下",
+    "words": [
+      "而且",
+      "況且",
+      "並且"
+    ]
+  },
+  {
+    "id": 541,
+    "char": "賞",
+    "radical": "貝",
+    "semester": "二下",
+    "words": [
+      "欣賞",
+      "獎賞",
+      "觀賞"
+    ]
+  },
+  {
+    "id": 542,
+    "char": "當",
+    "radical": "田",
+    "semester": "二下",
+    "words": [
+      "當然",
+      "當時",
+      "當心"
+    ]
+  },
+  {
+    "id": 543,
+    "char": "堅",
+    "radical": "土",
+    "semester": "二下",
+    "words": [
+      "堅強",
+      "堅持",
+      "堅固"
+    ]
+  },
+  {
+    "id": 544,
+    "char": "借",
+    "radical": "人",
+    "semester": "二下",
+    "words": [
+      "借書",
+      "借助",
+      "出借"
+    ]
+  },
+  {
+    "id": 545,
+    "char": "桃",
+    "radical": "木",
+    "semester": "二下",
+    "words": [
+      "桃子",
+      "桃花",
+      "桃紅"
+    ]
+  },
+  {
+    "id": 546,
+    "char": "紫",
+    "radical": "糸",
+    "semester": "二下",
+    "words": [
+      "紫色",
+      "紫羅蘭",
+      "深紫"
+    ]
+  },
+  {
+    "id": 547,
+    "char": "果",
+    "radical": "木",
+    "semester": "二下",
+    "words": [
+      "水果",
+      "果實",
+      "結果"
+    ]
+  },
+  {
+    "id": 548,
+    "char": "睡",
+    "radical": "目",
+    "semester": "二下",
+    "words": [
+      "睡覺",
+      "睡著",
+      "睡眠"
+    ]
+  },
+  {
+    "id": 549,
+    "char": "固",
+    "radical": "囗",
+    "semester": "二下",
+    "words": [
+      "固定",
+      "堅固",
+      "固執"
+    ]
+  },
+  {
+    "id": 550,
+    "char": "枝",
+    "radical": "木",
+    "semester": "二下",
+    "words": [
+      "樹枝",
+      "枝葉",
+      "小枝"
+    ]
+  },
+  {
+    "id": 551,
+    "char": "興",
+    "radical": "臼",
+    "semester": "二下",
+    "words": [
+      "高興",
+      "興趣",
+      "興奮"
+    ]
+  },
+  {
+    "id": 552,
+    "char": "將",
+    "radical": "寸",
+    "semester": "二下",
+    "words": [
+      "將來",
+      "將要",
+      "大將"
+    ]
+  },
+  {
+    "id": 553,
+    "char": "定",
+    "radical": "宀",
+    "semester": "二下",
+    "words": [
+      "一定",
+      "確定",
+      "定好"
+    ]
+  },
+  {
+    "id": 554,
+    "char": "悄",
+    "radical": "心",
+    "semester": "二下",
+    "words": [
+      "悄悄",
+      "輕悄",
+      "靜悄悄"
+    ]
+  },
+  {
+    "id": 555,
+    "char": "安",
+    "radical": "宀",
+    "semester": "二下",
+    "words": [
+      "安全",
+      "平安",
+      "安心"
+    ]
+  },
+  {
+    "id": 556,
+    "char": "鉛",
+    "radical": "金",
+    "semester": "二下",
+    "words": [
+      "鉛筆",
+      "鉛字"
+    ]
+  },
+  {
+    "id": 557,
+    "char": "處",
+    "radical": "虍",
+    "semester": "二下",
+    "words": [
+      "到處",
+      "處理",
+      "四處"
+    ]
+  },
+  {
+    "id": 558,
+    "char": "工",
+    "radical": "工",
+    "semester": "二下",
+    "words": [
+      "工作",
+      "工具",
+      "工人"
+    ]
+  },
+  {
+    "id": 559,
+    "char": "互",
+    "radical": "二",
+    "semester": "二下",
+    "words": [
+      "互相",
+      "相互",
+      "互動"
+    ]
+  },
+  {
+    "id": 560,
+    "char": "常",
+    "radical": "巾",
+    "semester": "二下",
+    "words": [
+      "常常",
+      "非常",
+      "日常"
+    ]
+  },
+  {
+    "id": 561,
+    "char": "寶",
+    "radical": "宀",
+    "semester": "二下",
+    "words": [
+      "寶貝",
+      "寶藏",
+      "珍寶"
+    ]
+  },
+  {
+    "id": 562,
+    "char": "校",
+    "radical": "木",
+    "semester": "二下",
+    "words": [
+      "學校",
+      "校長",
+      "校園"
+    ]
+  },
+  {
+    "id": 563,
+    "char": "景",
+    "radical": "日",
+    "semester": "二下",
+    "words": [
+      "風景",
+      "景色",
+      "美景"
+    ]
+  },
+  {
+    "id": 564,
+    "char": "合",
+    "radical": "口",
+    "semester": "二下",
+    "words": [
+      "合作",
+      "合唱",
+      "配合"
+    ]
+  },
+  {
+    "id": 565,
+    "char": "換",
+    "radical": "手",
+    "semester": "二下",
+    "words": [
+      "換衣",
+      "交換",
+      "換新"
+    ]
+  },
+  {
+    "id": 566,
+    "char": "旁",
+    "radical": "方",
+    "semester": "二下",
+    "words": [
+      "旁邊",
+      "左旁",
+      "路旁"
+    ]
+  },
+  {
+    "id": 567,
+    "char": "貝",
+    "radical": "貝",
+    "semester": "二下",
+    "words": [
+      "貝殼",
+      "寶貝",
+      "貝類"
+    ]
+  },
+  {
+    "id": 568,
+    "char": "車",
+    "radical": "車",
+    "semester": "二下",
+    "words": [
+      "車子",
+      "汽車",
+      "腳踏車"
+    ]
+  },
+  {
+    "id": 569,
+    "char": "鼠",
+    "radical": "鼠",
+    "semester": "二下",
+    "words": [
+      "老鼠",
+      "鼠標",
+      "小鼠"
+    ]
+  },
+  {
+    "id": 570,
+    "char": "貼",
+    "radical": "貝",
+    "semester": "二下",
+    "words": [
+      "貼紙",
+      "貼上",
+      "黏貼"
+    ]
+  },
+  {
+    "id": 571,
+    "char": "共",
+    "radical": "八",
+    "semester": "二下",
+    "words": [
+      "共同",
+      "一共",
+      "公共"
+    ]
+  },
+  {
+    "id": 572,
+    "char": "臂",
+    "radical": "肉",
+    "semester": "二下",
+    "words": [
+      "手臂",
+      "臂膀",
+      "臂力"
+    ]
+  },
+  {
+    "id": 573,
+    "char": "幅",
+    "radical": "巾",
+    "semester": "二下",
+    "words": [
+      "一幅",
+      "幅度",
+      "幅員"
+    ]
+  },
+  {
+    "id": 574,
+    "char": "哥",
+    "radical": "口",
+    "semester": "二下",
+    "words": [
+      "哥哥",
+      "大哥",
+      "兄哥"
+    ]
+  },
+  {
+    "id": 575,
+    "char": "燕",
+    "radical": "火",
+    "semester": "二下",
+    "words": [
+      "燕子",
+      "燕窩",
+      "飛燕"
+    ]
+  },
+  {
+    "id": 576,
+    "char": "漸",
+    "radical": "水",
+    "semester": "二下",
+    "words": [
+      "漸漸",
+      "逐漸",
+      "漸變"
+    ]
+  },
+  {
+    "id": 577,
+    "char": "永",
+    "radical": "水",
+    "semester": "二下",
+    "words": [
+      "永遠",
+      "永久",
+      "永恆"
+    ]
+  },
+  {
+    "id": 578,
+    "char": "管",
+    "radical": "竹",
+    "semester": "二下",
+    "words": [
+      "管理",
+      "鉛管",
+      "不管"
+    ]
+  },
+  {
+    "id": 579,
+    "char": "牛",
+    "radical": "牛",
+    "semester": "二下",
+    "words": [
+      "牛奶",
+      "小牛",
+      "牛肉"
+    ]
+  },
+  {
+    "id": 580,
+    "char": "候",
+    "radical": "人",
+    "semester": "二下",
+    "words": [
+      "時候",
+      "等候",
+      "問候"
+    ]
+  },
+  {
+    "id": 581,
+    "char": "壞",
+    "radical": "土",
+    "semester": "二下",
+    "words": [
+      "壞掉",
+      "壞人",
+      "好壞"
+    ]
+  },
+  {
+    "id": 582,
+    "char": "窗",
+    "radical": "穴",
+    "semester": "二下",
+    "words": [
+      "窗戶",
+      "窗口",
+      "窗簾"
+    ]
+  },
+  {
+    "id": 583,
+    "char": "機",
+    "radical": "木",
+    "semester": "二下",
+    "words": [
+      "機器",
+      "飛機",
+      "機會"
+    ]
+  },
+  {
+    "id": 584,
+    "char": "騎",
+    "radical": "馬",
+    "semester": "二下",
+    "words": [
+      "騎馬",
+      "騎車",
+      "騎腳踏車"
+    ]
+  },
+  {
+    "id": 585,
+    "char": "剪",
+    "radical": "刀",
+    "semester": "二下",
+    "words": [
+      "剪刀",
+      "剪紙",
+      "剪短"
+    ]
+  },
+  {
+    "id": 586,
+    "char": "融",
+    "radical": "虫",
+    "semester": "二下",
+    "words": [
+      "融化",
+      "融合",
+      "融洽"
+    ]
+  },
+  {
+    "id": 587,
+    "char": "避",
+    "radical": "辵",
+    "semester": "二下",
+    "words": [
+      "躲避",
+      "避開",
+      "逃避"
+    ]
+  },
+  {
+    "id": 588,
+    "char": "蓋",
+    "radical": "艸",
+    "semester": "二下",
+    "words": [
+      "蓋子",
+      "蓋上",
+      "蓋房子"
+    ]
+  },
+  {
+    "id": 589,
+    "char": "踏",
+    "radical": "足",
+    "semester": "二下",
+    "words": [
+      "踏步",
+      "踩踏",
+      "踏實"
+    ]
+  },
+  {
+    "id": 590,
+    "char": "慶",
+    "radical": "心",
+    "semester": "二下",
+    "words": [
+      "慶祝",
+      "慶典",
+      "慶賀"
+    ]
+  },
+  {
+    "id": 591,
+    "char": "久",
+    "radical": "丿",
+    "semester": "二下",
+    "words": [
+      "很久",
+      "久久",
+      "長久"
+    ]
+  },
+  {
+    "id": 592,
+    "char": "狗",
+    "radical": "犬",
+    "semester": "二下",
+    "words": [
+      "小狗",
+      "狗狗",
+      "看門狗"
+    ]
+  },
+  {
+    "id": 593,
+    "char": "良",
+    "radical": "艮",
+    "semester": "二下",
+    "words": [
+      "良好",
+      "良心",
+      "善良"
+    ]
+  },
+  {
+    "id": 594,
+    "char": "熊",
+    "radical": "火",
+    "semester": "二下",
+    "words": [
+      "熊貓",
+      "小熊",
+      "熊熊"
+    ]
+  },
+  {
+    "id": 595,
+    "char": "圖",
+    "radical": "囗",
+    "semester": "二下",
+    "words": [
+      "圖畫",
+      "地圖",
+      "圖書館"
+    ]
+  },
+  {
+    "id": 596,
+    "char": "巨",
+    "radical": "工",
+    "semester": "二下",
+    "words": [
+      "巨大",
+      "巨人",
+      "巨龍"
+    ]
+  },
+  {
+    "id": 597,
+    "char": "條",
+    "radical": "木",
+    "semester": "二下",
+    "words": [
+      "條紋",
+      "一條",
+      "條件"
+    ]
+  },
+  {
+    "id": 598,
+    "char": "雞",
+    "radical": "隹",
+    "semester": "二下",
+    "words": [
+      "雞蛋",
+      "小雞",
+      "雞肉"
+    ]
+  },
+  {
+    "id": 599,
+    "char": "孩",
+    "radical": "子",
+    "semester": "二下",
+    "words": [
+      "孩子",
+      "小孩",
+      "孩童"
+    ]
+  },
+  {
+    "id": 600,
+    "char": "朝",
+    "radical": "月",
+    "semester": "二下",
+    "words": [
+      "朝著",
+      "早朝",
+      "朝前"
+    ]
+  },
+  {
+    "id": 601,
+    "char": "館",
+    "radical": "食",
+    "semester": "二下",
+    "words": [
+      "圖書館",
+      "博物館",
+      "館長"
+    ]
+  },
+  {
+    "id": 602,
+    "char": "累",
+    "radical": "糸",
+    "semester": "二下",
+    "words": [
+      "累了",
+      "疲累",
+      "勞累"
+    ]
+  },
+  {
+    "id": 603,
+    "char": "祕",
+    "radical": "示",
+    "semester": "二下",
+    "words": [
+      "祕密",
+      "神祕",
+      "祕訣"
+    ]
+  },
+  {
+    "id": 604,
+    "char": "經",
+    "radical": "糸",
+    "semester": "二下",
+    "words": [
+      "經過",
+      "已經",
+      "經驗"
+    ]
+  },
+  {
+    "id": 605,
+    "char": "錢",
+    "radical": "金",
+    "semester": "二下",
+    "words": [
+      "錢幣",
+      "花錢",
+      "零用錢"
+    ]
+  },
+  {
+    "id": 606,
+    "char": "踮",
+    "radical": "足",
+    "semester": "二下",
+    "words": [
+      "踮腳",
+      "踮起"
+    ]
+  },
+  {
+    "id": 607,
+    "char": "參",
+    "radical": "ㄙ",
+    "semester": "二下",
+    "words": [
+      "參加",
+      "參考",
+      "參觀"
+    ]
+  },
+  {
+    "id": 608,
+    "char": "髮",
+    "radical": "髟",
+    "semester": "二下",
+    "words": [
+      "頭髮",
+      "髮型",
+      "黑髮"
+    ]
+  },
+  {
+    "id": 609,
+    "char": "兔",
+    "radical": "儿",
+    "semester": "二下",
+    "words": [
+      "兔子",
+      "小兔",
+      "白兔"
+    ]
+  },
+  {
+    "id": 610,
+    "char": "怪",
+    "radical": "心",
+    "semester": "二下",
+    "words": [
+      "奇怪",
+      "怪物",
+      "怪異"
+    ]
+  },
+  {
+    "id": 611,
+    "char": "醒",
+    "radical": "酉",
+    "semester": "二下",
+    "words": [
+      "醒來",
+      "清醒",
+      "叫醒"
+    ]
+  },
+  {
+    "id": 612,
+    "char": "尖",
+    "radical": "小",
+    "semester": "二下",
+    "words": [
+      "尖尖",
+      "尖叫",
+      "山尖"
+    ]
+  },
+  {
+    "id": 613,
+    "char": "題",
+    "radical": "頁",
+    "semester": "二下",
+    "words": [
+      "問題",
+      "題目",
+      "出題"
+    ]
+  },
+  {
+    "id": 614,
+    "char": "根",
+    "radical": "木",
+    "semester": "二下",
+    "words": [
+      "根本",
+      "樹根",
+      "根據"
+    ]
+  },
+  {
+    "id": 615,
+    "char": "其",
+    "radical": "八",
+    "semester": "二下",
+    "words": [
+      "其他",
+      "其中",
+      "尤其"
+    ]
+  },
+  {
+    "id": 616,
+    "char": "羊",
+    "radical": "羊",
+    "semester": "二下",
+    "words": [
+      "小羊",
+      "羊毛",
+      "山羊"
+    ]
+  },
+  {
+    "id": 617,
+    "char": "尾",
+    "radical": "尸",
+    "semester": "二下",
+    "words": [
+      "尾巴",
+      "結尾",
+      "尾端"
+    ]
+  },
+  {
+    "id": 618,
+    "char": "木",
+    "radical": "木",
+    "semester": "二下",
+    "words": [
+      "木頭",
+      "木材",
+      "樹木"
+    ]
+  },
+  {
+    "id": 619,
+    "char": "士",
+    "radical": "士",
+    "semester": "二下",
+    "words": [
+      "士兵",
+      "人士",
+      "戰士"
+    ]
+  },
+  {
+    "id": 620,
+    "char": "牆",
+    "radical": "爿",
+    "semester": "二下",
+    "words": [
+      "牆壁",
+      "高牆",
+      "圍牆"
+    ]
+  },
+  {
+    "id": 621,
+    "char": "猴",
+    "radical": "犬",
+    "semester": "二下",
+    "words": [
+      "猴子",
+      "猴群",
+      "小猴"
+    ]
+  },
+  {
+    "id": 622,
+    "char": "鴨",
+    "radical": "鳥",
+    "semester": "二下",
+    "words": [
+      "鴨子",
+      "小鴨",
+      "鴨蛋"
+    ]
+  },
+  {
+    "id": 623,
+    "char": "巴",
+    "radical": "己",
+    "semester": "二下",
+    "words": [
+      "巴士",
+      "尾巴",
+      "嘴巴"
+    ]
+  },
+  {
+    "id": 624,
+    "char": "架",
+    "radical": "木",
+    "semester": "二下",
+    "words": [
+      "架子",
+      "書架",
+      "搭架"
+    ]
+  },
+  {
+    "id": 625,
+    "char": "講",
+    "radical": "言",
+    "semester": "二下",
+    "words": [
+      "講話",
+      "講故事",
+      "演講"
+    ]
+  },
+  {
+    "id": 626,
+    "char": "狂",
+    "radical": "犬",
+    "semester": "二下",
+    "words": [
+      "狂風",
+      "瘋狂",
+      "狂叫"
+    ]
+  },
+  {
+    "id": 627,
+    "char": "病",
+    "radical": "疒",
+    "semester": "二下",
+    "words": [
+      "生病",
+      "病人",
+      "病好"
+    ]
+  },
+  {
+    "id": 628,
+    "char": "信",
+    "radical": "人",
+    "semester": "二下",
+    "words": [
+      "相信",
+      "信心",
+      "寫信"
+    ]
+  },
+  {
+    "id": 629,
+    "char": "村",
+    "radical": "木",
+    "semester": "二下",
+    "words": [
+      "村子",
+      "農村",
+      "村莊"
+    ]
+  },
+  {
+    "id": 630,
+    "char": "些",
+    "radical": "二",
+    "semester": "二下",
+    "words": [
+      "一些",
+      "這些",
+      "那些"
+    ]
+  },
+  {
+    "id": 631,
+    "char": "甲",
+    "radical": "田",
+    "semester": "二下",
+    "words": [
+      "甲蟲",
+      "指甲",
+      "甲第"
+    ]
+  },
+  {
+    "id": 632,
+    "char": "呼",
+    "radical": "口",
+    "semester": "二下",
+    "words": [
+      "呼喚",
+      "呼吸",
+      "歡呼"
+    ]
+  },
+  {
+    "id": 633,
+    "char": "探",
+    "radical": "手",
+    "semester": "二下",
+    "words": [
+      "探索",
+      "探望",
+      "探險"
+    ]
+  },
+  {
+    "id": 634,
+    "char": "錯",
+    "radical": "金",
+    "semester": "二下",
+    "words": [
+      "錯誤",
+      "對錯",
+      "不錯"
+    ]
+  },
+  {
+    "id": 635,
+    "char": "貪",
+    "radical": "貝",
+    "semester": "二下",
+    "words": [
+      "貪心",
+      "貪玩",
+      "貪吃"
+    ]
+  },
+  {
+    "id": 636,
+    "char": "足",
+    "radical": "足",
+    "semester": "二下",
+    "words": [
+      "足夠",
+      "手足",
+      "滿足"
+    ]
+  },
+  {
+    "id": 637,
+    "char": "形",
+    "radical": "彡",
+    "semester": "二下",
+    "words": [
+      "形狀",
+      "圖形",
+      "形容"
+    ]
+  },
+  {
+    "id": 638,
+    "char": "差",
+    "radical": "工",
+    "semester": "二下",
+    "words": [
+      "差不多",
+      "差別",
+      "出差"
+    ]
+  },
+  {
+    "id": 639,
+    "char": "體",
+    "radical": "骨",
+    "semester": "二下",
+    "words": [
+      "身體",
+      "體育",
+      "體力"
+    ]
+  },
+  {
+    "id": 640,
+    "char": "睛",
+    "radical": "目",
+    "semester": "二下",
+    "words": [
+      "眼睛",
+      "目不轉睛"
+    ]
+  },
+  {
+    "id": 641,
+    "char": "皇",
+    "radical": "白",
+    "semester": "二下",
+    "words": [
+      "皇帝",
+      "皇后",
+      "天皇"
+    ]
+  },
+  {
+    "id": 642,
+    "char": "蹈",
+    "radical": "足",
+    "semester": "二下",
+    "words": [
+      "舞蹈",
+      "跳舞蹈"
+    ]
+  },
+  {
+    "id": 643,
+    "char": "志",
+    "radical": "心",
+    "semester": "二下",
+    "words": [
+      "志氣",
+      "意志",
+      "有志"
+    ]
+  },
+  {
+    "id": 644,
+    "char": "睜",
+    "radical": "目",
+    "semester": "二下",
+    "words": [
+      "睜開",
+      "睜眼",
+      "張睜"
+    ]
+  },
+  {
+    "id": 645,
+    "char": "惜",
+    "radical": "心",
+    "semester": "二下",
+    "words": [
+      "珍惜",
+      "可惜",
+      "愛惜"
+    ]
+  },
+  {
+    "id": 646,
+    "char": "仔",
+    "radical": "人",
+    "semester": "二下",
+    "words": [
+      "仔細",
+      "牛仔",
+      "仔肩"
+    ]
+  },
+  {
+    "id": 647,
+    "char": "帝",
+    "radical": "巾",
+    "semester": "二下",
+    "words": [
+      "皇帝",
+      "帝王",
+      "帝國"
+    ]
+  },
+  {
+    "id": 648,
+    "char": "轉",
+    "radical": "車",
+    "semester": "二下",
+    "words": [
+      "轉動",
+      "轉身",
+      "旋轉"
+    ]
+  },
+  {
+    "id": 649,
+    "char": "約",
+    "radical": "糸",
+    "semester": "二下",
+    "words": [
+      "約好",
+      "大約",
+      "約定"
+    ]
+  },
+  {
+    "id": 650,
+    "char": "緊",
+    "radical": "糸",
+    "semester": "二下",
+    "words": [
+      "緊張",
+      "緊緊",
+      "緊急"
+    ]
+  },
+  {
+    "id": 651,
+    "char": "無",
+    "radical": "火",
+    "semester": "二下",
+    "words": [
+      "無法",
+      "無聊",
+      "無數"
+    ]
+  },
+  {
+    "id": 652,
+    "char": "細",
+    "radical": "糸",
+    "semester": "二下",
+    "words": [
+      "細心",
+      "細緻",
+      "仔細"
+    ]
+  },
+  {
+    "id": 653,
+    "char": "派",
+    "radical": "水",
+    "semester": "二下",
+    "words": [
+      "派遣",
+      "學派",
+      "派對"
+    ]
+  },
+  {
+    "id": 654,
+    "char": "趕",
+    "radical": "走",
+    "semester": "二下",
+    "words": [
+      "趕快",
+      "追趕",
+      "趕上"
+    ]
+  },
+  {
+    "id": 655,
+    "char": "數",
+    "radical": "攴",
+    "semester": "二下",
+    "words": [
+      "數學",
+      "數字",
+      "無數"
+    ]
+  },
+  {
+    "id": 656,
+    "char": "餓",
+    "radical": "食",
+    "semester": "二下",
+    "words": [
+      "肚子餓",
+      "飢餓",
+      "好餓"
+    ]
+  },
+  {
+    "id": 657,
+    "char": "辦",
+    "radical": "辛",
+    "semester": "二下",
+    "words": [
+      "辦法",
+      "辦到",
+      "舉辦"
+    ]
+  },
+  {
+    "id": 658,
+    "char": "能",
+    "radical": "肉",
+    "semester": "二下",
+    "words": [
+      "能力",
+      "能夠",
+      "可能"
+    ]
+  },
+  {
+    "id": 659,
+    "char": "抓",
+    "radical": "手",
+    "semester": "二下",
+    "words": [
+      "抓住",
+      "抓取",
+      "抓緊"
+    ]
+  },
+  {
+    "id": 660,
+    "char": "耳",
+    "radical": "耳",
+    "semester": "二下",
+    "words": [
+      "耳朵",
+      "耳聽",
+      "耳環"
+    ]
+  },
+  {
+    "id": 661,
+    "char": "迎",
+    "radical": "辵",
+    "semester": "二下",
+    "words": [
+      "歡迎",
+      "迎接",
+      "迎面"
+    ]
+  },
+  {
+    "id": 662,
+    "char": "百",
+    "radical": "白",
+    "semester": "二下",
+    "words": [
+      "一百",
+      "百分",
+      "百花"
+    ]
+  },
+  {
+    "id": 663,
+    "char": "之",
+    "radical": "丿",
+    "semester": "二下",
+    "words": [
+      "之後",
+      "之前",
+      "之中"
+    ]
+  },
+  {
+    "id": 664,
+    "char": "消",
+    "radical": "水",
+    "semester": "二下",
+    "words": [
+      "消失",
+      "消化",
+      "消息"
+    ]
+  },
+  {
+    "id": 665,
+    "char": "銀",
+    "radical": "金",
+    "semester": "二下",
+    "words": [
+      "銀色",
+      "銀行",
+      "白銀"
+    ]
+  },
+  {
+    "id": 666,
+    "char": "啄",
+    "radical": "口",
+    "semester": "二下",
+    "words": [
+      "啄木鳥",
+      "啄食",
+      "啄米"
+    ]
+  },
+  {
+    "id": 667,
+    "char": "交",
+    "radical": "亠",
+    "semester": "二下",
+    "words": [
+      "交朋友",
+      "交換",
+      "交通"
+    ]
+  },
+  {
+    "id": 668,
+    "char": "食",
+    "radical": "食",
+    "semester": "二下",
+    "words": [
+      "食物",
+      "飲食",
+      "糧食"
+    ]
+  },
+  {
+    "id": 669,
+    "char": "請",
+    "radical": "言",
+    "semester": "二下",
+    "words": [
+      "請問",
+      "邀請",
+      "請坐"
+    ]
+  },
+  {
+    "id": 670,
+    "char": "傳",
+    "radical": "人",
+    "semester": "二下",
+    "words": [
+      "傳說",
+      "傳來",
+      "傳遞"
+    ]
+  },
+  {
+    "id": 671,
+    "char": "准",
+    "radical": "冫",
+    "semester": "二下",
+    "words": [
+      "准許",
+      "批准",
+      "准時"
+    ]
+  },
+  {
+    "id": 672,
+    "char": "袋",
+    "radical": "衣",
+    "semester": "二下",
+    "words": [
+      "袋子",
+      "口袋",
+      "袋鼠"
+    ]
+  },
+  {
+    "id": 673,
+    "char": "令",
+    "radical": "人",
+    "semester": "二下",
+    "words": [
+      "命令",
+      "令人",
+      "指令"
+    ]
+  },
+  {
+    "id": 674,
+    "char": "桶",
+    "radical": "木",
+    "semester": "二下",
+    "words": [
+      "水桶",
+      "桶子",
+      "一桶"
+    ]
+  },
+  {
+    "id": 675,
+    "char": "鼻",
+    "radical": "鼻",
+    "semester": "二下",
+    "words": [
+      "鼻子",
+      "鼻音",
+      "鼻涕"
+    ]
+  },
+  {
+    "id": 676,
+    "char": "嚇",
+    "radical": "口",
+    "semester": "二下",
+    "words": [
+      "嚇到",
+      "嚇一跳",
+      "驚嚇"
+    ]
+  },
+  {
+    "id": 677,
+    "char": "島",
+    "radical": "山",
+    "semester": "二下",
+    "words": [
+      "島嶼",
+      "小島",
+      "半島"
+    ]
+  },
+  {
+    "id": 678,
+    "char": "世",
+    "radical": "一",
+    "semester": "二下",
+    "words": [
+      "世界",
+      "世代",
+      "出世"
+    ]
+  },
+  {
+    "id": 679,
+    "char": "倒",
+    "radical": "人",
+    "semester": "二下",
+    "words": [
+      "倒下",
+      "顛倒",
+      "倒數"
+    ]
+  },
+  {
+    "id": 680,
+    "char": "吸",
+    "radical": "口",
+    "semester": "二下",
+    "words": [
+      "吸氣",
+      "吸引",
+      "呼吸"
+    ]
+  },
+  {
+    "id": 681,
+    "char": "忍",
+    "radical": "心",
+    "semester": "二下",
+    "words": [
+      "忍住",
+      "忍耐",
+      "忍不住"
+    ]
+  },
+  {
+    "id": 682,
+    "char": "元",
+    "radical": "儿",
+    "semester": "二下",
+    "words": [
+      "元旦",
+      "元氣",
+      "元素"
+    ]
+  },
+  {
+    "id": 683,
+    "char": "摸",
+    "radical": "手",
+    "semester": "二下",
+    "words": [
+      "摸摸",
+      "摸索",
+      "觸摸"
+    ]
+  },
+  {
+    "id": 684,
+    "char": "界",
+    "radical": "田",
+    "semester": "二下",
+    "words": [
+      "世界",
+      "界線",
+      "邊界"
+    ]
+  },
+  {
+    "id": 685,
+    "char": "量",
+    "radical": "里",
+    "semester": "二下",
+    "words": [
+      "數量",
+      "力量",
+      "測量"
+    ]
+  },
+  {
+    "id": 686,
+    "char": "模",
+    "radical": "木",
+    "semester": "二下",
+    "words": [
+      "模仿",
+      "模型",
+      "模樣"
+    ]
+  },
+  {
+    "id": 687,
+    "char": "住",
+    "radical": "人",
+    "semester": "二下",
+    "words": [
+      "住家",
+      "居住",
+      "住著"
+    ]
+  },
+  {
+    "id": 688,
+    "char": "波",
+    "radical": "水",
+    "semester": "二下",
+    "words": [
+      "波浪",
+      "波紋",
+      "海波"
+    ]
+  },
+  {
+    "id": 689,
+    "char": "讀",
+    "radical": "言",
+    "semester": "二下",
+    "words": [
+      "閱讀",
+      "讀書",
+      "讀音"
+    ]
+  },
+  {
+    "id": 690,
+    "char": "險",
+    "radical": "阜",
+    "semester": "二下",
+    "words": [
+      "危險",
+      "冒險",
+      "保險"
+    ]
+  },
+  {
+    "id": 691,
+    "char": "底",
+    "radical": "广",
+    "semester": "二下",
+    "words": [
+      "底部",
+      "到底",
+      "底下"
+    ]
+  },
+  {
+    "id": 692,
+    "char": "度",
+    "radical": "广",
+    "semester": "二下",
+    "words": [
+      "程度",
+      "溫度",
+      "一度"
+    ]
+  },
+  {
+    "id": 693,
+    "char": "顧",
+    "radical": "頁",
+    "semester": "二下",
+    "words": [
+      "照顧",
+      "顧客",
+      "回顧"
+    ]
+  },
+  {
+    "id": 694,
+    "char": "浪",
+    "radical": "水",
+    "semester": "二下",
+    "words": [
+      "波浪",
+      "浪花",
+      "浪費"
+    ]
+  },
+  {
+    "id": 695,
+    "char": "庫",
+    "radical": "广",
+    "semester": "二下",
+    "words": [
+      "倉庫",
+      "車庫",
+      "庫存"
+    ]
+  },
+  {
+    "id": 696,
+    "char": "挖",
+    "radical": "手",
+    "semester": "二下",
+    "words": [
+      "挖土",
+      "挖掘",
+      "挖坑"
+    ]
+  },
+  {
+    "id": 697,
+    "char": "議",
+    "radical": "言",
+    "semester": "二下",
+    "words": [
+      "討議",
+      "會議",
+      "議論"
+    ]
+  },
+  {
+    "id": 698,
+    "char": "艘",
+    "radical": "舟",
+    "semester": "二下",
+    "words": [
+      "一艘",
+      "船艘"
+    ]
+  },
+  {
+    "id": 699,
+    "char": "邀",
+    "radical": "辵",
+    "semester": "二下",
+    "words": [
+      "邀請",
+      "應邀",
+      "邀約"
+    ]
+  },
+  {
+    "id": 700,
+    "char": "索",
+    "radical": "糸",
+    "semester": "二下",
+    "words": [
+      "索取",
+      "繩索",
+      "搜索"
+    ]
+  },
+  {
+    "id": 701,
+    "char": "坑",
+    "radical": "土",
+    "semester": "二下",
+    "words": [
+      "坑洞",
+      "坑道",
+      "水坑"
+    ]
+  },
+  {
+    "id": 702,
+    "char": "鴕",
+    "radical": "鳥",
+    "semester": "二下",
+    "words": [
+      "鴕鳥"
+    ]
+  },
+  {
+    "id": 703,
+    "char": "掀",
+    "radical": "手",
+    "semester": "二下",
+    "words": [
+      "掀開",
+      "掀起",
+      "掀蓋"
+    ]
+  },
+  {
+    "id": 704,
+    "char": "蹦",
+    "radical": "足",
+    "semester": "二下",
+    "words": [
+      "蹦跳",
+      "活蹦亂跳",
+      "蹦蹦"
+    ]
+  },
+  {
+    "id": 705,
+    "char": "奧",
+    "radical": "大",
+    "semester": "二下",
+    "words": [
+      "奧妙",
+      "奧運",
+      "深奧"
+    ]
+  }
+];
+
+const lookup = {};
+DATA.forEach(d => { lookup[d.char] = d; });
+
+const cnt = {'一上':0,'一下':0,'二上':0,'二下':0};
+DATA.forEach(d => cnt[d.semester]++);
+document.getElementById('cnt1上').textContent = cnt['一上'];
+document.getElementById('cnt1下').textContent = cnt['一下'];
+document.getElementById('cnt2上').textContent = cnt['二上'];
+document.getElementById('cnt2下').textContent = cnt['二下'];
+
+function renderGrid(filter) {
+  const grid = document.getElementById('charGrid');
+  grid.innerHTML = '';
+  const sems = filter === 'all' ? ['一上','一下','二上','二下'] : [filter];
+  sems.forEach(sem => {
+    const items = DATA.filter(d => d.semester === sem);
+    if (!items.length) return;
+    const lbl = document.createElement('div');
+    lbl.className = 'semester-label sem-label-' + sem;
+    lbl.textContent = '康軒' + sem + '　共 ' + items.length + ' 字';
+    grid.appendChild(lbl);
+    const g = document.createElement('div');
+    g.className = 'grid';
+    items.forEach(d => {
+      const card = document.createElement('div');
+      card.className = 'card sem-' + d.semester;
+      card.innerHTML =
+        '<div class="card-num">#' + d.id + '</div>' +
+        '<div class="card-char">' + d.char + '</div>' +
+        '<div class="card-radical">部首：<span>' + d.radical + '</span></div>' +
+        '<div class="card-words">' +
+          d.words.map(w => '<span class="word-tag">' + w + '</span>').join('') +
+        '</div>';
+      g.appendChild(card);
+    });
+    grid.appendChild(g);
+  });
+}
+renderGrid('all');
+
+function filterSem(val, btn) {
+  document.querySelectorAll('.sem-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderGrid(val);
+}
+
+function switchTab(tab) {
+  const isSearch = tab === 'search';
+  document.getElementById('listPage').style.display = isSearch ? 'none' : 'block';
+  document.getElementById('searchPage').style.display = isSearch ? 'block' : 'none';
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelector('.tab-btn.' + tab).classList.add('active');
+  if (isSearch) setTimeout(() => document.getElementById('searchInput').focus(), 50);
+}
+
+function doSearch() {
+  const ch = document.getElementById('searchInput').value.trim();
+  const box = document.getElementById('searchResult');
+  if (!ch) { box.innerHTML = ''; return; }
+  const d = lookup[ch];
+  if (d) {
+    box.innerHTML =
+      '<div class="result-box result-yes">' +
+      '<div class="result-icon">🌟</div>' +
+      '<div class="result-char">' + d.char + '</div>' +
+      '<div class="result-title">已學過！</div>' +
+      '<div class="result-meta">康軒 ' + d.semester + '　第 ' + d.id + ' 個生字<br>部首：' + d.radical + '</div>' +
+      '<div class="result-words">' + d.words.map(w => '<span class="result-word-tag">' + w + '</span>').join('') + '</div>' +
+      '</div>';
+  } else {
+    box.innerHTML =
+      '<div class="result-box result-no">' +
+      '<div class="result-icon">📝</div>' +
+      '<div class="result-char">' + ch + '</div>' +
+      '<div class="result-title">還沒學過喔</div>' +
+      '<div class="result-meta">這個字不在目前的生字範圍內</div>' +
+      '</div>';
+  }
+}
+
+document.getElementById('searchInput').addEventListener('keydown', e => {
+  if (e.key === 'Enter') doSearch();
+});
+document.getElementById('searchInput').addEventListener('input', e => {
+  if (e.target.value.length > 1) e.target.value = e.target.value.slice(-1);
+});
+</script>
+</body>
+</html>
