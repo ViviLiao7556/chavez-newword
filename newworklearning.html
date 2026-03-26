@@ -28,8 +28,12 @@
     width: 250px; height: 250px; border-radius: 50%;
     background: rgba(255,255,255,.06);
   }
-  .hero-icons { display: flex; justify-content: center; gap: 20px; margin-bottom: 16px; position: relative; z-index: 1; }
-  .hero-icons img { width: 64px; height: 64px; filter: drop-shadow(0 3px 6px rgba(0,0,0,.35)); }
+  .hero-icons { display: flex; justify-content: center; align-items: flex-end; gap: 16px; margin-bottom: 16px; position: relative; z-index: 1; }
+  .hero-icons .pikachu { width: 90px; height: 90px; filter: drop-shadow(0 4px 8px rgba(0,0,0,.35)); }
+  .hero-icons .star-deco { width: 38px; height: 38px; filter: drop-shadow(0 2px 4px rgba(0,0,0,.25)); animation: starBob 2s ease-in-out infinite; }
+  @keyframes starBob  { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+  @keyframes pgBounce { 0%,100%{transform:translateY(0) scale(1)} 40%{transform:translateY(-14px) scale(1.05)} 60%{transform:translateY(-8px) scale(1.02)} }
+  .tab-btn img { width: 22px; height: 22px; vertical-align: middle; }
   .hero h1 { font-size: 2.6rem; letter-spacing: 6px; text-shadow: 0 2px 10px rgba(0,0,0,.3); position: relative; z-index: 1; }
   .hero p  { font-size: 1.15rem; margin-top: 10px; opacity: .88; letter-spacing: 2px; position: relative; z-index: 1; }
 
@@ -61,6 +65,7 @@
   .stat-num.c2 { color: #4D96FF; }
   .stat-num.c3 { color: #3AAB4A; }
   .stat-label  { font-size: .85rem; color: #888; margin-top: 2px; }
+  .stat-star   { width: 18px; height: 18px; vertical-align: middle; margin-right: 4px; }
 
   /* FILTER */
   .filter-bar {
@@ -189,35 +194,17 @@
 
 <div class="hero">
   <div class="hero-icons">
-    <img src="reading.png" alt="reading">
-    <img src="study.png"   alt="study">
-    <img src="leader.png"  alt="leader">
+    <img class="star-deco" src="star.png" alt="star">
+    <img class="pikachu"   src="pikachu.png" alt="pikachu">
+    <img class="star-deco" src="star.png" alt="star" style="animation-delay:.8s;">
   </div>
   <h1>國語生字表</h1>
   <p>康軒版　一上 ▸ 一下 ▸ 二上 ▸ 二下</p>
 </div>
 
-<div class="stats-bar">
-  <div class="stat-item">
-    <div class="stat-num c1" id="cnt1上">-</div>
-    <div class="stat-label">一上生字</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-num c2" id="cnt1下">-</div>
-    <div class="stat-label">一下生字</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-num c3" id="cnt2上">-</div>
-    <div class="stat-label">二上生字</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-num" style="color:#FFB347;" id="cnt2下">-</div>
-    <div class="stat-label">二下生字</div>
-  </div>
-</div>
 
 <div class="tab-bar">
-  <button class="tab-btn list active" onclick="switchTab('list')">📖 生字列表</button>
+  <button class="tab-btn list active" onclick="switchTab('list')"><img src="book.png" alt=""> 生字列表</button>
   <button class="tab-btn search" onclick="switchTab('search')">🔍 查詢生字</button>
 </div>
 
@@ -229,13 +216,16 @@
     <button class="sem-btn sem-1下"        data-sem="一下" onclick="filterSem('一下',this)">一下</button>
     <button class="sem-btn sem-2上"        data-sem="二上" onclick="filterSem('二上',this)">二上</button>
     <button class="sem-btn sem-2下"        data-sem="二下" onclick="filterSem('二下',this)">二下</button>
-    <button class="print-btn" onclick="openPractice()">🖨️ 列印練習單</button>
+    <button class="print-btn" onclick="openPractice()"><img src="paper.png" alt="" style="width:20px;height:20px;vertical-align:middle;margin-right:4px;"> 列印練習單</button>
   </div>
   <div class="section" id="charGrid"></div>
 </div>
 
 <!-- SEARCH PAGE -->
 <div class="search-section" id="searchPage">
+  <div style="text-align:center;margin-bottom:18px;">
+    <img src="pokemon-go.png" alt="pokemon-go" style="width:90px;height:90px;filter:drop-shadow(0 4px 8px rgba(0,0,0,.18));">
+  </div>
   <div class="search-box-wrap">
     <input id="searchInput" type="text" maxlength="1" placeholder="輸入一個字">
     <button id="searchBtn" onclick="doSearch()">查詢</button>
@@ -8682,12 +8672,6 @@ const DATA = [
 const lookup = {};
 DATA.forEach(d => { lookup[d.char] = d; });
 
-const cnt = {'一上':0,'一下':0,'二上':0,'二下':0};
-DATA.forEach(d => cnt[d.semester]++);
-document.getElementById('cnt1上').textContent = cnt['一上'];
-document.getElementById('cnt1下').textContent = cnt['一下'];
-document.getElementById('cnt2上').textContent = cnt['二上'];
-document.getElementById('cnt2下').textContent = cnt['二下'];
 
 function renderGrid(filter) {
   const grid = document.getElementById('charGrid');
@@ -8745,7 +8729,7 @@ function doSearch() {
   if (d) {
     box.innerHTML =
       '<div class="result-box result-yes">' +
-      '<div class="result-icon">🌟</div>' +
+      '<div class="result-icon"><img src="jigglypuff.png" style="width:72px;height:72px;filter:drop-shadow(0 3px 6px rgba(0,0,0,.2));"></div>' +
       '<div class="result-char">' + d.char + '</div>' +
       '<div style="display:flex;justify-content:center;margin:-4px 0 10px;">' + zhuyinHtml(d.zhuyin,'1.2rem') + '</div>' +
       '<div class="result-title">已學過！</div>' +
@@ -8755,7 +8739,7 @@ function doSearch() {
   } else {
     box.innerHTML =
       '<div class="result-box result-no">' +
-      '<div class="result-icon">📝</div>' +
+      '<div class="result-icon"><img src="learned.png" style="width:72px;height:72px;filter:drop-shadow(0 3px 6px rgba(0,0,0,.2));"></div>' +
       '<div class="result-char">' + ch + '</div>' +
       '<div class="result-title">還沒學過喔</div>' +
       '<div class="result-meta">這個字不在目前的生字範圍內</div>' +
@@ -8784,11 +8768,12 @@ function zhuyinHtml(zhuyin, size) {
   const toneCol = tone
     ? `<div style="display:flex;flex-direction:column;justify-content:${align};
                    font-size:${size};color:#c0392b;line-height:1;
-                   align-self:stretch;">${tone}</div>`
+                   align-self:stretch;overflow:hidden;">${tone}</div>`
     : '';
-  return `<div style="display:inline-flex;align-items:stretch;">
+  return `<div style="display:inline-flex;align-items:stretch;max-height:100%;overflow:hidden;">
     <div style="writing-mode:vertical-rl;text-orientation:upright;
-                font-size:${size};color:#c0392b;line-height:1.15;">${phonetic}</div>
+                font-size:${size};color:#c0392b;line-height:1.1;
+                overflow:hidden;max-height:100%;">${phonetic}</div>
     ${toneCol}
   </div>`;
 }
@@ -8800,71 +8785,81 @@ function openPractice() {
   const chars  = filter === 'all' ? DATA : DATA.filter(d => d.semester === filter);
   const label  = filter === 'all' ? '全部' : ('康軒' + filter);
 
-  const SQ = 22; // 格子大小 mm
-  const GROUPS_PER_ROW = 2; // 每行幾個字
+  // 版面：A4 可用寬約 180mm（含瀏覽器列印安全邊界）
+  // 每組 = 字格(SQ) + 注音細欄(NW) + 練習×3(SQ×3) = 4SQ+NW
+  // 兩組 + 間距：2×(4×19+7) + 6 = 2×83 + 6 = 172mm（安全不超出）
+  const SQ  = 19;   // 字格 / 練習格邊長 mm
+  const NW  = 7;    // 注音細欄寬 mm
+  const GAP = 6;    // 兩組間距 mm
+  const ZF  = '4mm'; // 注音字級
+  const GROUPS_PER_ROW = 2;
+  const TOTAL = GROUPS_PER_ROW * (4 * SQ + NW) + (GROUPS_PER_ROW - 1) * GAP; // 172mm
 
-  function cell(ch, isModel) {
-    const bg = isModel ? '#f8f8f8' : 'white';
-    const ZF = (SQ * 0.27) + 'mm';
-    const content = isModel
-      ? `<div style="
-           display:flex; align-items:center; justify-content:center;
-           width:100%; height:100%; gap:0;
-         ">
-           <div style="font-size:${SQ*0.68}mm;line-height:1;color:#222;flex:0 0 auto;">${ch.char}</div>
-           <div style="flex:0 0 auto; align-self:stretch; display:flex; align-items:center;">
-             ${zhuyinHtml(ch.zhuyin, ZF)}
-           </div>
-         </div>`
-      : '';
-    return `
-      <td style="
-        width:${SQ}mm; height:${SQ}mm; min-width:${SQ}mm;
-        border:1.8px solid #444; background:${bg};
-        text-align:center; vertical-align:middle;
-        padding:0; position:relative;
-      ">
-        <div style="
-          position:absolute; top:50%; left:0; right:0;
-          border-top:1px dashed #ccc; pointer-events:none;
-        "></div>
-        <div style="
-          position:absolute; left:50%; top:0; bottom:0;
-          border-left:1px dashed #ccc; pointer-events:none;
-        "></div>
-        ${content}
-      </td>`;
+  // 字格（田字格，灰底，不含注音）
+  function charTd(d) {
+    return `<td style="height:${SQ}mm;border:1.8px solid #555;background:#f5f5f5;padding:0;position:relative;">
+      <div style="position:absolute;top:50%;left:0;right:0;border-top:1px dashed #ccc;"></div>
+      <div style="position:absolute;left:50%;top:0;bottom:0;border-left:1px dashed #ccc;"></div>
+      <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;">
+        <span style="font-size:${(SQ*0.78).toFixed(1)}mm;line-height:1;color:#111;">${d.char}</span>
+      </div>
+    </td>`;
   }
 
-  function spacer() {
-    return `<td style="width:8mm;min-width:8mm;"></td>`;
+  // 注音細欄（獨立窄格，絕對定位確保不溢出）
+  function zhuyinTd(d) {
+    return `<td style="height:${SQ}mm;border:1.8px solid #555;border-left:none;background:#fafafa;padding:0;overflow:hidden;position:relative;">
+      <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;overflow:hidden;">
+        ${zhuyinHtml(d.zhuyin, ZF)}
+      </div>
+    </td>`;
   }
+
+  // 練習格（白底田字格）
+  function practiceTd() {
+    return `<td style="height:${SQ}mm;border:1.8px solid #555;background:white;padding:0;position:relative;">
+      <div style="position:absolute;top:50%;left:0;right:0;border-top:1px dashed #ddd;"></div>
+      <div style="position:absolute;left:50%;top:0;bottom:0;border-left:1px dashed #ddd;"></div>
+    </td>`;
+  }
+
+  function spacer() { return `<td></td>`; }
+
+  // 建立 colgroup（每組 5 欄：字+注音+練×3，兩組中間 1 spacer，共 11 欄）
+  // 直接用 mm 單位，避免百分比在列印時計算偏差
+  let cg = '<colgroup>';
+  for (let g = 0; g < GROUPS_PER_ROW; g++) {
+    cg += `<col style="width:${SQ}mm"><col style="width:${NW}mm"><col style="width:${SQ}mm"><col style="width:${SQ}mm"><col style="width:${SQ}mm">`;
+    if (g < GROUPS_PER_ROW - 1) cg += `<col style="width:${GAP}mm">`;
+  }
+  cg += '</colgroup>';
 
   let rows = '';
   for (let i = 0; i < chars.length; i += GROUPS_PER_ROW) {
     const group = chars.slice(i, i + GROUPS_PER_ROW);
 
-    // 田字格行
+    // 格子行
     rows += '<tr style="page-break-inside:avoid;">';
     for (let g = 0; g < GROUPS_PER_ROW; g++) {
       const d = group[g];
       if (d) {
-        rows += cell(d, true);
-        rows += cell(null, false);
-        rows += cell(null, false);
-        rows += cell(null, false);
+        rows += charTd(d);
+        rows += zhuyinTd(d);
+        rows += practiceTd();
+        rows += practiceTd();
+        rows += practiceTd();
       } else {
-        rows += `<td colspan="4"></td>`;
+        rows += `<td colspan="5"></td>`;
       }
       if (g < GROUPS_PER_ROW - 1) rows += spacer();
     }
     rows += '</tr>';
 
-    // 詞語小字行
+    // 詞語行
     rows += '<tr>';
     for (let g = 0; g < GROUPS_PER_ROW; g++) {
       const d = group[g];
-      rows += `<td colspan="4" style="font-size:8pt; color:#666; padding:2px 2px 8px; vertical-align:top;">`;
+      rows += `<td colspan="5" style="font-size:8pt;color:#666;padding:2px 2px 8px;vertical-align:top;">`;
       if (d) rows += `部首：${d.radical}　${d.words.join('、')}`;
       rows += '</td>';
       if (g < GROUPS_PER_ROW - 1) rows += spacer();
@@ -8876,21 +8871,22 @@ function openPractice() {
 <html lang="zh-TW">
 <head>
 <meta charset="UTF-8">
-<title>Chavez 練習單 - ${label}</title>
+<title>國語練習單 - ${label}</title>
 <style>
-  @page { size: A4 portrait; margin: 12mm 14mm; }
+  @page { size: A4 portrait; margin: 12mm 10mm; }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: "標楷體","DFKai-SB","BiauKai",serif; }
   h2 { text-align:center; font-size:14pt; margin-bottom:10px; letter-spacing:2px; }
   .sub { text-align:center; font-size:9pt; color:#888; margin-bottom:14px; }
-  table { border-collapse:collapse; }
+  table { border-collapse:collapse; width:${TOTAL}mm; table-layout:fixed; }
   @media print { body { -webkit-print-color-adjust:exact; print-color-adjust:exact; } }
 </style>
 </head>
 <body>
-<h2>Chavez 國語練習單　${label}</h2>
+<h2>國語練習單　${label}</h2>
 <p class="sub">共 ${chars.length} 個生字　▸ 每字提供 3 格練習空間</p>
 <table>
+  ${cg}
   <tbody>${rows}</tbody>
 </table>
 <script>window.onload=function(){window.print();}<\/script>
