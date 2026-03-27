@@ -7436,12 +7436,12 @@ let currentListSem = 'all';
 let currentListLesson = new Set(); // 空 = 全部
 
 // 從 Set 產生課次標籤文字
-function lessonLabel(lessonSet) {
+function lessonLabel(lessonSet, sem) {
   if (!lessonSet.size) return '';
   const sorted = [...lessonSet].sort((a,b) => a - b);
   if (sorted.length === 1) {
     const n = sorted[0];
-    const item = DATA.find(d => d.lesson === n && d.lessonTitle);
+    const item = DATA.find(d => d.lesson === n && d.lessonTitle && (!sem || d.semester === sem));
     const title = item ? item.lessonTitle : '';
     return '　第' + n + '課' + (title ? '「' + title + '」' : '');
   }
@@ -7459,7 +7459,7 @@ function renderGrid(filter, lessonSet) {
     if (!items.length) return;
     const lbl = document.createElement('div');
     lbl.className = 'semester-label sem-label-' + sem;
-    lbl.textContent = '康軒' + sem + lessonLabel(lessonSet) + '　共 ' + items.length + ' 字';
+    lbl.textContent = '康軒' + sem + lessonLabel(lessonSet, sem) + '　共 ' + items.length + ' 字';
     grid.appendChild(lbl);
     const g = document.createElement('div');
     g.className = 'grid';
@@ -7606,7 +7606,7 @@ function openPractice() {
   let chars = filter === 'all' ? [...DATA] : DATA.filter(d => d.semester === filter);
   if (lessonSet.size > 0) chars = chars.filter(d => lessonSet.has(d.lesson));
   let label = filter === 'all' ? '全部' : ('康軒' + filter);
-  label += lessonLabel(lessonSet).replace(/^　/, ' ');
+  label += lessonLabel(lessonSet, filter !== 'all' ? filter : null).replace(/^　/, ' ');
 
   // 版面：A4 可用寬約 180mm（含瀏覽器列印安全邊界）
   // 每組 = 字格(SQ) + 注音細欄(NW) + 練習×3(SQ×3) = 4SQ+NW
