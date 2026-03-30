@@ -212,6 +212,7 @@
   }
   .qz-hint { font-size:.95rem; color:#aaa; min-height:1.4rem; text-align:center; }
   #qzCanvas { display:block; border:3px solid #f06292; border-radius:14px; cursor:crosshair; touch-action:none; }
+  #qzEraserCursor { display:none; position:absolute; border:2px solid #999; border-radius:50%; pointer-events:none; transform:translate(-50%,-50%); background:rgba(160,160,160,.15); box-sizing:border-box; }
   .qz-btn-row { display:flex; gap:14px; }
   .qz-btn {
     font-size:1.12rem; font-family:inherit; padding:12px 30px;
@@ -229,6 +230,33 @@
   .qz-ng { font-size:1.1rem; font-family:inherit; padding:11px 26px; border-radius:50px; cursor:pointer; font-weight:bold; transition:all .15s; background:#FFE5E5; color:#c0392b; border:2.5px solid #FF6B6B; }
   .qz-ng:hover { background:#FF6B6B; color:white; }
   .qz-score { display:none; flex-direction:column; align-items:center; gap:10px; background:white; border-radius:22px; padding:36px 28px; width:100%; box-shadow:0 6px 28px rgba(0,0,0,.1); text-align:center; }
+
+  /* QUIZ PEN TOOLBAR */
+  .qz-toolbar { display:flex; align-items:center; gap:8px; padding:6px 12px; background:#fafafa; border-radius:50px; border:1.5px solid #eee; }
+  .qz-color-swatch { width:26px; height:26px; border-radius:50%; border:3px solid transparent; cursor:pointer; transition:all .15s; flex-shrink:0; outline:none; }
+  .qz-color-swatch.active { border-color:#f06292 !important; transform:scale(1.22); box-shadow:0 0 0 2px #fff,0 0 0 4px #f06292; }
+  .qz-eraser-label { font-size:.75rem; color:#aaa; white-space:nowrap; }
+  .qz-eraser-size { display:flex; align-items:center; justify-content:center; border-radius:50%; border:2.5px solid #ddd; background:white; cursor:pointer; transition:all .15s; padding:0; flex-shrink:0; }
+  .qz-eraser-size::after { content:''; display:block; border-radius:50%; background:#bbb; transition:all .15s; }
+  .qz-eraser-size.active { border-color:#f06292; background:#fff0f7; }
+  .qz-eraser-size.active::after { background:#f06292; }
+  .qz-eraser-size.es { width:28px; height:28px; } .qz-eraser-size.es::after { width:7px;  height:7px;  }
+  .qz-eraser-size.em { width:30px; height:30px; } .qz-eraser-size.em::after { width:13px; height:13px; }
+  .qz-eraser-size.el { width:33px; height:33px; } .qz-eraser-size.el::after { width:21px; height:21px; }
+  .qz-tool-sep { width:1.5px; height:20px; background:#ddd; border-radius:1px; }
+
+  /* CELEBRATION OVERLAY */
+  .qz-celebration { display:none; position:fixed; inset:0; z-index:9999; background:rgba(255,255,255,.90); flex-direction:column; align-items:center; justify-content:center; gap:14px; cursor:pointer; }
+  .qz-celebration.show { display:flex; animation:qzFadeIn .25s ease; }
+  .qz-celeb-img { width:200px; height:200px; object-fit:contain; animation:qzPop .42s cubic-bezier(.36,.07,.19,.97) both; }
+  .qz-celeb-char { font-size:3.5rem; font-weight:bold; color:#f06292; line-height:1; animation:qzPop .42s .1s cubic-bezier(.36,.07,.19,.97) both; }
+  .qz-celeb-text { font-size:1.6rem; font-weight:bold; color:#f06292; letter-spacing:2px; animation:qzFadeUp .4s .2s ease both; }
+  .qz-celeb-sub { font-size:.85rem; color:#bbb; animation:qzFadeUp .4s .35s ease both; }
+  @keyframes qzPop { 0%{transform:scale(0) rotate(-15deg);opacity:0} 60%{transform:scale(1.18) rotate(4deg);opacity:1} 100%{transform:scale(1) rotate(0);opacity:1} }
+  @keyframes qzFadeUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes qzFadeIn { from{opacity:0} to{opacity:1} }
+  .qz-confetti { position:fixed; border-radius:2px; pointer-events:none; z-index:10000; animation:qzFall linear forwards; }
+  @keyframes qzFall { from{transform:translateY(-30px) rotate(0deg);opacity:1} to{transform:translateY(110vh) rotate(720deg);opacity:0} }
 
   /* LESSON BUTTONS */
   .lesson-btn {
@@ -350,7 +378,22 @@
     <div class="qz-card" id="qzCard" style="display:none;">
       <div class="qz-word-display" id="qzWordDisplay"></div>
       <div class="qz-hint" id="qzHint">請在下方方格寫出空白的字 ✍️</div>
-      <canvas id="qzCanvas" width="240" height="240"></canvas>
+      <div style="position:relative;display:inline-block;line-height:0;">
+        <canvas id="qzCanvas" width="240" height="240"></canvas>
+        <div id="qzEraserCursor"></div>
+      </div>
+      <div id="qzToolbar" class="qz-toolbar">
+        <button class="qz-color-swatch active" style="background:#1a1a2e;" onclick="qzSetColor('#1a1a2e',this)" title="黑色"></button>
+        <button class="qz-color-swatch" style="background:#2563eb;" onclick="qzSetColor('#2563eb',this)" title="藍色"></button>
+        <button class="qz-color-swatch" style="background:#dc2626;" onclick="qzSetColor('#dc2626',this)" title="紅色"></button>
+        <button class="qz-color-swatch" style="background:#16a34a;" onclick="qzSetColor('#16a34a',this)" title="綠色"></button>
+        <button class="qz-color-swatch" style="background:#7c3aed;" onclick="qzSetColor('#7c3aed',this)" title="紫色"></button>
+        <div class="qz-tool-sep"></div>
+        <span class="qz-eraser-label">橡皮擦</span>
+        <button class="qz-eraser-size es" onclick="qzSetEraser(12,this)" title="小橡皮擦"></button>
+        <button class="qz-eraser-size em" onclick="qzSetEraser(24,this)" title="中橡皮擦"></button>
+        <button class="qz-eraser-size el" onclick="qzSetEraser(40,this)" title="大橡皮擦"></button>
+      </div>
       <div class="qz-btn-row" id="qzActionRow">
         <button class="qz-btn qz-clear" onclick="qzClear()">清除</button>
         <button class="qz-btn qz-submit" onclick="qzSubmit()">送出</button>
@@ -372,6 +415,12 @@
       <button class="qz-btn qz-clear" style="margin-top:8px;" onclick="qzBackToSetup()">重新選擇範圍</button>
     </div>
   </div>
+<!-- Celebration overlay -->
+<div class="qz-celebration" id="qzCelebration" onclick="qzHideCelebration()">
+  <img id="qzCelebImg" class="qz-celeb-img" src="" alt="">
+  <div class="qz-celeb-char" id="qzCelebChar"></div>
+  <div class="qz-celeb-text">🎉 寫對了！</div>
+  <div class="qz-celeb-sub">點一下繼續</div>
 </div>
 
 <script>
@@ -7722,12 +7771,24 @@ function openPractice() {
 }
 
 // ── 生字挑戰 ──
+const QZ_PIKACHU = [
+  'Pikachu/pikachu (1).png','Pikachu/pikachu (2).png',
+  'Pikachu/pikachu (3).png','Pikachu/pikachu (4).png',
+  'Pikachu/caterpie.png','Pikachu/eevee.png',
+  'Pikachu/mankey.png','Pikachu/squirtle.png',
+  'Pikachu/avatar (2).png','Pikachu/game (2).png',
+];
 let qzInitialized = false;
 let qzQuestions = [], qzIdx = 0, qzCorrect = 0;
 let qzDrawing = false, qzLX = 0, qzLY = 0;
 let qzCtx = null;
 let qzSetupSelectedSem = 'all';
 let qzSetupSelectedLesson = new Set();
+let qzPenColor = '#1a1a2e';
+let qzIsEraser = false;
+let qzEraserSize = 24;
+let qzStrokes = [], qzCurrentStroke = null, qzEraserUsed = false;
+let qzCelebTimeout = null;
 
 function qzInit() {
   qzCtx = document.getElementById('qzCanvas').getContext('2d');
@@ -7738,13 +7799,47 @@ function qzInit() {
     const s = e.touches ? e.touches[0] : e;
     return { x: (s.clientX - r.left) * sx, y: (s.clientY - r.top) * sy };
   };
-  cv.addEventListener('mousedown',  e => { qzDrawing=true; const p=getP(e); qzLX=p.x; qzLY=p.y; qzCtx.beginPath(); qzCtx.arc(p.x,p.y,3.5,0,Math.PI*2); qzCtx.fillStyle='#1a1a2e'; qzCtx.fill(); });
-  cv.addEventListener('mousemove',  e => { if(!qzDrawing)return; const p=getP(e); qzCtx.beginPath(); qzCtx.moveTo(qzLX,qzLY); qzCtx.lineTo(p.x,p.y); qzCtx.strokeStyle='#1a1a2e'; qzCtx.lineWidth=7; qzCtx.lineCap='round'; qzCtx.lineJoin='round'; qzCtx.stroke(); qzLX=p.x; qzLY=p.y; });
-  cv.addEventListener('mouseup',    () => { qzDrawing=false; });
-  cv.addEventListener('mouseleave', () => { qzDrawing=false; });
-  cv.addEventListener('touchstart', e => { e.preventDefault(); qzDrawing=true; const p=getP(e); qzLX=p.x; qzLY=p.y; qzCtx.beginPath(); qzCtx.arc(p.x,p.y,3.5,0,Math.PI*2); qzCtx.fillStyle='#1a1a2e'; qzCtx.fill(); }, {passive:false});
-  cv.addEventListener('touchmove',  e => { if(!qzDrawing)return; e.preventDefault(); const p=getP(e); qzCtx.beginPath(); qzCtx.moveTo(qzLX,qzLY); qzCtx.lineTo(p.x,p.y); qzCtx.strokeStyle='#1a1a2e'; qzCtx.lineWidth=7; qzCtx.lineCap='round'; qzCtx.lineJoin='round'; qzCtx.stroke(); qzLX=p.x; qzLY=p.y; }, {passive:false});
-  cv.addEventListener('touchend',   () => { qzDrawing=false; });
+  const qzStrokeEnd = () => {
+    qzDrawing = false;
+    if (qzCurrentStroke && qzCurrentStroke.length > 0) { qzStrokes.push(qzCurrentStroke); qzCurrentStroke = null; }
+  };
+  const qzPenDown = p => {
+    if (qzIsEraser) { qzEraserUsed = true; return; }
+    qzCtx.beginPath(); qzCtx.arc(p.x,p.y,3.5,0,Math.PI*2); qzCtx.fillStyle=qzPenColor; qzCtx.fill();
+    qzCurrentStroke = [{x:p.x,y:p.y,t:Date.now()}];
+  };
+  const qzPenMove = p => {
+    qzCtx.beginPath(); qzCtx.moveTo(qzLX,qzLY); qzCtx.lineTo(p.x,p.y);
+    if (qzIsEraser) {
+      qzCtx.strokeStyle='white'; qzCtx.lineWidth=qzEraserSize;
+    } else {
+      qzCtx.strokeStyle=qzPenColor; qzCtx.lineWidth=7;
+      if (qzCurrentStroke) qzCurrentStroke.push({x:p.x,y:p.y,t:Date.now()});
+    }
+    qzCtx.lineCap='round'; qzCtx.lineJoin='round'; qzCtx.stroke();
+  };
+  cv.addEventListener('mousedown',  e => { qzDrawing=true; const p=getP(e); qzLX=p.x; qzLY=p.y; qzPenDown(p); });
+  cv.addEventListener('mousemove',  e => { if(!qzDrawing)return; const p=getP(e); qzPenMove(p); qzLX=p.x; qzLY=p.y; });
+  cv.addEventListener('mouseup',    qzStrokeEnd);
+  cv.addEventListener('mouseleave', qzStrokeEnd);
+  cv.addEventListener('touchstart', e => { e.preventDefault(); qzDrawing=true; const p=getP(e); qzLX=p.x; qzLY=p.y; qzPenDown(p); }, {passive:false});
+  cv.addEventListener('touchmove',  e => { if(!qzDrawing)return; e.preventDefault(); const p=getP(e); qzPenMove(p); qzLX=p.x; qzLY=p.y; }, {passive:false});
+  cv.addEventListener('touchend',   qzStrokeEnd);
+  // Eraser cursor tracking
+  const ec = document.getElementById('qzEraserCursor');
+  const moveCursor = e => {
+    if (!qzIsEraser) { ec.style.display='none'; return; }
+    const r = cv.getBoundingClientRect();
+    const ratio = r.width / cv.width;
+    const src = e.touches ? e.touches[0] : e;
+    const x = src.clientX - r.left, y = src.clientY - r.top;
+    const sz = qzEraserSize * ratio;
+    ec.style.cssText = `display:block;width:${sz}px;height:${sz}px;left:${x}px;top:${y}px;`;
+  };
+  cv.addEventListener('mousemove',  moveCursor);
+  cv.addEventListener('touchmove',  moveCursor, {passive:false});
+  cv.addEventListener('mouseleave', () => { ec.style.display='none'; });
+  cv.addEventListener('touchend',   () => { ec.style.display='none'; }, {passive:true});
   // Show setup screen; do NOT start quiz yet
   qzShowSetup();
 }
@@ -7818,7 +7913,7 @@ function qzDrawGrid() {
   qzCtx.strokeRect(2,2,W-4,H-4); qzCtx.restore();
 }
 
-function qzClear() { qzDrawGrid(); }
+function qzClear() { qzDrawGrid(); qzStrokes = []; qzCurrentStroke = null; qzEraserUsed = false; }
 
 function qzBuild(sem, lessonSet) {
   sem = sem || 'all';
@@ -7856,18 +7951,46 @@ function qzShow() {
   document.getElementById('qzScore').style.display = 'none';
   document.getElementById('qzCard').style.display = 'flex';
   qzDrawGrid();
+  qzStrokes = []; qzCurrentStroke = null; qzEraserUsed = false;
 }
 
-function qzSubmit() {
+async function qzSubmit() {
   const cv = document.getElementById('qzCanvas');
   const d = qzCtx.getImageData(0,0,cv.width,cv.height).data;
   let ink = 0;
-  for (let i=0; i<d.length; i+=4) if (d[i]<180 && d[i+1]<180 && d[i+2]<180) ink++;
+  for (let i=0; i<d.length; i+=4) if (d[i]<230 || d[i+1]<230 || d[i+2]<230) ink++;
   if (ink/(cv.width*cv.height) < 0.01) {
     document.getElementById('qzHint').textContent = '還沒寫喔！請先在格子裡寫字 ✍️';
     return;
   }
   const q = qzQuestions[qzIdx];
+
+  // Try Web Handwriting Recognition API (Chrome 99+)
+  if (!qzEraserUsed && qzStrokes.length > 0 && 'createHandwritingRecognizer' in navigator) {
+    document.getElementById('qzHint').textContent = '辨識中…';
+    document.getElementById('qzActionRow').style.display = 'none';
+    try {
+      const recognizer = await navigator.createHandwritingRecognizer({ languages: ['zh-TW'] });
+      const drawing = recognizer.startDrawing({ hints: { recognitionType: 'text', inputType: 'mouse', alternatives: 8 } });
+      for (const pts of qzStrokes) {
+        const stroke = new HandwritingStroke();
+        pts.forEach(pt => stroke.addPoint(pt));
+        drawing.addStroke(stroke);
+      }
+      const preds = await drawing.getPrediction();
+      recognizer.finish();
+      if (preds.some(p => p.text.trim() === q.char)) {
+        qzCorrect++;
+        qzIdx++;
+        qzPlaySuccess();
+        qzShowCelebration(q.char);
+        return;
+      }
+    } catch(e) { /* API not available, fallback */ }
+    document.getElementById('qzActionRow').style.display = 'flex';
+  }
+
+  // Fallback: show reference character for self-assessment
   qzCtx.save(); qzCtx.globalAlpha=0.28; qzCtx.fillStyle='#c0392b';
   qzCtx.font = `${Math.floor(cv.width*0.70)}px "標楷體","DFKai-SB",serif`;
   qzCtx.textAlign='center'; qzCtx.textBaseline='middle';
@@ -7878,10 +8001,16 @@ function qzSubmit() {
 }
 
 function qzMark(ok) {
-  if (ok) qzCorrect++;
+  const char = qzQuestions[qzIdx].char;
   qzIdx++;
-  if (qzIdx >= qzQuestions.length) qzShowScore();
-  else qzShow();
+  if (ok) {
+    qzCorrect++;
+    qzPlaySuccess();
+    qzShowCelebration(char);
+  } else {
+    if (qzIdx >= qzQuestions.length) qzShowScore();
+    else qzShow();
+  }
 }
 
 function qzShowScore() {
@@ -7903,6 +8032,89 @@ function qzRestart() {
   qzIdx = 0; qzCorrect = 0;
   qzBuild(qzSetupSelectedSem, qzSetupSelectedLesson);
   qzShow();
+}
+
+// ── 色筆 / 橡皮擦工具 ──
+function qzSetColor(color, btn) {
+  qzPenColor = color; qzIsEraser = false;
+  document.querySelectorAll('.qz-color-swatch').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.qz-eraser-size').forEach(b => b.classList.remove('active'));
+  document.getElementById('qzCanvas').style.cursor = 'crosshair';
+  document.getElementById('qzEraserCursor').style.display = 'none';
+}
+function qzSetEraser(size, btn) {
+  const cv = document.getElementById('qzCanvas');
+  const ec = document.getElementById('qzEraserCursor');
+  if (qzIsEraser && qzEraserSize === size) {
+    qzIsEraser = false;
+    btn.classList.remove('active');
+    cv.style.cursor = 'crosshair';
+    ec.style.display = 'none';
+    document.querySelectorAll('.qz-color-swatch').forEach(b => {
+      if (b.style.background === qzPenColor) b.classList.add('active');
+    });
+  } else {
+    qzIsEraser = true; qzEraserSize = size;
+    document.querySelectorAll('.qz-color-swatch').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.qz-eraser-size').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    cv.style.cursor = 'none';
+  }
+}
+
+// ── 慶祝動畫 ──
+function qzShowCelebration(char) {
+  const src = QZ_PIKACHU[Math.floor(Math.random() * QZ_PIKACHU.length)];
+  const el = document.getElementById('qzCelebration');
+  const img = document.getElementById('qzCelebImg');
+  img.src = ''; // force re-animation
+  requestAnimationFrame(() => {
+    img.src = src;
+    document.getElementById('qzCelebChar').textContent = char;
+    el.classList.add('show');
+  });
+  qzLaunchConfetti();
+  qzCelebTimeout = setTimeout(qzHideCelebration, 2800);
+}
+function qzHideCelebration() {
+  clearTimeout(qzCelebTimeout);
+  document.getElementById('qzCelebration').classList.remove('show');
+  document.querySelectorAll('.qz-confetti').forEach(el => el.remove());
+  if (qzIdx >= qzQuestions.length) qzShowScore();
+  else qzShow();
+}
+function qzLaunchConfetti() {
+  const colors = ['#f06292','#ffb6c1','#FFD700','#6BCB77','#4D96FF','#a78bfa','#fb923c','#34d399'];
+  for (let i = 0; i < 70; i++) {
+    const el = document.createElement('div');
+    el.className = 'qz-confetti';
+    el.style.cssText = `left:${Math.random()*100}vw;top:-20px;` +
+      `background:${colors[i % colors.length]};` +
+      `width:${7+Math.random()*8}px;height:${7+Math.random()*8}px;` +
+      `border-radius:${Math.random()>.5?'50%':'2px'};` +
+      `animation-duration:${1.6+Math.random()*2}s;` +
+      `animation-delay:${Math.random()*.6}s;`;
+    document.body.appendChild(el);
+  }
+  setTimeout(() => document.querySelectorAll('.qz-confetti').forEach(el => el.remove()), 4500);
+}
+
+// ── 成功音效 (Web Audio API) ──
+function qzPlaySuccess() {
+  try {
+    const ac = new (window.AudioContext || window.webkitAudioContext)();
+    [[523.25,0],[659.25,.11],[783.99,.22],[1046.5,.36]].forEach(([freq,t]) => {
+      const osc = ac.createOscillator(), gain = ac.createGain();
+      osc.connect(gain); gain.connect(ac.destination);
+      osc.frequency.value = freq; osc.type = 'sine';
+      const st = ac.currentTime + t;
+      gain.gain.setValueAtTime(0, st);
+      gain.gain.linearRampToValueAtTime(0.28, st+.05);
+      gain.gain.exponentialRampToValueAtTime(0.001, st+.48);
+      osc.start(st); osc.stop(st+.5);
+    });
+  } catch(e) {}
 }
 </script>
 </body>
